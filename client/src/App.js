@@ -13,6 +13,7 @@ export function App() {
 	return (
 		<main role="main">
 			<div>
+			<h1>Hi</h1>
 				<h1 className="message" data-qa="message">{message}</h1>
 			</div>
 		</main>
