@@ -9,5 +9,6 @@ module.exports = merge(common, {
 		proxy: {
 			"/api": "http://localhost:3100",
 		},
+		historyApiFallback: true,
 	},
 });
