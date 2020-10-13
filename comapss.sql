@@ -3,7 +3,7 @@ drop table if exists mentors;
 drop table if exists feedbacktable;
 
 
-CREATE TABLE STUDENTS (
+CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   surname VARCHAR(30) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE STUDENTS (
   picture OID
 );
 
-CREATE TABLE MENTORS (
+CREATE TABLE mentors (
   id SERIAL PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   email VARCHAR(120) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE MENTORS (
 );
 
 
-CREATE TABLE FEEDBACKTABLE (
+CREATE TABLE feedbacktable (
   id SERIAL PRIMARY KEY,
   mentor_id INT REFERENCES mentors(id),
   student_id INT REFERENCES students(id),
