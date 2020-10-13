@@ -6,7 +6,7 @@ import { Connection } from "./db";
 const router = new Router();
 
 router.get("/", (_, res, next) => {
-	
+
 	Connection.connect((err) => {
 		if (err) {
 			return next(err);
@@ -15,10 +15,10 @@ router.get("/", (_, res, next) => {
 	});
 });
 router.get("/students",(req,res)=> {
-	Connection.query('SELECT * FROM students',
-	(error, result) => {
- res.json(result)
-	})
-})
+	Connection.query("SELECT * FROM students",
+		(error, result) => {
+			res.json(result);
+		});
+});
 
 export default router;
