@@ -14,5 +14,11 @@ router.get("/", (_, res, next) => {
 		res.json({ message: "Hello, world!" });
 	});
 });
+router.get("/students",(req,res)=> {
+	Connection.query('SELECT * FROM students',
+	(error, result) => {
+ res.json(result)
+	})
+})
 
 export default router;
