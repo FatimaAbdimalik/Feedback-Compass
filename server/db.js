@@ -16,7 +16,7 @@ if (process.env.DATABASE_URL) { //it's set in Heroku
 	config = {
 		host: "localhost",
 		database: "compass",
-		password: "**********",
+		password: "********",
 		port: 5432,
 	};
 }
