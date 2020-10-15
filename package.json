@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "preserve": "npm run build",
     "serve": "npm start",
-    "start": "node dist/server.js"
+    "start": "nodemon dist/server.js"
   },
   "repository": {
     "type": "git",
