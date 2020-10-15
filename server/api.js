@@ -12,6 +12,21 @@ router.get("/", (_, res, next) => {
 });
 
 
+router.post("/login", (req, res, next) => {
+
+const email = req.body.email;
+const password = req.body.password;
+
+	Connection.query("SELECT * FROM students WHERE email = $1 and password = $2", [email, password],(err,result) => {
+		if (err) {
+			return next(err("Invalid User"));
+		}
+		res.json(result.rows[0]);
+	});
+});
+
+
+
 router.get("/students/:id", (_, res, next) => {
 	let studentId = Number(_.params.id);
 	console.log("Hi");

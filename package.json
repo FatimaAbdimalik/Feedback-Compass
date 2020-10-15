@@ -15,15 +15,12 @@
     "lint": "eslint .",
     "preserve": "npm run build",
     "serve": "npm start",
-    "start": "nodemon dist/server.js"
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
-    
     "url": "git+https://github.com/textbook/starter-kit.git"
   },
-  
-  
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "contributors": [],
   "license": "ISC",

@@ -17,7 +17,7 @@ function LoginForm() {
  console.log("I am rendering!!")
   return (
     <div className="box">
-      <h2>Sign Up</h2>
+      <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
