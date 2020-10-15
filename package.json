@@ -19,8 +19,11 @@
   },
   "repository": {
     "type": "git",
+    
     "url": "git+https://github.com/textbook/starter-kit.git"
   },
+  
+  
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "contributors": [],
   "license": "ISC",
