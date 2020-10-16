@@ -1,24 +1,22 @@
-
 .container {
   width: 400px;
   height: auto;
   padding: 20px;
   margin: 150px auto;
   border: 2px solid #cccccc;
-  
 }
 
- h2 {
+h2 {
   text-transform: uppercase;
   text-align: center;
   font-size: 20px;
   margin: 0 0 35px 0;
 }
- .message{ 
-  color: red; 
- }
+.message {
+  color: red;
+}
 
- form  {
+form {
   display: flex;
   flex-direction: column;
   width: 350px;
@@ -34,12 +32,11 @@ input {
 }
 
 .btn {
-  width : 100%;
+  width: 100%;
   outline: none;
-  margin: 10px  auto;
+  margin: 10px auto;
   padding: 10px;
   text-transform: uppercase;
   text-align: center;
   font-size: 11px;
 }
-
