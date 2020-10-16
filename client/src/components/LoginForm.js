@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./LoginForm.css";
 
+ 
 
 function LoginForm() {
   
@@ -11,6 +13,18 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    axios.post('api/login', {
+    email: email,
+    password: password,
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
     console.log("data from: ", email, password)
   };
 
@@ -18,6 +32,7 @@ function LoginForm() {
   return (
     <div className="container">
       <h2>Sign In</h2>
+      
       <form onSubmit={handleSubmit}>
         <input
           type="email"
