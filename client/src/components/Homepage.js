@@ -3,9 +3,11 @@ import LoginForm from "./LoginForm"
 
 
 function Homepage () {
-
+    
     return (
+<div>    
 <LoginForm />
+</div>
     )
 }
 

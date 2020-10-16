@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
+
+import {
+	BrowserRouter as Router,
+	Route,
+  } from "react-router-dom";
+  
 import "./App.css";
 import Homepage from "./components/Homepage"
-import Axios from "axios";
-// import { getMessage } from "./service";
+import StudentProfile from "./components/StudentProfile"
 
 export function App() {
-
-	return (
-	<Homepage />
-	)
-
-	// const [message, setMessage] = useState("Loading test...");
-
-	// useEffect(() => {
-	// 	getMessage().then((message) => setMessage(message));
-	// }, []);
-
-	// return (
-	// 	<main role="main">
-	// 		<div>
-	// 		<h1>Hi</h1>
-	// 			<h1 className="message" data-qa="message">{message}</h1>
-	// 		</div>
-	// 	</main>
-	// );
+return (
+		<Router>
+    <Route exact path="/" component={Homepage} />
+    <Route path="/student" component={StudentProfile} />
+  </Router>	
+	)	
 }
 
 export default App;
