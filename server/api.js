@@ -7,25 +7,47 @@ router.get("/", (_, res, next) => {
 		if (err) {
 			return next(err);
 		}
-		res.json({ message: "Hello, world!" });
+		res.json({ message: "Hello, Compass team!" });
 	});
 });
-
 
 router.post("/login", (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+if(email && password) {
+  Connection.query("select * from students where email = $1 and password = $2", [email, password],
+  (err, result) => {
+    if (result.rows.length < 1) {
+            res.json("Email and password are not valid.")
+    } else {
+		res.send(result.rows[0])
+	}
 
-const email = req.body.email;
-const password = req.body.password;
+    // if (result) {
+    //  res.json(result.rows)
+    // } else {
+    //  Connection.query("select * from mentors where email = $1 and password = $2", [email, password], (err, result2) =>{
+    //      res.json(result2.rows)
+    //           })
+    // }
+  })
+}
+})
 
-	Connection.query("SELECT * FROM students WHERE email = $1 and password = $2", [email, password],(err,result) => {
-		if (err) {
-			return next(err("Invalid User"));
-		}
-		res.json(result.rows[0]);
-	});
-});
 
 
+// router.post("/login", (req, res, next) => {
+
+// const email = req.body.email;
+// const password = req.body.password;
+
+// 	Connection.query("SELECT * FROM students WHERE email = $1 and password = $2", [email, password],(err,result) => {
+// 		if (err) {
+// 			return next(err("Invalid User"));
+// 		}
+// 		res.json(result.rows[0]);
+// 	});
+// });
 
 router.get("/students/:id", (_, res, next) => {
 	let studentId = Number(_.params.id);

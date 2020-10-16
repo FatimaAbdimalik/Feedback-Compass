@@ -6,7 +6,7 @@ function LoginForm() {
   
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ function LoginForm() {
 
  console.log("I am rendering!!")
   return (
-    <div className="box">
+    <div className="container">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <input
