@@ -14,40 +14,28 @@ router.get("/", (_, res, next) => {
 router.post("/login", (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+
 if(email && password) {
   Connection.query("select * from students where email = $1 and password = $2", [email, password],
   (err, result) => {
-    if (result.rows.length < 1) {
-            res.json("Email and password are not valid.")
-    } else {
-		res.send(result.rows[0])
+    if (result.rowCount > 0) {
+			return res.status(200).send(result.rows[0])
+	
+    } else  {
+		Connection.query("select * from mentors where email = $1 and password = $2", [email, password],
+		(err, result2) => {
+			if (result2.rowCount > 0) {
+				return res.status(200).send(result2.rows[0])
+			} else {
+				res.status(404).json({msg: "User not found, please enter a valid email and password!"})
+			}
+		}
+		)
 	}
-
-    // if (result) {
-    //  res.json(result.rows)
-    // } else {
-    //  Connection.query("select * from mentors where email = $1 and password = $2", [email, password], (err, result2) =>{
-    //      res.json(result2.rows)
-    //           })
-    // }
   })
 }
 })
 
-
-
-// router.post("/login", (req, res, next) => {
-
-// const email = req.body.email;
-// const password = req.body.password;
-
-// 	Connection.query("SELECT * FROM students WHERE email = $1 and password = $2", [email, password],(err,result) => {
-// 		if (err) {
-// 			return next(err("Invalid User"));
-// 		}
-// 		res.json(result.rows[0]);
-// 	});
-// });
 
 router.get("/students/:id", (_, res, next) => {
 	let studentId = Number(_.params.id);
