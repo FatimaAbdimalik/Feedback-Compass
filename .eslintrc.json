@@ -6,5 +6,7 @@
   "extends": [
     "@codeyourfuture/standard"
   ],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+
+  "linebreak-style": 0 
 }
