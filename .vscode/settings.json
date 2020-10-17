@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
+=======
+  "editor.formatOnSave": true,
+>>>>>>> 6155f713f2874169fad12a3a5f5929c188bfc85e
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   } ,
@@ -8,6 +12,10 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true
   },
+<<<<<<< HEAD
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
+=======
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+>>>>>>> 6155f713f2874169fad12a3a5f5929c188bfc85e
 }
