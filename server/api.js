@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { connection } from "./db";
+import { Connection } from "./db";
 const router = new Router();
 router.get("/", (_, res, next) => {
   Connection.connect((err) => {
@@ -71,6 +71,37 @@ router.get("/students", (req, res, next) => {
       }
       res.status(200).json(result);
     });
+  }
+});
+
+router.post("/login", (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  if (email && password) {
+    Connection.query(
+      "select * from students where email = $1 and password = $2",
+      [email, password],
+      (err, result) => {
+        if (result.rowCount > 0) {
+          return res.status(200).send(result.rows[0]);
+        } else {
+          Connection.query(
+            "select * from mentors where email = $1 and password = $2",
+            [email, password],
+            (err, result2) => {
+              if (result2.rowCount > 0) {
+                return res.status(200).send(result2.rows[0]);
+              } else {
+                res.status(404).json({
+                  msg:
+                    "User not found, please enter a valid email and password!",
+                });
+              }
+            }
+          );
+        }
+      }
+    );
   }
 });
 
