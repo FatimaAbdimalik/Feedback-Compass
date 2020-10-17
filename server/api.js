@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { Connection } from "./db";
+import { connection } from "./db";
 const router = new Router();
 router.get("/", (_, res, next) => {
-  Connection.connect((err) => {
+  connection.connect((err) => {
     if (err) {
       return next(err);
     }
@@ -15,14 +15,14 @@ router.post("/login", (req, res, next) => {
   const password = req.body.password;
 
   if (email && password) {
-    Connection.query(
+    connection.query(
       "select * from students where email = $1 and password = $2",
       [email, password],
       (err, result) => {
         if (result.rowCount > 0) {
           return res.status(200).send(result.rows[0]);
         } else {
-          Connection.query(
+          connection.query(
             "select * from mentors where email = $1 and password = $2",
             [email, password],
             (err, result2) => {
@@ -44,8 +44,8 @@ router.post("/login", (req, res, next) => {
 
 router.get("/students/:id", (_, res, next) => {
   let studentId = Number(_.params.id);
-  console.log("Hi");
-  Connection.query(
+
+  connection.query(
     "SELECT * FROM students WHERE id = $1",
     [studentId],
     (err, result) => {
@@ -61,7 +61,7 @@ router.get("/feedback/:student_id", (_, res, next) => {
   const studentId = Number(_.params.student_id);
   const query =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
-  Connection.query(query, [studentId], (err, result) => {
+  connection.query(query, [studentId], (err, result) => {
     if (err) {
       return next(err);
     }
@@ -73,7 +73,7 @@ router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
   const cohortName = req.query.cohort;
   if (cityName && cohortName == undefined) {
-    Connection.query(
+    connection.query(
       "SELECT * FROM students WHERE lower(city) LIKE $1 || '%'",
       [cityName],
       (err, result) => {
@@ -85,7 +85,7 @@ router.get("/students", (req, res, next) => {
     );
   } else if (cityName) {
     if (cohortName) {
-      Connection.query(
+      connection.query(
         "SELECT * FROM students WHERE lower(city) LIKE $1 || '%' and lower(cohort) LIKE $2 || '%'",
         [cityName, cohortName],
         (err, result) => {
@@ -97,7 +97,7 @@ router.get("/students", (req, res, next) => {
       );
     }
   } else {
-    Connection.query("SELECT * FROM students", (err, result) => {
+    connection.query("SELECT * FROM students", (err, result) => {
       if (err) {
         return next(err);
       }

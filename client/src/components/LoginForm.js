@@ -15,7 +15,7 @@ function LoginForm() {
     e.preventDefault();
 
     axios
-      .post("api/login", {
+      .post("/api/login", {
         email: email,
         password: password,
       })
@@ -24,7 +24,6 @@ function LoginForm() {
           setValidUser(true);
           history.push("/student");
         }
-        console.log(response);
       })
       .catch(function (error) {
         if (error) {
@@ -32,11 +31,8 @@ function LoginForm() {
           setPassword("");
           setMessage("Invalid email or password!");
         }
-        console.log(error);
       });
-    // console.log("data from: ", email, password)
   };
-  //  console.log("I am rendering!!")
 
   return (
     <div className="container">
