@@ -19,11 +19,8 @@
   },
   "repository": {
     "type": "git",
-    
     "url": "git+https://github.com/textbook/starter-kit.git"
   },
-  
-  
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "contributors": [],
   "license": "ISC",
@@ -67,12 +64,16 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "morgan": "^1.10.0",
-    "pg": "^8.4.1"
+    "pg": "^8.4.1",
+    "react-router-dom": "^5.2.0"
   },
   "engines": {
     "node": "^10 || ^12 || ^14"
-  }
+  },
+  "main": "index.js",
+  "keywords": []
 }
