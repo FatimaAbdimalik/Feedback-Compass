@@ -21,9 +21,8 @@ function LoginForm() {
       })
       .then(function (response) {
         if (response) {
-         
           setValidUser(true);
-          history.push("/regions");
+          history.push("/students");
         }
       })
       .catch(function (error) {
