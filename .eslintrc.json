@@ -3,8 +3,7 @@
     "es6": true,
     "node": true
   },
-  "extends": [
-    "@codeyourfuture/standard"
-  ],
-  "parser": "babel-eslint"
+  "extends": ["@codeyourfuture/standard"],
+  "parser": "babel-eslint",
+  "linebreak-style": 0
 }
