@@ -1,0 +1,37 @@
+[
+  {
+    "name": "North West",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/02/man-400x400-1.jpg",
+    "cohort": ["Nort West class 2", "Nort West class 3", "Nort West class 4"]
+  },
+  {
+    "name": "London",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/02/ldn-400x400-1.jpg",
+    "cohort": ["London class 5", "London class 6", "London class 7"]
+  },
+  {
+    "name": "Scotland",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/02/gla-400x400-1.jpg",
+    "cohort": ["Scotland class 5", "Scotland class 5", "Scotland class 5"]
+  },
+  {
+    "name": "West Midlands",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/02/bir-400x400-1.jpg",
+    "cohort": [
+      "West Midlands class 5",
+      "West Midlands class 5",
+      "West Midlands class 5"
+    ]
+  },
+
+  {
+    "name": "Rome",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/02/roma-400x400-1.jpg",
+    "cohort": ["Rome class 5", "Rome class 5", "Rome class 5"]
+  },
+  {
+    "name": "Cape Town",
+    "image_url": "https://codeyourfuture.io/wp-content/uploads/2020/08/CapeTown.png",
+    "cohort": ["Cape Town class 5", "Cape Town class 5", "Cape Town class 5"]
+  }
+]

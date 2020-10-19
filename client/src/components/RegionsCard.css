@@ -1,0 +1,13 @@
+.regions-card {
+  display: flex;
+}
+.card-container {
+  text-align: right;
+}
+.region-img {
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  padding: 0;
+  margin-top: 0;
+}
