@@ -6,7 +6,7 @@ router.get("/", (_, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json({ message: "Hello, Compass team!" });
+    res.json({ message: "Hello, Team" });
   });
 });
 
@@ -27,6 +27,7 @@ router.post("/login", (req, res, next) => {
   }
 });
 
+// edited after database recreation
 router.get("/students/:id", (_, res, next) => {
   let studentId = Number(_.params.id);
 
@@ -35,7 +36,7 @@ router.get("/students/:id", (_, res, next) => {
     [studentId],
     (err, result) => {
       if (err) {
-        return next(err);
+        res.json(err);
       }
       res.json(result.rows[0]);
     }
@@ -57,31 +58,30 @@ router.get("/feedback/:student_id", (_, res, next) => {
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
   const cohortName = req.query.cohort;
-  let cityId;
-
-  if (cityName) {
+  const cityQuery =
+    "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
+  if (cohortName) {
     Connection.query(
-      "SELECT id FROM cities WHERE cities_name = $1",
-      [cityName],
+      "SELECT * FROM users WHERE lower(cohort_name) = $1",
+      [cohortName],
       (err, result) => {
         if (err) {
-          res.status(500).json(err);
+          res.json(err);
         } else {
-          cityId = result.rows[0].id;
-          Connection.query(
-            "SELECT * FROM users WHERE city_id = $1 AND user_type ='student'",
-            [cityId],
-            (err, result) => {
-              if (err) {
-                res.status(500).json(err);
-              } else {
-                res.status(200).json(result.rows);
-              }
-            }
-          );
+          res.json(result.rows);
         }
       }
     );
+  } else if (cityName) {
+    const cityQuery =
+      "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
+    Connection.query(cityQuery, [cityName], (err, results) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(results.rows);
+      }
+    });
   } else {
     Connection.query(
       "SELECT * FROM users WHERE user_type = 'student'",
@@ -94,44 +94,9 @@ router.get("/students", (req, res, next) => {
       }
     );
   }
-
-  // if (cityName && cohortName == undefined) {
-  //   Connection.query(
-  //     "SELECT * FROM users WHERE lower(city) LIKE $1 || '%' and user_type = 'student'",
-  //     [cityName],
-  //     (err, result) => {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       res.status(200).json(result.rows);
-  //     }
-  //   );
-  // } else if (cityName) {
-  //   if (cohortName) {
-  //     Connection.query(
-  //       "SELECT * FROM users WHERE lower(city) LIKE $1 || '%' and lower(cohort) LIKE $2 || '%' and user_type = 'student'",
-  //       [cityName, cohortName],
-  //       (err, result) => {
-  //         if (err) {
-  //           return next(err);
-  //         }
-  //         res.status(200).json(result.rows);
-  //       }
-  //     );
-  //   }
-  // } else {
-  //   Connection.query(
-  //     "SELECT * FROM users WHERE user_type = 'student'",
-  //     (err, result) => {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       res.status(200).json(result);
-  //     }
-  //   );
-  // }
 });
 
+/// new endpoint after database recreation
 router.get("/cities", (req, res, nex) => {
   Connection.query("SELECT cities_name FROM cities", (err, result) => {
     if (err) {
