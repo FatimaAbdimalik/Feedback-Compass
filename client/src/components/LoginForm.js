@@ -22,7 +22,7 @@ function LoginForm() {
       .then(function (response) {
         if (response) {
           setValidUser(true);
-          history.push("/students");
+          history.push("/regions");
         }
       })
       .catch(function (error) {
