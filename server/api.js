@@ -10,48 +10,33 @@ router.get("/", (_, res, next) => {
   });
 });
 
-
 router.post("/login", (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
   if (email && password) {
     Connection.query(
-      "select * from students where email = $1 and password = $2",
+      "select * from users where email = $1 and password = $2",
       [email, password],
       (err, result) => {
         if (result.rowCount > 0) {
           return res.status(200).send(result.rows[0]);
-        } else {
-          Connection.query(
-            "select * from mentors where email = $1 and password = $2",
-            [email, password],
-            (err, result2) => {
-              if (result2.rowCount > 0) {
-                return res.status(200).send(result2.rows[0]);
-              } else {
-                res.status(404).json({
-                  msg:
-                    "User not found, please enter a valid email and password!",
-                });
-              }
-            }
-          );
         }
       }
     );
   }
 });
 
+// edited after database recreation
 router.get("/students/:id", (_, res, next) => {
   let studentId = Number(_.params.id);
 
   Connection.query(
-    "SELECT * FROM students WHERE id = $1",
+    "SELECT * FROM users WHERE id = $1 and user_type = 'student'",
     [studentId],
     (err, result) => {
       if (err) {
-        return next(err);
+        res.json(err);
       }
       res.json(result.rows[0]);
     }
@@ -73,69 +58,64 @@ router.get("/feedback/:student_id", (_, res, next) => {
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
   const cohortName = req.query.cohort;
-  if (cityName && cohortName == undefined) {
+  const cityQuery =
+    "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
+  if (cohortName) {
     Connection.query(
-      "SELECT * FROM students WHERE lower(city) LIKE $1 || '%'",
-      [cityName],
+      "SELECT * FROM users WHERE lower(cohort_name) = $1",
+      [cohortName],
       (err, result) => {
         if (err) {
-          return next(err);
+          res.json(err);
+        } else {
+          res.json(result.rows);
         }
-        res.status(200).json(result.rows);
       }
     );
   } else if (cityName) {
-    if (cohortName) {
-      Connection.query(
-        "SELECT * FROM students WHERE lower(city) LIKE $1 || '%' and lower(cohort) LIKE $2 || '%'",
-        [cityName, cohortName],
-        (err, result) => {
-          if (err) {
-            return next(err);
-          }
-          res.status(200).json(result.rows);
-        }
-      );
-    }
-  } else {
-    Connection.query("SELECT * FROM students", (err, result) => {
+    // const cityQuery =
+    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
+    Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
-        return next(err);
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(results.rows);
       }
-      res.status(200).json(result);
     });
-  }
-});
-
-router.post("/login", (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  if (email && password) {
+  } else if (cityName && cohortName) {
     Connection.query(
-      "select * from students where email = $1 and password = $2",
-      [email, password],
-      (err, result) => {
-        if (result.rowCount > 0) {
-          return res.status(200).send(result.rows[0]);
+      "SELECT u.name, u.surname, u.email, u.cohort_name, c.cities_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name)= $1 AND lower(u.cohort_name) = $2",
+      [cityName, cohortName],
+      (err, results) => {
+        if (err) {
+          res.status(500).json(err);
         } else {
-          Connection.query(
-            "select * from mentors where email = $1 and password = $2",
-            [email, password],
-            (err, result2) => {
-              if (result2.rowCount > 0) {
-                return res.status(200).send(result2.rows[0]);
-              } else {
-                res.status(404).json({
-                  msg:
-                    "User not found, please enter a valid email and password!",
-                });
-              }
-            }
-          );
+          res.status(200).json(results.rows);
+        }
+      }
+    );
+  } else {
+    Connection.query(
+      "SELECT * FROM users WHERE user_type = 'student'",
+      (err, result) => {
+        if (err) {
+          res.status(500).json(err);
+        } else {
+          res.status(200).json(result.rows);
         }
       }
     );
   }
 });
 
+/// new endpoint after database recreation
+router.get("/cities", (req, res, nex) => {
+  Connection.query("SELECT cities_name FROM cities", (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(result.rows);
+    }
+  });
+});
 export default router;
