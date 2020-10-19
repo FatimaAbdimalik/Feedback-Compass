@@ -73,8 +73,8 @@ router.get("/students", (req, res, next) => {
       }
     );
   } else if (cityName) {
-    const cityQuery =
-      "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
+    // const cityQuery =
+    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
     Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -82,6 +82,18 @@ router.get("/students", (req, res, next) => {
         res.status(200).json(results.rows);
       }
     });
+  } else if (cityName && cohortName) {
+    Connection.query(
+      "SELECT u.name, u.surname, u.email, u.cohort_name, c.cities_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name)= $1 AND lower(u.cohort_name) = $2",
+      [cityName, cohortName],
+      (err, results) => {
+        if (err) {
+          res.status(500).json(err);
+        } else {
+          res.status(200).json(results.rows);
+        }
+      }
+    );
   } else {
     Connection.query(
       "SELECT * FROM users WHERE user_type = 'student'",
