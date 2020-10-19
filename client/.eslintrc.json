@@ -2,13 +2,8 @@
   "env": {
     "browser": true
   },
-  "extends": [
-    "plugin:jsx-a11y/strict",
-    "plugin:react/recommended"
-  ],
-  "plugins": [
-    "react-hooks"
-  ],
+  "extends": ["plugin:jsx-a11y/strict", "plugin:react/recommended"],
+  "plugins": ["react-hooks"],
   "rules": {
     "react/jsx-tag-spacing": "error",
     "react/no-unused-prop-types": "error",
