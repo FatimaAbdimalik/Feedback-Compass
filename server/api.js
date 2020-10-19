@@ -118,4 +118,5 @@ router.get("/cities", (req, res, nex) => {
     }
   });
 });
+
 export default router;
