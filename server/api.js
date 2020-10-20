@@ -109,7 +109,7 @@ router.get("/students", (req, res, next) => {
 });
 
 /// new endpoint after database recreation
-router.get("/cities", (req, res, nex) => {
+router.get("/cities", (req, res, next) => {
   Connection.query("SELECT cities_name FROM cities", (err, result) => {
     if (err) {
       res.status(500).json(err);

@@ -3,7 +3,7 @@ import RegionsCard from "./RegionsCard";
 import regions from "../db/regions.json";
 import "./regions.css";
 
-function NorthWestCohort({ regions }) {
+function Cohorts({ regions }) {
   console.log(regions);
 
   return (
@@ -21,4 +21,4 @@ function NorthWestCohort({ regions }) {
     </Link>
   );
 }
-export default NorthWestCohort;
+export default Cohorts;

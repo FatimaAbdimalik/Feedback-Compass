@@ -6,7 +6,7 @@ import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import StudentProfile from "./components/StudentProfile";
 import Regions from "./components/Regions";
-import NorthWestCohort from "./components/NortWestCohort";
+// import Cohorts from "./components/Cohorts";
 
 export function App() {
   return (
@@ -15,7 +15,6 @@ export function App() {
       <Route path="/login" component={Homepage} />
       <Route path="/student" component={StudentProfile} />
       <Route path="/regions" component={Regions} />
-      {/* <Route path="/nortwest" component={NorthWestCohort} /> */}
     </Router>
   );
 }
