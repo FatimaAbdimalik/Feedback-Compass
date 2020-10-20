@@ -73,4 +73,5 @@ INSERT INTO users (user_type,name, surname,email,password,city_id,cohort_name) V
 
 INSERT INTO feedbacktable (mentor_id,student_id,sent_date,title, body, response) VALUES (3,2,'2020-10-18','test title', 'test body', 'test response');
 INSERT INTO feedbacktable (mentor_id,student_id,sent_date,title,body,response) VALUES (7,6, '2020-10-19','good work', 'Ckecked your work, excellent work','Thank you mentor');
-INSERT INTO (mentor_id,student_id,sent_date,title,body,response) VALUES (8,5, current_date,'Review your classwork', 'Please review your class work to improve your understanding ','Will do');
+INSERT INTO feedbacktable (mentor_id,student_id,sent_date,title,body,response) VALUES (8,5, current_date,'Review your classwork', 'Please review your class work to improve your understanding ','Will do');
+INSERT INTO feedbacktable (mentor_id, student_id,sent_date, title, body, response) VALUES (7,67, current_date,'new title','new body', 'new response');

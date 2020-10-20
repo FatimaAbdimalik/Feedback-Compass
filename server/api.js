@@ -45,9 +45,9 @@ router.get("/students/:id", (_, res, next) => {
 
 router.get("/feedback/:student_id", (_, res, next) => {
   const studentId = Number(_.params.student_id);
-  const query =
+  const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
-  Connection.query(query, [studentId], (err, result) => {
+  Connection.query(stuQuery, [studentId], (err, result) => {
     if (err) {
       return next(err);
     }
@@ -115,6 +115,43 @@ router.get("/cities", (req, res, nex) => {
       res.status(500).json(err);
     } else {
       res.status(200).json(result.rows);
+    }
+  });
+});
+
+// mentor post a feeback
+
+router.post("/feedback/:student_id", (req, res) => {
+  let studentId = Number(req.params.student_id);
+  const mentorId = req.body.mentor_id;
+  const newSent_date = req.body.sent_date;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const newResponse = req.body.response;
+
+  const findQuery =
+    "SELECT * FROM users WHERE student_id = $1 AND user_type = 'student'";
+
+  Connection.query(findQuery, [studentId], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else if (results.rowCount > 0) {
+      console.log("hi");
+      const postQuery =
+        "INSERT INTO feedbacktable (mentor_id,student_id,sent_date,title, body, response) VALUES($1,$2,$3,$4,$5,6) WHERE studentId = $2";
+      Connection.query(
+        postQuery,
+        [mentorId, studentId, newSent_date, newTitle, newBody, newResponse],
+        (err, results) => {
+          if (err) {
+            res.status(500).json(err);
+          } else {
+            res.status(200).json(results.rows);
+          }
+        }
+      );
+    } else {
+      res.json({ message: "No student with such an id" });
     }
   });
 });
