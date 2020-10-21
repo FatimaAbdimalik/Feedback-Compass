@@ -11,30 +11,6 @@ function LoginForm() {
 
   const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .post("/api/login", {
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        if (response) {
-         
-          setValidUser(true);
-          history.push("/student");
-        }
-      })
-      .catch(function (error) {
-        if (error) {
-          setEmail("");
-          setPassword("");
-          setMessage("Invalid email or password!");
-        }
-      });
-  };
-
   return (
     <div className="container">
       <h2>Sign In</h2>

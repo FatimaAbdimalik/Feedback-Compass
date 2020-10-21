@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { Connection } from "./db";
+// import { AuthorizationCode } from "simple-oauth2";
+
 const router = new Router();
 router.get("/", (_, res, next) => {
   Connection.connect((err) => {
@@ -10,22 +12,16 @@ router.get("/", (_, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// login via github
 
-  if (email && password) {
-    Connection.query(
-      "select * from users where email = $1 and password = $2",
-      [email, password],
-      (err, result) => {
-        if (result.rowCount > 0) {
-          return res.status(200).send(result.rows[0]);
-        }
-      }
-    );
-  }
-});
+// const clientId = process.env.Github_Client_ID;
+// const clientSecret = process.env.Github_Client_Secret;
+
+// router.get("/login/github", (req, res) => {
+//   const url = ''
+// });
+
+// router.get("/login/github/callback", (req, res) => {});
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -73,8 +69,6 @@ router.get("/students", (req, res, next) => {
       }
     );
   } else if (cityName) {
-    // const cityQuery =
-    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
     Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -156,6 +150,64 @@ router.get("/cities", (req, res, nex) => {
 //   });
 // });
 
+// studnet edit/delete comment
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+  const updateQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(updateQuery, [studentId, newResponse], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+// student delete comment
+
+router.delete("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+
+  const deleteQuery = "DELETE FROM feedbacktable WHERE student_id = $1";
+  Connection.query(deleteQuery, [studentId], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+// student updates profile
+
+// router.put("/students/:student_id", (req, res) => {
+//   const studentId = req.params.student_id;
+
+//   const editedName = req.body.name;
+//   const editedSurname = req.body.surname;
+//   const editedEmail = req.body.email;
+
+//   const eidtedProfileQuery =
+//     "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
+//   Connection.query(
+//     eidtedProfileQuery,
+//     [studentId, editedName, editedSurname, editedEmail],
+//     (err, results) => {
+//       if (err) {
+//         res.status(500).json(err);
+//       } else {
+//         res.status(200).json(results.rows);
+//       }
+//     }
+//   );
+// });
 export default router;
 
-// studnet edit/delete comment
+//UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
+//db
+// .query("UPDATE customers SET email=$2, phone = $3 WHERE id=$1",
+// [custId, newEmail, newPhone])
