@@ -45,9 +45,9 @@ router.get("/students/:id", (_, res, next) => {
 
 router.get("/feedback/:student_id", (_, res, next) => {
   const studentId = Number(_.params.student_id);
-  const query =
+  const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
-  Connection.query(query, [studentId], (err, result) => {
+  Connection.query(stuQuery, [studentId], (err, result) => {
     if (err) {
       return next(err);
     }
@@ -119,6 +119,7 @@ router.get("/cities", (req, res, next) => {
   });
 });
 
+
 router.get("/cohorts", (req, res, next) => {
   Connection.query("SELECT cohort_name FROM cohorts", (err, result) => {
     if (err) {
@@ -130,3 +131,5 @@ router.get("/cohorts", (req, res, next) => {
 });
 
 export default router;
+
+// studnet edit/delete comment
