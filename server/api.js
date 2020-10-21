@@ -118,4 +118,15 @@ router.get("/cities", (req, res, next) => {
     }
   });
 });
+
+router.get("/cohorts", (req, res, next) => {
+  Connection.query("SELECT cohort_name FROM cohorts", (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(result.rows);
+    }
+  });
+});
+
 export default router;
