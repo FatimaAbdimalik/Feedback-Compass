@@ -1,5 +1,7 @@
-import { Router } from "express";
+import { request, Router } from "express";
 import { Connection } from "./db";
+import { AuthorizationCode } from "simple-oauth2";
+
 const router = new Router();
 router.get("/", (_, res, next) => {
   Connection.connect((err) => {
@@ -10,6 +12,8 @@ router.get("/", (_, res, next) => {
   });
 });
 
+// login via github
+
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
 
@@ -18,6 +22,8 @@ router.get("/login/github", (req, res) => {
   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
   res.redirect(301, url);
 });
+
+// router.get("/login/github/callback", (req, res) => {});
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -65,8 +71,6 @@ router.get("/students", (req, res, next) => {
       }
     );
   } else if (cityName) {
-    // const cityQuery =
-    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
     Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -175,4 +179,7 @@ router.put("/students/:student_id", (req, res) => {
 });
 export default router;
 
-// studnet edit/delete comment
+//UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
+//db
+// .query("UPDATE customers SET email=$2, phone = $3 WHERE id=$1",
+// [custId, newEmail, newPhone])
