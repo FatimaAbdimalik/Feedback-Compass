@@ -57,8 +57,8 @@ router.get("/feedback/:student_id", (_, res, next) => {
 
 
 router.post("/feedback/:mentor_id/:student_id", (req, res) => {
-  const mentorId = Number(req.params.mentor_id);
-  const studentId = Number(req.params.student_id);
+  const mentorId = req.params.mentor_id;
+  const studentId = req.params.student_id;
   const newTitle = req.body.title;
   const newBody = req.body.body;
   const sentDate = req.body.sent_date.postDate;
