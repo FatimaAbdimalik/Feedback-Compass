@@ -218,6 +218,28 @@ router.put("/feedback/:student_id", (req, res) => {
   });
 });
 
+router.get("/syllabus", (req, res) => {
+  Connection.query("SELECT modules FROM syllabus", (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+// router.get("/syllabys/lessons", (req, res) => {
+//   const query =
+//     "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.syllabus_id) ORDER BY modules DESC";
+
+//   Connection.query(query, (err, result) => {
+//     if (err) {
+//       res.json(err);
+//     } else {
+//       res.json(result.rows);
+//     }
+//   });
+// });
+
 export default router;
 
 //UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
