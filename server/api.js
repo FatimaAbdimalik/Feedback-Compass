@@ -16,7 +16,7 @@ router.get("/", (_, res, next) => {
 
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
-
+//http://localhost:3000/login/github/callback
 router.get("/login/github", (req, res) => {
   console.log(url);
   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
@@ -177,6 +177,47 @@ router.put("/students/:student_id", (req, res) => {
     }
   );
 });
+
+router.post("/feedback/:mentor_id/:student_id", (req, res) => {
+  const mentorId = req.params.mentor_id;
+  const studentId = req.params.student_id;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date;
+
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+
+  const putQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
+});
+
 export default router;
 
 //UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
