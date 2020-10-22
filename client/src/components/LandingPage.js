@@ -5,6 +5,7 @@ import axios from "axios";
 import "./LandingPage.css";
 
 const LandingPage = () => {
+
   return (
     <div id="container">
       <div id="heading">
@@ -15,12 +16,14 @@ const LandingPage = () => {
       <h2 id="login-question">Log in as?</h2>
 
       <div id="options">
+
         <a id="student" href="/api/login/github">
           STUDENT
         </a>
         <a id="mentor" href="/api/login/github">
           MENTOR
         </a>
+
       </div>
     </div>
   );
