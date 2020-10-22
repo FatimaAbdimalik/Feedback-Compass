@@ -53,7 +53,7 @@ CREATE TABLE feedbacktable (
  );
 
  
-INSERT INTO cities (cities_name) VALUES('North-West'),('Glasgow'),('West-Midlands'),('Rome'),('Cape Town'),('Medellin');
+INSERT INTO cities (cities_name) VALUES('London'),('North-West'),('Glasgow'),('West-Midlands'),('Rome'),('Cape Town'),('Medellin');
 
 INSERT INTO courses (course_name) VALUES ('Full Stack'),('Intro to Coding');
 
@@ -67,6 +67,9 @@ INSERT INTO users (user_type,name, surname,email,password,city_id,cohort_name) V
 INSERT INTO users (user_type,name, surname,email,password,city_id,cohort_name) VALUES ('student', 'Sulaiman','Solo','sulaimansolo73505@gmail.com', '123456789',2,'north-west-class3'),('student','Leida', 'Gandy', 'leidagandy@hotmail.com','123456789',2,'north-west-class3');
 INSERT INTO users (user_type,name, surname,email,password,city_id) VALUES ('mentor', 'Ahmad','Mire','afmire877@gmail.com', '123456789',1),('mentor','Alec', 'A', 'alec@epicb.co.uk','123456789',1);
 INSERT INTO users (user_type,name, surname,email,password,city_id,cohort_name) VALUES ('student', 'Layla','Jones','l@gmail.com', '123456789',1,'london-class6'),('student','Noor', 'Saleem', 'noor@gmail.com','123456789',1,'london-class6'),('student','Shahad','Fahad', 'shahad@hotmail.com','123456789',1,'london-class5'),('student','Sameer','Jama','smaeer@gmail.com','123456789',1,'london-class5'),('student','Hani', 'James', 'james@gmail.com','123456789',1,'london-class5'),('student', 'Ali', 'Shaheen', 'ali@gmail.com', '123456789', 1, 'london-class4'),('student', 'Sara', 'Josh','sara@gmail.com','123456789',1,'london-class4'),('student', 'Sara', 'Jones', 'jones@gmail.com','123456789', 1, 'london-class4'),('student','Sahal', 'Rasheed', 'rasheed@gmail.com','123456789',3,'scotland-class-4'),('student','Khadar', 'Hassan', 'khadar@gmail.com', '123456789',3, 'scotland-class-4'),('student', 'Ibrahim', 'Saalah','ibrahim@gmail.com', '123456789', 3, 'scotland-class-3'),('student', 'Sally', 'James', 'sally@hotmail.com','123456789',3,'scotland-class-3'),('student', 'Fakher', 'Noor', 'fakher@gmail.com', '123456789',3, 'scotland-class-3'), ('student', 'Ned', 'Duncun', 'ned@gmail.com', '123456789',3,'scotland-class-1'),('student', 'Hussien', 'Kamal', 'kamal@gmail.com','123456789', 3,'scotland-class-2'), ('student', 'Rahma', 'Fathi', 'rahma@gmail.com','123456789', 4, 'west-midlands-class4'),('student','David', 'Hewit', 'hewit@gmail.com','12345',4, 'west-midlands-class4'),('student', 'Henarry', 'Camron', 'henarry@gmail.com','123456789',4,'west-midlands-class4'), ('student', 'Rob', 'Obama', 'obama@gmail.com', '12345', 4, 'west-midlands-class3'), ('student','Sharron','Williams', 'sharron@gmail.com','12345', 4, 'west-midlands-class2'), ('student', 'Nahla', 'Saeed', 'nahla@gmail.com', '12345', 7, 'medellin-class1'),('student', 'Hamad', 'Kareem', 'hamad@gmail.com', '123', 7, 'medellin-class1'), ('student', 'Abrar', 'Nikk', 'abrar@gmail.com', '123', 6, 'rome-class1'), ('student', 'Ahamd', 'Raami', 'rami@gmail.com', '123', 5, 'capetown-class1');
+INSERT INTO users (user_type,name, surname,email, password,city_id,cohort_name) VALUES('student', 'Suzan', 'Mike','l@gmail.com','123456789',2,'north-west-class2');
+INSERT INTO users (user_type,name, surname,email, password,city_id) VALUES ('mentor', 'Mitchell', 'Lloyd', 'mitchelllloyd154@gmail.com','12345',2);
+INSERT INTO users (user_type,name, surname,email, password,city_id) VALUES ('mentor', 'Marko', 'Sustarsic', 'sustarsic.marko@gmail.com', '12345',2);
 
 
 
