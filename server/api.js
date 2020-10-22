@@ -55,6 +55,48 @@ router.get("/feedback/:student_id", (_, res, next) => {
   });
 });
 
+
+router.post("/feedback/:mentor_id/:student_id", (req, res) => {
+  const mentorId = Number(req.params.mentor_id);
+  const studentId = Number(req.params.student_id);
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date.postDate;
+
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+
+  const putQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
+});
+
+
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
   const cohortName = req.query.cohort;

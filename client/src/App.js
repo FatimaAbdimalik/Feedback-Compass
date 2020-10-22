@@ -4,6 +4,7 @@ import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import StudentProfile from "./components/StudentProfile";
 import ChooseCohort from "./components/ChooseCohort";
+import MentorFeedback from "./components/MentorFeedback"
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" component={Homepage} />
       <Route path="/student" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
+      <Route path="/feedback/:mentor_id/:student_id" component={MentorFeedback} />
     </Router>
   );
 }
