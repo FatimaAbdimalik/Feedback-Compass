@@ -10,21 +10,13 @@ router.get("/", (_, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+const clientId = process.env.Github_Client_ID;
+const clientSecret = process.env.Github_Client_Secret;
 
-  if (email && password) {
-    Connection.query(
-      "select * from users where email = $1 and password = $2",
-      [email, password],
-      (err, result) => {
-        if (result.rowCount > 0) {
-          return res.status(200).send(result.rows[0]);
-        }
-      }
-    );
-  }
+router.get("/login/github", (req, res) => {
+  console.log(url);
+  const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
+  res.redirect(301, url);
 });
 
 // edited after database recreation
@@ -119,7 +111,6 @@ router.get("/cities", (req, res, next) => {
   });
 });
 
-
 router.get("/cohorts", (req, res, next) => {
   Connection.query("SELECT cohort_name FROM cohorts", (err, result) => {
     if (err) {
@@ -130,6 +121,58 @@ router.get("/cohorts", (req, res, next) => {
   });
 });
 
+// studnet edit/delete comment
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+  const updateQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(updateQuery, [studentId, newResponse], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+router.delete("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+
+  const deleteQuery = "DELETE FROM feedbacktable WHERE student_id = $1";
+  Connection.query(deleteQuery, [studentId], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+// student updates profile
+
+router.put("/students/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+
+  const editedName = req.body.name;
+  const editedSurname = req.body.surname;
+  const editedEmail = req.body.email;
+  const eidtedProfileQuery =
+    "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
+  Connection.query(
+    eidtedProfileQuery,
+    [studentId, editedName, editedSurname, editedEmail],
+    (err, results) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(results.rows);
+      }
+    }
+  );
+});
 export default router;
 
 // studnet edit/delete comment
