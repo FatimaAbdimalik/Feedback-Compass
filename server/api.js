@@ -1,6 +1,6 @@
-import { Router } from "express";
+import { request, Router } from "express";
 import { Connection } from "./db";
-// import { AuthorizationCode } from "simple-oauth2";
+import { AuthorizationCode } from "simple-oauth2";
 
 const router = new Router();
 router.get("/", (_, res, next) => {
@@ -14,12 +14,14 @@ router.get("/", (_, res, next) => {
 
 // login via github
 
-// const clientId = process.env.Github_Client_ID;
-// const clientSecret = process.env.Github_Client_Secret;
+const clientId = process.env.Github_Client_ID;
+const clientSecret = process.env.Github_Client_Secret;
 
-// router.get("/login/github", (req, res) => {
-//   const url = ''
-// });
+router.get("/login/github", (req, res) => {
+  console.log(url);
+  const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
+  res.redirect(301, url);
+});
 
 // router.get("/login/github/callback", (req, res) => {});
 
@@ -184,27 +186,26 @@ router.delete("/feedback/:student_id", (req, res) => {
 
 // student updates profile
 
-// router.put("/students/:student_id", (req, res) => {
-//   const studentId = req.params.student_id;
+router.put("/students/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
 
-//   const editedName = req.body.name;
-//   const editedSurname = req.body.surname;
-//   const editedEmail = req.body.email;
-
-//   const eidtedProfileQuery =
-//     "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
-//   Connection.query(
-//     eidtedProfileQuery,
-//     [studentId, editedName, editedSurname, editedEmail],
-//     (err, results) => {
-//       if (err) {
-//         res.status(500).json(err);
-//       } else {
-//         res.status(200).json(results.rows);
-//       }
-//     }
-//   );
-// });
+  const editedName = req.body.name;
+  const editedSurname = req.body.surname;
+  const editedEmail = req.body.email;
+  const eidtedProfileQuery =
+    "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
+  Connection.query(
+    eidtedProfileQuery,
+    [studentId, editedName, editedSurname, editedEmail],
+    (err, results) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(results.rows);
+      }
+    }
+  );
+});
 export default router;
 
 //UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
