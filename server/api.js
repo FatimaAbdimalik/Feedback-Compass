@@ -3,27 +3,82 @@ import { Connection } from "./db";
 import { AuthorizationCode } from "simple-oauth2";
 
 const router = new Router();
-router.get("/", (_, res, next) => {
-  Connection.connect((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.json({ message: "Hello, Team" });
-  });
-});
+// router.get("/", (_, res, next) => {
+//   Connection.connect((err) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.json({ message: "Hello, Team" });
+//   });
+// });
 
 // login via github
 
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
+
+const callbackUrl = "http://localhost:3000/login/github/callback";
 //http://localhost:3000/login/github/callback
-router.get("/login/github", (req, res) => {
-  console.log(url);
-  const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
-  res.redirect(301, url);
-});
+// router.get("/login/github", (req, res) => {
+//   console.log(url);
+//   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
+//   res.redirect(301, url);
+// });
 
 // router.get("/login/github/callback", (req, res) => {});
+
+const client = new AuthorizationCode({
+  client: {
+    id: clientId,
+    secret: clientSecret,
+  },
+  auth: {
+    tokenHost: "https://github.com",
+    tokenPath: "/login/oauth/access_token",
+    authorizePath: "/login/oauth/authorize",
+  },
+});
+
+// Authorization uri definition
+const authorizationUri = client.authorizeURL({
+  redirect_uri: callbackUrl,
+  scope: "email",
+  state: "3(#0/!~",
+});
+
+// Initial page redirecting to Github
+router.get("/auth", (req, res) => {
+  console.log(authorizationUri);
+  res.redirect(authorizationUri);
+});
+
+// Callback service parsing the authorization token and asking for the access token
+router.get("/callback", async (req, res) => {
+  const { code } = req.query;
+  const options = {
+    code,
+  };
+
+  try {
+    const accessToken = await client.getToken(options);
+
+    console.log("The resulting token: ", accessToken.token);
+
+    return res.status(200).json(accessToken.token);
+  } catch (error) {
+    console.error("Access Token Error", error.message);
+    return res.status(500).json("Authentication failed");
+  }
+});
+
+router.get("/", (req, res) => {
+  Connection.connect((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.send('Hello<br><a href="/auth">Log in with Github</a>');
+  });
+});
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -155,6 +210,27 @@ router.delete("/feedback/:student_id", (req, res) => {
   });
 });
 
+router.post("/feedback/:mentor_id/:student_id", (req, res) => {
+  const mentorId = req.params.mentor_id;
+  const studentId = req.params.student_id;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date;
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
 // student updates profile
 
 router.put("/students/:student_id", (req, res) => {
@@ -173,30 +249,6 @@ router.put("/students/:student_id", (req, res) => {
         res.status(500).json(err);
       } else {
         res.status(200).json(results.rows);
-      }
-    }
-  );
-});
-
-router.post("/feedback/:mentor_id/:student_id", (req, res) => {
-  const mentorId = req.params.mentor_id;
-  const studentId = req.params.student_id;
-  const newTitle = req.body.title;
-  const newBody = req.body.body;
-  const sentDate = req.body.sent_date;
-
-  const postQuery =
-    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
-    "VALUES ($1,$2,$3,$4,$5)";
-
-  Connection.query(
-    postQuery,
-    [mentorId, studentId, newTitle, newBody, sentDate],
-    (err, result) => {
-      if (err) {
-        res.status(404).json(err);
-      } else {
-        res.json({ message: "successful" });
       }
     }
   );
@@ -227,18 +279,17 @@ router.get("/syllabus", (req, res) => {
   });
 });
 
-// router.get("/syllabys/lessons", (req, res) => {
-//   const query =
-//     "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.syllabus_id) ORDER BY modules DESC";
-
-//   Connection.query(query, (err, result) => {
-//     if (err) {
-//       res.json(err);
-//     } else {
-//       res.json(result.rows);
-//     }
-//   });
-// });
+router.get("/syllabus/lessons", (req, res) => {
+  const getQuery =
+    "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.id)";
+  Connection.query(getQuery, (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
 
 export default router;
 
