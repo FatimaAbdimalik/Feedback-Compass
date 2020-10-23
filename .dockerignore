@@ -1,7 +1,0 @@
-.git/
-.github/
-.idea/
-.vscode/
-bin/
-dist/
-node_modules/

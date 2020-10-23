@@ -50,9 +50,23 @@ const [moduleTitle, setModuleTitle] = useState('')
   const [isCommented, setIsCommented] = useState('')
 const handleComentBtn = (e)=>{
   e.preventDefault();
-    setIsCommented(comment)
-    document.getElementById('comment-input').value = ''
-}
+
+  axios
+  .put("api/students/comments/7/1", {
+    response: comment
+  })
+  .then(function (response) {
+    if (response) {
+alert("comment posted")
+    }
+  })
+  .catch(function (error) {
+    if (error) {
+  
+    }
+  });
+};
+
 
 
 

@@ -1,5 +1,7 @@
-import { Router } from "express";
+import { request, Router } from "express";
 import { Connection } from "./db";
+import { AuthorizationCode } from "simple-oauth2";
+
 const router = new Router();
 router.get("/", (_, res, next) => {
   Connection.connect((err) => {
@@ -10,24 +12,24 @@ router.get("/", (_, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// login via github
 
-  if (email && password) {
-    Connection.query(
-      "select * from users where email = $1 and password = $2",
-      [email, password],
-      (err, result) => {
-        if (err) {
-          return res.status(404).json(err);
-        }
-        res.status(200).send(result.rows[0]);
-        console.log(result.rows);
-      }
-    );
-  }
-});
+//   if (email && password) {
+//     Connection.query(
+//       "select * from users where email = $1 and password = $2",
+//       [email, password],
+//       (err, result) => {
+//         if (err) {
+//           return res.status(404).json(err);
+//         }
+//         res.status(200).send(result.rows[0]);
+//         console.log(result.rows);
+//       }
+//     );
+//   }
+// });
+
+// router.get("/login/github/callback", (req, res) => {});
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -75,8 +77,6 @@ router.get("/students", (req, res, next) => {
       }
     );
   } else if (cityName) {
-    // const cityQuery =
-    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
     Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -132,6 +132,39 @@ router.get("/cohorts", (req, res, next) => {
   });
 });
 
+// studnet edit/delete comment
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+  const updateQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(updateQuery, [studentId, newResponse], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+// student delete comment
+
+router.delete("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+
+  const deleteQuery = "DELETE FROM feedbacktable WHERE student_id = $1";
+  Connection.query(deleteQuery, [studentId], (err, results) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+// student updates profile
 
 router.put("/students/:student_id", (req, res) => {
   const studentId = req.params.student_id;
@@ -144,6 +177,26 @@ router.put("/students/:student_id", (req, res) => {
   Connection.query(
     eidtedProfileQuery,
     [studentId, editedName, editedSurname, editedEmail],
+    (err, results) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(results.rows);
+      }
+    }
+  );
+});
+
+router.put("/students/comments/:mentor_is/:student_id", (req, res) => {
+const studentId = req.params.student_id
+const mentorId = req.params.mentor_id
+  const newResponse = req.body.response;
+
+  const eidtedProfileQuery =
+    "UPDATE feedbacktable SET response =$1 WHERE student_id = $2 and mentor_id = $3 ";
+  Connection.query(
+    eidtedProfileQuery,
+    [newResponse, studentId, mentorId],
     (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -180,4 +233,4 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
 
 export default router;
 
-// studnet edit/delete comment
+
