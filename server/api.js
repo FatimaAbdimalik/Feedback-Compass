@@ -17,15 +17,7 @@ const router = new Router();
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
 
-const callbackUrl = "http://localhost:3000/login/github/callback";
-//http://localhost:3000/login/github/callback
-// router.get("/login/github", (req, res) => {
-//   console.log(url);
-//   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
-//   res.redirect(301, url);
-// });
-
-// router.get("/login/github/callback", (req, res) => {});
+const callbackUrl = "http://localhost:3000/api/callback";
 
 const client = new AuthorizationCode({
   client: {
@@ -42,7 +34,7 @@ const client = new AuthorizationCode({
 // Authorization uri definition
 const authorizationUri = client.authorizeURL({
   redirect_uri: callbackUrl,
-  scope: "email",
+  scope: "user:email",
   state: "3(#0/!~",
 });
 
@@ -76,7 +68,7 @@ router.get("/", (req, res) => {
     if (err) {
       return next(err);
     }
-    res.send('Hello<br><a href="/auth">Log in with Github</a>');
+    res.send('Hello<br><a href="/api/auth">Log in with Github</a>');
   });
 });
 
