@@ -3,27 +3,101 @@ import { Connection } from "./db";
 import { AuthorizationCode } from "simple-oauth2";
 
 const router = new Router();
-router.get("/", (_, res, next) => {
-  Connection.connect((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.json({ message: "Hello, Team" });
-  });
-});
+// router.get("/", (_, res, next) => {
+//   Connection.connect((err) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.json({ message: "Hello, Team" });
+//   });
+// });
 
 // login via github
 
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
 
-router.get("/login/github", (req, res) => {
-  console.log(url);
-  const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
-  res.redirect(301, url);
-});
+const callbackUrl = "http://localhost:3000/login/github/callback";
+//http://localhost:3000/login/github/callback
+// router.get("/login/github", (req, res) => {
+//   console.log(url);
+//   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
+//   res.redirect(301, url);
+// });
 
 // router.get("/login/github/callback", (req, res) => {});
+
+const client = new AuthorizationCode({
+  client: {
+    id: clientId,
+    secret: clientSecret,
+  },
+  auth: {
+    tokenHost: "https://github.com",
+    tokenPath: "/login/oauth/access_token",
+    authorizePath: "/login/oauth/authorize",
+  },
+});
+
+// Authorization uri definition
+const authorizationUri = client.authorizeURL({
+  redirect_uri: callbackUrl,
+  scope: "email",
+  state: "3(#0/!~",
+});
+
+// Initial page redirecting to Github
+router.get("/auth", (req, res) => {
+  console.log(authorizationUri);
+  res.redirect(authorizationUri);
+});
+
+// Callback service parsing the authorization token and asking for the access token
+router.get("/callback", async (req, res) => {
+  const { code } = req.query;
+  const options = {
+    code,
+  };
+
+  try {
+    const accessToken = await client.getToken(options);
+
+    console.log("The resulting token: ", accessToken.token);
+
+    return res.status(200).json(accessToken.token);
+  } catch (error) {
+    console.error("Access Token Error", error.message);
+    return res.status(500).json("Authentication failed");
+  }
+});
+
+router.get("/", (req, res) => {
+  Connection.connect((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.send('Hello<br><a href="/auth">Log in with Github</a>');
+  });
+});
+
+
+router.post("/login", (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (email && password) {
+    Connection.query(
+      "select * from users where email = $1 and password = $2 ",
+      [email, password],
+      (err, result) => {
+        if (result.rowCount > 0) {
+          return res.status(200).send(result.rows[0]);
+        }
+      }
+    );
+  }
+});
+
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -41,8 +115,8 @@ router.get("/students/:id", (_, res, next) => {
   );
 });
 
-router.get("/feedback/:student_id", (_, res, next) => {
-  const studentId = Number(_.params.student_id);
+router.get("/feedback", (req, res, next) => {
+  const studentId = req.query.student_id
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
   Connection.query(stuQuery, [studentId], (err, result) => {
@@ -52,6 +126,48 @@ router.get("/feedback/:student_id", (_, res, next) => {
     res.json(result.rows[0]);
   });
 });
+
+
+router.post("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const studentId = req.body.student_id;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date.postDate;
+
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+
+  const putQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
+});
+
 
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
@@ -115,7 +231,6 @@ router.get("/cities", (req, res, next) => {
   });
 });
 
-
 router.get("/cohorts", (req, res, next) => {
   Connection.query("SELECT cohort_name FROM cohorts", (err, result) => {
     if (err) {
@@ -143,8 +258,6 @@ router.put("/feedback/:student_id", (req, res) => {
   });
 });
 
-// student delete comment
-
 router.delete("/feedback/:student_id", (req, res) => {
   const studentId = req.params.student_id;
 
@@ -158,6 +271,27 @@ router.delete("/feedback/:student_id", (req, res) => {
   });
 });
 
+router.post("/feedback/:mentor_id/:student_id", (req, res) => {
+  const mentorId = req.params.mentor_id;
+  const studentId = req.params.student_id;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date;
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
 // student updates profile
 
 router.put("/students/:student_id", (req, res) => {
@@ -180,6 +314,44 @@ router.put("/students/:student_id", (req, res) => {
     }
   );
 });
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+
+  const putQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
+});
+
+router.get("/syllabus", (req, res) => {
+  Connection.query("SELECT modules FROM syllabus", (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+router.get("/syllabus/lessons", (req, res) => {
+  const getQuery =
+    "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.id)";
+  Connection.query(getQuery, (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
 export default router;
 
 //UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
