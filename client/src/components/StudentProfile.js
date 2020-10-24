@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
 import "./StudentProfile.css";
+// import { Row } from "react-bootstrap";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
@@ -38,12 +39,21 @@ function StudentProfile() {
   const [moduleTitle, setModuleTitle] = useState("");
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
+  const [module, setModule] = useState([]);
+
+  console.log(module, "******");
+
   const handleComentBtn = (e) => {
     e.preventDefault();
     setIsCommented(comment);
     document.getElementById("comment-input").value = "";
   };
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/syllabus")
+      .then((res) => res)
+      .then((data) => setModule(data.data));
+  }, []);
   return (
     <div>
       <div id="student-container">
@@ -72,8 +82,22 @@ function StudentProfile() {
               save
             </button>
             <div id="modules-container">
-              <h2>Modules</h2>
-              <select
+              <h2>Course Progress</h2>
+              {!module ? (
+                <div>Loading</div>
+              ) : (
+                module.map((subject, index) => {
+                  return (
+                    <label for="checkid" id="courses_table">
+                      {subject.modules}
+
+                      <input type="checkbox" id="checkid" />
+                    </label>
+                  );
+                })
+              )}
+
+              {/* <select
                 id="modules"
                 name="HTML"
                 onChange={(e) =>
@@ -149,7 +173,7 @@ function StudentProfile() {
                 <option>WEEK-1</option>
                 <option>WEEK-2</option>
                 <option>WEEK-3</option>
-              </select>
+              </select> */}
             </div>
           </div>
 

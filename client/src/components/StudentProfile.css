@@ -1,115 +1,121 @@
-.welcom{
-    font-size: 50px;
-    font-weight: 600;
+.welcom {
+  font-size: 50px;
+  font-weight: 600;
 }
 
-
-#student-heading{
-    display: flex;
-    flex-wrap: wrap;
-    color: white;
-    justify-content: flex-start;
-    align-items: center;
+#student-heading {
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-#student-body{
-    display: flex;
-   
+#student-body {
+  display: flex;
 }
 
 #student-profile {
-   max-width: 300px;
-    padding: 20px;
-   margin: 15px;background-color: rgba(230, 230, 230, 0.7);
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   border-radius: 20px;
+  max-width: 300px;
+  padding: 20px;
+  margin: 15px;
+  background-color: rgba(230, 230, 230, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 }
-
 
 #avatar {
-    width: 14em;
-    height: auto;
-    border-radius: 50%;
+  width: 14em;
+  height: auto;
+  border-radius: 50%;
 }
 
-#student-bio{
-    padding: 15px;
-    border-radius: 20px;
-    border: none;
+#student-bio {
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
 }
 
-h2{
-    margin: 10px;
-
+h2 {
+  margin: 10px;
 }
- /*  Modules  */
+/*  Modules  */
 
 #modules {
-    align-items: center;
-    width: 13em;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    background-color: rgb(61, 61, 61);
-    color: white;
-    font-size: 18px;
-    padding: 15px;
-    border-radius: 20px;
-    border: solid 2px white;
+  align-items: center;
+  width: 13em;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: rgb(61, 61, 61);
+  color: white;
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 20px;
+  border: solid 2px white;
 }
-#modules:hover{
-    background-color: rgb(221, 221, 221);
- color: rgb(95, 95, 95);
+#modules:hover {
+  background-color: rgb(221, 221, 221);
+  color: rgb(95, 95, 95);
 }
-#modules-container{
-    border-radius: 20px;
-    background-color: rgb(61, 61, 61, 0.5);
+#modules-container {
+  border-radius: 20px;
+  background-color: rgb(61, 61, 61, 0.5);
 }
 
-option{
- background-color: rgb(221, 221, 221);
- color: rgb(95, 95, 95);
+option {
+  background-color: rgb(221, 221, 221);
+  color: rgb(95, 95, 95);
 }
 
 /* feedback */
 
-#feedback{
-    padding: 20px;
-    margin: 15px;background-color: rgba(230, 230, 230, 0.7);
-    display: flex;
-    flex-direction: column;
-    
-    border-radius: 20px;
+#feedback {
+  padding: 20px;
+  margin: 15px;
+  background-color: rgba(230, 230, 230, 0.7);
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 20px;
 }
 
-#comment-input{
-    width: 80%;
-    padding: 15px;
-    border-radius: 20px;
-    border: none;
+#comment-input {
+  width: 80%;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
 }
 
-#comment{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-#comment-btn{
-    margin: 10px;
-    background-color: rgb(31, 87, 82);
-    color: white;
-    padding: 10px;
-    border-radius: 20px;
-    border: solid 2px white;
-}
-
-#buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#comment-btn {
+  margin: 10px;
+  background-color: rgb(31, 87, 82);
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 2px white;
 }
 
+#buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#courses_table {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+[type="checkbox"] {
+  vertical-align: middle;
+}

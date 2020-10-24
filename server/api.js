@@ -88,8 +88,8 @@ router.get("/students/:id", (_, res, next) => {
   );
 });
 
-router.get("/feedback/:student_id", (_, res, next) => {
-  const studentId = Number(_.params.student_id);
+router.get("/feedback", (_, res, next) => {
+  const studentId = Number(_.query.student_id);
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
   Connection.query(stuQuery, [studentId], (err, result) => {
@@ -225,14 +225,14 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
 });
 // student updates profile
 
-router.put("/students/:student_id", (req, res) => {
-  const studentId = req.params.student_id;
+router.put("/students/:id", (req, res) => {
+  const studentId = Number(req.params.id);
 
   const editedName = req.body.name;
   const editedSurname = req.body.surname;
   const editedEmail = req.body.email;
   const eidtedProfileQuery =
-    "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
+    "UPDATE users SET name =$2, surname=$3, email=$4 WHERE id = $1";
   Connection.query(
     eidtedProfileQuery,
     [studentId, editedName, editedSurname, editedEmail],
