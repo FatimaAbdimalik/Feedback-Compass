@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png"
 import axios from "axios";
 import avatar from "./Avatar.png"
@@ -48,11 +48,35 @@ const [studentDetails, setStudetDetails] = useState({
 const [moduleTitle, setModuleTitle] = useState('')
   const [comment, setComment] = useState('')
   const [isCommented, setIsCommented] = useState('')
+  const [data, setData] = useState('')
+
+  useEffect(()=>{
+    axios
+    .get("api/feedback/2")
+    .then(function (response) {
+      if (response) {
+        setData(response.data)
+    console.log(response)
+      }
+    })
+    .catch(function (error) {
+      if (error) {
+    console.log(error);
+      }
+    });
+    
+  },[])
+
+
 const handleComentBtn = (e)=>{
   e.preventDefault();
+  document.getElementById('comment-input').value = ''
+
+  setIsCommented(comment)
+
 
   axios
-  .put("api/students/comments/7/1", {
+  .put("api/students/comments/3/2", {
     response: comment
   })
   .then(function (response) {
@@ -66,7 +90,6 @@ alert("comment posted")
     }
   });
 };
-
 
 
 
@@ -92,14 +115,14 @@ alert("comment posted")
               <button id='modules' onClick={handleBioSubmit}>save</button>
               <div id= 'modules-container'>
                 <h2>Modules</h2>
-                  <select id='modules' name = 'HTML' onChange={(e)=>setModuleTitle(e.target.value + ' ' + e.target.name)}>
+                  <select id='modules' name = 'HTML' onChange={(e)=>setModuleTitle(e.target.name + ' ' + e.target.value)}>
                     <option>HTML</option>
                     <option>WEEK-1</option>
                     <option>WEEK-2</option>
                     <option>WEEK-3</option>
                   </select>
 
-                    <select id='modules' name= 'CSS' onChange={(e)=>setModuleTitle(e.target.value + ' ' + e.target.name)}>
+                    <select id='modules' name= 'CSS' onChange={(e)=>setModuleTitle(e.target.name + ' ' + e.target.value)}>
                       <option>CSS</option>
                       <option>WEEK-1</option>
                       <option>WEEK-2</option>
@@ -107,7 +130,7 @@ alert("comment posted")
                     </select>
 
 
-                    <select id='modules' name = 'Javascript' onChange={(e)=>setModuleTitle(e.target.value + ' ' + e.target.name)}>
+                    <select id='modules' name = 'Javascript' onChange={(e)=>setModuleTitle(e.target.name + ' ' + e.target.value)}>
                       <option>Javascript</option>
                       <option>WEEK-1</option>
                       <option>WEEK-2</option>
@@ -116,7 +139,7 @@ alert("comment posted")
 
 
 
-                    <select id='modules' name = 'React' onChange={(e)=>setModuleTitle(e.target.value + ' ' + e.target.name)}>
+                    <select id='modules' name = 'React' onChange={(e)=>setModuleTitle(e.target.name + ' ' + e.target.value)}>
                       <option>React</option>
                       <option>WEEK-1</option>
                       <option>WEEK-2</option>
@@ -142,13 +165,15 @@ alert("comment posted")
               </div>
             </div>
           
-          <div id='feedback'>
-            <div>
+          <div id='feedback-panel'>
+            <div id='single-feedback'>
               <h1>{moduleTitle} Feedback</h1>
-              <p>background and height as shown in the GitHub gist above. Since our list has a background of white we changed the Main background so that we could clearly see our selection.
-              </p>
+              <p>Great job overall Sulaiman </p>
+          
+              <p>_______________________________________________________________________________</p>
+              <p>{isCommented}</p>
               <div id = 'comment'>
-                 <p>{isCommented}</p>
+              
               <input id = 'comment-input'
                placeholder= 'write a comment'
                type="text"
@@ -171,4 +196,4 @@ alert("comment posted")
   );
 }
 
-export default StudentProfile;
+export default StudentProfile

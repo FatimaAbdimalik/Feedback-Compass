@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={Homepage} />
-      <Route path="/student" component={StudentProfile} />
+      <Route path="/students" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
 
     </Router>

@@ -1,6 +1,6 @@
 import { request, Router } from "express";
 import { Connection } from "./db";
-import { AuthorizationCode } from "simple-oauth2";
+
 
 const router = new Router();
 router.get("/", (_, res, next) => {
@@ -187,16 +187,17 @@ router.put("/students/:student_id", (req, res) => {
   );
 });
 
-router.put("/students/comments/:mentor_is/:student_id", (req, res) => {
-const studentId = req.params.student_id
-const mentorId = req.params.mentor_id
-  const newResponse = req.body.response;
+router.put("/students/comments/:mentor_id/:student_id", (req, res) => {
+
+  const mentorId = Number(req.params.mentor_id)
+const studentId = Number(req.params.student_id)
+const newResponse = req.body.response;
 
   const eidtedProfileQuery =
-    "UPDATE feedbacktable SET response =$1 WHERE student_id = $2 and mentor_id = $3 ";
+    "UPDATE feedbacktable SET response =$1 WHERE mentor_id = $2 and student_id =  $3 ";
   Connection.query(
     eidtedProfileQuery,
-    [newResponse, studentId, mentorId],
+    [newResponse, mentorId, studentId],
     (err, results) => {
       if (err) {
         res.status(500).json(err);
@@ -207,7 +208,7 @@ const mentorId = req.params.mentor_id
   );
 });
 
-router.post("/feedback/:mentor_id/:student_id", (req, res) => {
+router.post("/feedback", (req, res) => {
   const mentorId = req.params.mentor_id;
   const studentId = req.params.student_id;
   const newTitle = req.body.title;

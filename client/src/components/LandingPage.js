@@ -17,7 +17,7 @@ const LandingPage = () => {
 
       <div id="options">
 
-        <a id="student" href="/api/login/github">
+        <a id="student" href="/students">
           STUDENT
         </a>
         <a id="mentor" href="/api/login/github">
