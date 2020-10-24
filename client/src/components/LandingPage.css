@@ -1,24 +1,20 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-image:linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)), url("./GettyImages-685797188-low2-1200x675.jpg");
-    background-size: 100%;
- 
- }
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
+    url("./GettyImages-685797188-low2-1200x675.jpg");
+  background-size: 100%;
+}
 #container {
-
-    margin: 0;
-    padding: 0;
- 
-
-
+  margin: 0;
+  padding: 0;
 }
 #heading {
-    background-color: rgb(202, 202, 202);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: rgb(63, 63, 63);
+  background-color: rgb(202, 202, 202);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: rgb(63, 63, 63);
 }
 #logo {
   padding-right: 250px;
@@ -26,57 +22,59 @@ body {
 }
 
 #options {
-    margin: 20px;
-    padding: 20px;
-    background-color: rgb(231, 231, 231, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgb(231, 231, 231, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#login-question{
-    margin: 30px;
-    font-size: 30px;
-    color: rgb(255, 255, 255);
+#login-question {
+  margin: 30px;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
 }
 
-#student{
-    background-color: rgb(111, 107, 167);
-    color: white;
-    padding: 20px;
-   margin: 10px;
-   font-size: 60px;
-   font-weight: 600;
-   border: none;
-   box-shadow: 0 9px #999; 
-    cursor: pointer;
+#student {
+  background-color: rgb(111, 107, 167);
+  color: white;
+  padding: 20px;
+  margin: 10px;
+  font-size: 60px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
 }
-  
+
 #student:hover {
-    background-color: #3f3e8e}
+  background-color: #3f3e8e;
+}
 
 #student:active {
-     background-color: #6b44f7;
-     box-shadow: 0 5px rgb(136, 136, 136);
-     transform: translateY(4px);
-   }
+  background-color: #6b44f7;
+  box-shadow: 0 5px rgb(136, 136, 136);
+  transform: translateY(4px);
+}
 
-#mentor{
-    background-color: rgb(43, 139, 131);
-    color: white ;
-    padding: 20px;
-    margin-left: 10px;
-    font-size: 60px;
-    font-weight: 600;
-    border: none;box-shadow: 0 9px #999; 
-    cursor: pointer;
- 
+#mentor {
+  background-color: rgb(43, 139, 131);
+  color: white;
+  padding: 20px;
+  margin-left: 10px;
+  font-size: 60px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
 }
 #mentor:hover {
-    background-color: #00645c}
+  background-color: #00645c;
+}
 
 #mentor:active {
-     background-color: #00b899;
-     box-shadow: 0 5px rgb(136, 136, 136);
-     transform: translateY(4px);
-   }
+  background-color: #00b899;
+  box-shadow: 0 5px rgb(136, 136, 136);
+  transform: translateY(4px);
+}

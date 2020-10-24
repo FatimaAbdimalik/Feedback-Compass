@@ -42,33 +42,11 @@ function LoginForm() {
       });
   };
 
+
+
   return (
     <div className="container">
       <h2>Sign In</h2>
-
-      <form onSubmit={handleSubmit}>
-        <a className="message">{message}</a>
-        <input
-          type="email"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          value={email}
-          required
-        />
-
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          value={password}
-          required
-        />
-        <button type="submit" className="btn">
-          Login
-        </button>
-      </form>
     </div>
   );
 }
