@@ -88,11 +88,11 @@ function StudentProfile() {
               ) : (
                 module.map((subject, index) => {
                   return (
-                    <label for="checkid" id="courses_table">
-                      {subject.modules}
-
+                    <div id="courses_table">
+                      <p>{subject.start_date}</p>
+                      <p>{subject.modules}</p>
                       <input type="checkbox" id="checkid" />
-                    </label>
+                    </div>
                   );
                 })
               )}
