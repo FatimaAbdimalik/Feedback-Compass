@@ -25,7 +25,6 @@ function ChooseCohort() {
           <form>
             <h2>Select cohort and student</h2>
             <select onChange={(e) => setSelectCohort(e.target.value)}>
-              <option>choose a cohort</option>
               {cohort.map((cohort, index) => (
                 <option value={cohort.cohort_name} key={index}>
                   {cohort.cohort_name}

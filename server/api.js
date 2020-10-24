@@ -16,7 +16,7 @@ router.post("/login", (req, res, next) => {
 
   if (email && password) {
     Connection.query(
-      "select * from users where email = $1 and password = $2",
+      "select * from users where email = $1 and password = $2 ",
       [email, password],
       (err, result) => {
         if (result.rowCount > 0) {
@@ -43,8 +43,8 @@ router.get("/students/:id", (_, res, next) => {
   );
 });
 
-router.get("/feedback/:student_id", (_, res, next) => {
-  const studentId = Number(_.params.student_id);
+router.get("/feedback", (req, res, next) => {
+  const studentId = req.query.student_id
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
   Connection.query(stuQuery, [studentId], (err, result) => {
@@ -56,9 +56,9 @@ router.get("/feedback/:student_id", (_, res, next) => {
 });
 
 
-router.post("/feedback/:mentor_id/:student_id", (req, res) => {
-  const mentorId = req.params.mentor_id;
-  const studentId = req.params.student_id;
+router.post("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const studentId = req.body.student_id;
   const newTitle = req.body.title;
   const newBody = req.body.body;
   const sentDate = req.body.sent_date.postDate;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./LoginForm.css";
 
@@ -11,6 +11,8 @@ function LoginForm() {
 
   const history = useHistory();
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -20,9 +22,15 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        if (response) {
+        console.log(response);
+        console.log(response.data.user_type);
+        // evalute response.data.user_type
+        if (response.data.user_type === "student") {
           setValidUser(true);
           history.push("/student");
+
+        } else {
+          history.push(`/cohorts?mentorId=${response.data.id}`);
         }
       })
       .catch(function (error) {

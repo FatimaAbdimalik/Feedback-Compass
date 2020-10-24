@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 
 
 function ChooseStudents({ selectCohort }) {
   const [studentList, setStudentList] = useState([]);
   const [select, setSelect] = useState();
+
+  // let query = useQuery();
+  // function User({ mentor_id }) {
+  //   return <div>{mentor_id}</div>;
+  // }
+  // function useQuery() {
+  //   return new URLSearchParams(useLocation().search);
+  // }
+  // let query = useQuery();
 
   useEffect(() => {
     axios
@@ -23,17 +32,14 @@ function ChooseStudents({ selectCohort }) {
 
     <div>
       <ul>
-
-        {/* <select onChange={(e) => history.push(`/feedback/${e.target.value}`)}> */}
-
-        {/* <op>select a student</option> */}
         {studentList.map((student, index) => (
           <li value={student.id} key={index}>
-
-            <Link to={`/feedback/${student.id}`}>{`${student.name} ${student.surname}`}</Link>
+            <Link to={`/feedback?studentId=${student.id}`
+              // &mentorId=${}
+            }>{`${student.name} ${student.surname}`}</Link>
           </li>
         ))}
-        {/* </select> */}
+
       </ul>
     </div>
   );
