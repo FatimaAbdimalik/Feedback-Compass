@@ -263,12 +263,15 @@ router.put("/feedback/:student_id", (req, res) => {
 });
 
 router.get("/syllabus", (req, res) => {
-  Connection.query("SELECT modules FROM syllabus", (err, result) => {
-    if (err) {
-      res.json(err);
+  Connection.query(
+    "SELECT modules, start_date, completed FROM syllabus",
+    (err, result) => {
+      if (err) {
+        res.json(err);
+      }
+      res.json(result.rows);
     }
-    res.json(result.rows);
-  });
+  );
 });
 
 router.get("/syllabus/lessons", (req, res) => {
