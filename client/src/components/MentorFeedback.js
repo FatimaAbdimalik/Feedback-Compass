@@ -5,7 +5,6 @@ import avatar from "./Avatar.png"
 import "./StudentProfile.css";
 import moment from "moment";
 import { useParams } from "react-router-dom";
-import { ListGroupItem } from "reactstrap";
 
 
 
@@ -15,12 +14,9 @@ function StudentProfile() {
 
     const [profilePhoto, setProfilePhto] = useState(avatar)
     const [studentDetails, setStudetDetails] = useState('')
-    console.log(studentDetails);
-    let mentor_id = 2
 
 
     let { student_id } = useParams();
-    // let { mentor_id } = useParams();
 
 
 
@@ -42,14 +38,12 @@ function StudentProfile() {
     }));
     //------------ Modules list  handling -------->
     const [moduleTitle, setModuleTitle] = useState('')
-    // const [comment, setComment] = useState('')
-    // const [isCommented, setIsCommented] = useState('')
+
     console.log(moduleTitle);
     let comment = "Great job"
 
     const handleComentBtn = (e) => {
         e.preventDefault();
-        // setIsCommented(comment)
         document.getElementById('comment-input').value = ''
 
 
@@ -85,7 +79,6 @@ function StudentProfile() {
                 <div id='student-body'>
                     <div id='student-profile'>
                         <img src={profilePhoto} id='avatar' />
-                        {/* <h4>{studentDetails.name} {studentDetails.surname}</h4> */}
                         <h5 >{bio}</h5>
                         <input id='student-bio'
                             placeholder='add your biography'
@@ -157,7 +150,6 @@ function StudentProfile() {
                                     placeholder='write a comment'
                                     type="text"
                                     name="comment"
-                                // onChange={(e) => { setComment(e.target.value) }}
                                 />
                                 <div id='buttons'>
                                     <button id='comment-btn' onClick={handleComentBtn}>Comment</button>

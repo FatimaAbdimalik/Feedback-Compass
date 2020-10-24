@@ -115,8 +115,6 @@ router.get("/students", (req, res, next) => {
       }
     );
   } else if (cityName) {
-    // const cityQuery =
-    //   "SELECT u.name, u.surname, u.email, u.cohort_name FROM users u JOIN cities c ON (u.city_id = c.id) WHERE u.user_type = 'student' AND lower(c.cities_name) = $1";
     Connection.query(cityQuery, [cityName], (err, results) => {
       if (err) {
         res.status(500).json(err);

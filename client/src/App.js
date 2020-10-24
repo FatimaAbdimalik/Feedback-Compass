@@ -14,7 +14,7 @@ function App() {
       <Route path="/login" component={Homepage} />
       <Route path="/student" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
-      <Route path="/feedback/:mentor_id/:student_id" component={MentorFeedback} />
+      <Route path="/feedback/:student_id/:mentor_id" component={MentorFeedback} />
     </Router>
   );
 }

@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, Link, useLocation } from "react-router-dom";
-
+import "./chooseStudent.css"
 
 function ChooseStudents({ selectCohort }) {
   const [studentList, setStudentList] = useState([]);
   const [select, setSelect] = useState();
+  let location = useLocation()
 
-  // let query = useQuery();
-  // function User({ mentor_id }) {
-  //   return <div>{mentor_id}</div>;
-  // }
-  // function useQuery() {
-  //   return new URLSearchParams(useLocation().search);
-  // }
-  // let query = useQuery();
+
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/students?cohort=${selectCohort}`)
       .then((data) => {
-        console.log(data.data);
         setStudentList(data.data);
       })
       .catch((error) => {
@@ -28,17 +21,22 @@ function ChooseStudents({ selectCohort }) {
       });
   }, [selectCohort]);
 
+  let removeQmark = (string) => {
+    return string.substring(string.length - 1)
+  }
+  let mentorID = removeQmark(location.search)
   return (
 
-    <div>
-      <ul>
-        {studentList.map((student, index) => (
-          <li value={student.id} key={index}>
-            <Link to={`/feedback?studentId=${student.id}`
-              // &mentorId=${}
-            }>{`${student.name} ${student.surname}`}</Link>
-          </li>
-        ))}
+    <div id="studentsList">
+      <ul >
+        {studentList.map((student, index) => {
+          return (
+            <li value={student.id} key={index}>
+              <Link to={`/feedback/${student.id}/${mentorID}`
+              }>{`${student.name} ${student.surname}`}</Link>
+            </li>
+          )
+        })}
 
       </ul>
     </div>
