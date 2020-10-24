@@ -64,6 +64,7 @@ h2 {
 #modules-container {
   border-radius: 20px;
   background-color: rgb(61, 61, 61, 0.5);
+  width: 18em;
 }
 
 option {
