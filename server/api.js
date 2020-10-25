@@ -202,9 +202,9 @@ router.delete("/feedback/:student_id", (req, res) => {
   });
 });
 
-router.post("/feedback/:mentor_id/:student_id", (req, res) => {
-  const mentorId = req.params.mentor_id;
-  const studentId = req.params.student_id;
+router.post("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const studentId = req.body.student_id;
   const newTitle = req.body.title;
   const newBody = req.body.body;
   const sentDate = req.body.sent_date;
@@ -216,7 +216,7 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
     [mentorId, studentId, newTitle, newBody, sentDate],
     (err, result) => {
       if (err) {
-        res.status(404).json(err);
+        res.status(500).json(err);
       } else {
         res.json({ message: "successful" });
       }
@@ -276,7 +276,7 @@ router.put("/feedback/:student_id", (req, res) => {
 
 router.get("/syllabus", (req, res) => {
   Connection.query(
-    "SELECT modules, start_date, completed FROM syllabus",
+    "SELECT s.id, s.modules,s.start_date ,p.completed, p.progress_bar FROM syllabus s JOIN progress p ON (s.id = p.progress_id)",
     (err, result) => {
       if (err) {
         res.json(err);
@@ -298,9 +298,40 @@ router.get("/syllabus/lessons", (req, res) => {
   });
 });
 
-export default router;
+// router.put("/syllabus", (req, res) => {
+//   const studentId = req.query.student_id;
+//   const progressId = req.body.progress_id;
+//   const completed = req.body.completed;
 
-//UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
-//db
-// .query("UPDATE customers SET email=$2, phone = $3 WHERE id=$1",
-// [custId, newEmail, newPhone])
+//   const updateTickBox =
+//     "UPDATE progress SET completed = $3 WHERE progress_id = $2";
+
+//   Connection.query(
+//     updateTickBox,
+//     [studentId, progressId, completed],
+//     (err, result) => {
+//       if (err) {
+//         res.json();
+//       } else {
+//         res.json(result.rows);
+//       }
+//     }
+//   );
+// });
+
+// router.get("/reponses/:response_id", (req, res) => {
+//   const responseId = Number(req.params.response_id);
+
+//   const getResponsesQuery =
+//     "SELECT response, sent_date FROM studentResponses WHERE response_id = $1";
+
+//   Connection.query(getResponsesQuery, [responseId], (err, result) => {
+//     if (err) {
+//       res.json(err);
+//     } else {
+//       res.json(result.rows);
+//     }
+//   });
+// });
+
+export default router;

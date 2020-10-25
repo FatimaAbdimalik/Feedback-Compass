@@ -40,9 +40,13 @@ function StudentProfile() {
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
   const [module, setModule] = useState([]);
-
-  console.log(module, "******");
-
+  const [isChecked, setIsChecked] = useState(false);
+  console.log(module);
+  const handleTickBox = (e) => {
+    e.stopPropagation();
+    setIsChecked(e.target.checked);
+  };
+  console.log(isChecked);
   const handleComentBtn = (e) => {
     e.preventDefault();
     setIsCommented(comment);
@@ -91,7 +95,12 @@ function StudentProfile() {
                     <div id="courses_table">
                       <p>{subject.start_date}</p>
                       <p>{subject.modules}</p>
-                      <input type="checkbox" id="checkid" />
+                      <input
+                        type="checkbox"
+                        id="checkid"
+                        checked={isChecked}
+                        onChange={handleTickBox}
+                      />
                     </div>
                   );
                 })
