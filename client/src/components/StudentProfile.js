@@ -185,36 +185,6 @@ function StudentProfile() {
               </select> */}
             </div>
           </div>
-
-          <div id="feedback">
-            <div>
-              <h1>{moduleTitle} Feedback</h1>
-              <p>
-                background and height as shown in the GitHub gist above. Since
-                our list has a background of white we changed the Main
-                background so that we could clearly see our selection.
-              </p>
-              <div id="comment">
-                <p>{isCommented}</p>
-                <input
-                  id="comment-input"
-                  placeholder="write a comment"
-                  type="text"
-                  name="comment"
-                  onChange={(e) => {
-                    setComment(e.target.value);
-                  }}
-                />
-                <div id="buttons">
-                  <button id="comment-btn" onClick={handleComentBtn}>
-                    Comment
-                  </button>
-                  <button id="comment-btn">Edit comment</button>
-                  <button id="comment-btn">Delete comment</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

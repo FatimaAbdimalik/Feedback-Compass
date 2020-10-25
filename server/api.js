@@ -72,6 +72,25 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/login", (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (email && password) {
+    Connection.query(
+      "select * from users where email = $1 and password = $2 ",
+      [email, password],
+      (err, result) => {
+        if (result.rowCount > 0) {
+          return res.status(200).send(result.rows[0]);
+        } else {
+          res.status(500).json(err);
+        }
+      }
+    );
+  }
+});
+
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
   let studentId = Number(_.params.id);
@@ -97,6 +116,46 @@ router.get("/feedback", (_, res, next) => {
       return next(err);
     }
     res.json(result.rows[0]);
+  });
+});
+
+router.post("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const studentId = req.body.student_id;
+  const newTitle = req.body.title;
+  const newBody = req.body.body;
+  const sentDate = req.body.sent_date.postDate;
+
+  const postQuery =
+    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
+    "VALUES ($1,$2,$3,$4,$5)";
+
+  Connection.query(
+    postQuery,
+    [mentorId, studentId, newTitle, newBody, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+router.put("/feedback/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const newResponse = req.body.response;
+
+  const putQuery =
+    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
+
+  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
   });
 });
 

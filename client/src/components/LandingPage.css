@@ -10,15 +10,17 @@ body {
   padding: 0;
 }
 #heading {
-  background-color: rgb(202, 202, 202);
+  background-color: rgb(228, 228, 228);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: rgb(63, 63, 63);
+  height: 100px;
 }
 #logo {
-  padding-right: 250px;
+  padding-right: 150px;
   padding-left: 20px;
+  height: auto;
 }
 
 #options {
