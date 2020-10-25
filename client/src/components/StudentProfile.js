@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
-import axios from "axios";
 import avatar from "./Avatar.png";
 import "./StudentProfile.css";
+import CourseProgressList from "./CourseProgressList";
 // import { Row } from "react-bootstrap";
 
 function StudentProfile() {
@@ -39,25 +39,13 @@ function StudentProfile() {
   const [moduleTitle, setModuleTitle] = useState("");
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
-  const [module, setModule] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
-  console.log(module);
-  const handleTickBox = (e) => {
-    e.stopPropagation();
-    setIsChecked(e.target.checked);
-  };
-  console.log(isChecked);
+
   const handleComentBtn = (e) => {
     e.preventDefault();
     setIsCommented(comment);
     document.getElementById("comment-input").value = "";
   };
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/syllabus")
-      .then((res) => res)
-      .then((data) => setModule(data.data));
-  }, []);
+
   return (
     <div>
       <div id="student-container">
@@ -85,105 +73,7 @@ function StudentProfile() {
             <button id="modules" onClick={handleBioSubmit}>
               save
             </button>
-            <div id="modules-container">
-              <h2>Course Progress</h2>
-              {!module ? (
-                <div>Loading</div>
-              ) : (
-                module.map((subject, index) => {
-                  return (
-                    <div id="courses_table">
-                      <p>{subject.start_date}</p>
-                      <p>{subject.modules}</p>
-                      <input
-                        type="checkbox"
-                        id="checkid"
-                        checked={isChecked}
-                        onChange={handleTickBox}
-                      />
-                    </div>
-                  );
-                })
-              )}
-
-              {/* <select
-                id="modules"
-                name="HTML"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>HTML</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select>
-
-              <select
-                id="modules"
-                name="CSS"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>CSS</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select>
-
-              <select
-                id="modules"
-                name="Javascript"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>Javascript</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select>
-
-              <select
-                id="modules"
-                name="React"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>React</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select>
-
-              <select
-                id="modules"
-                name="Node.js"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>Node.js</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select>
-
-              <select
-                id="modules"
-                name="SQL"
-                onChange={(e) =>
-                  setModuleTitle(e.target.value + " " + e.target.name)
-                }
-              >
-                <option>SQL</option>
-                <option>WEEK-1</option>
-                <option>WEEK-2</option>
-                <option>WEEK-3</option>
-              </select> */}
-            </div>
+            <CourseProgressList />
           </div>
         </div>
       </div>
