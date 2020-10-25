@@ -1,4 +1,14 @@
 #studentsList{
     top: 30%;
     margin-left: 40%;
+    color: lavender;
+    list-style: none;
+}
+ul{
+    list-style: none;
+
+}
+li{
+    color: lavender;
+list-style: none;
 }

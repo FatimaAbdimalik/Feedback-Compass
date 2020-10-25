@@ -32,9 +32,12 @@ function ChooseCohort() {
                 </option>
               ))}
             </select>
+
+            {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
           </form>
+         
         </section>
-        {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
+     
       </div>
     );
 }
