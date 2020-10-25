@@ -80,7 +80,6 @@ router.get("/", (req, res) => {
   });
 });
 
-
 router.post("/login", (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -92,12 +91,13 @@ router.post("/login", (req, res, next) => {
       (err, result) => {
         if (result.rowCount > 0) {
           return res.status(200).send(result.rows[0]);
+        } else {
+          res.status(500).json(err);
         }
       }
     );
   }
 });
-
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -116,7 +116,7 @@ router.get("/students/:id", (_, res, next) => {
 });
 
 router.get("/feedback", (req, res, next) => {
-  const studentId = req.query.student_id
+  const studentId = req.query.student_id;
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
   Connection.query(stuQuery, [studentId], (err, result) => {
@@ -126,7 +126,6 @@ router.get("/feedback", (req, res, next) => {
     res.json(result.rows[0]);
   });
 });
-
 
 router.post("/feedback", (req, res) => {
   const mentorId = req.body.mentor_id;
@@ -167,7 +166,6 @@ router.put("/feedback/:student_id", (req, res) => {
     }
   });
 });
-
 
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
