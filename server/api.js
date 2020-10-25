@@ -231,11 +231,23 @@ router.put("/students/:id", (req, res) => {
   const editedName = req.body.name;
   const editedSurname = req.body.surname;
   const editedEmail = req.body.email;
+  const editPhoneNumber = req.body.phone_number;
+  const newPassword = req.body.password;
+  const editedBio = req.body.biography;
+
   const eidtedProfileQuery =
-    "UPDATE users SET name =$2, surname=$3, email=$4 WHERE id = $1";
+    "UPDATE users SET name =$2, surname=$3, email=$4, phone_number=$5, password=$6, biography=$7 WHERE id = $1";
   Connection.query(
     eidtedProfileQuery,
-    [studentId, editedName, editedSurname, editedEmail],
+    [
+      studentId,
+      editedName,
+      editedSurname,
+      editedEmail,
+      editPhoneNumber,
+      newPassword,
+      editedBio,
+    ],
     (err, results) => {
       if (err) {
         res.status(500).json(err);
