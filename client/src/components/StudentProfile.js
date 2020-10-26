@@ -3,7 +3,6 @@ import Logo from "./Logo.png";
 import avatar from "./Avatar.png";
 import "./StudentProfile.css";
 import CourseProgressList from "./CourseProgressList";
-// import { Row } from "react-bootstrap";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);

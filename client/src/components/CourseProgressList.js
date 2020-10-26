@@ -4,7 +4,6 @@ import CourseProgressItem from "./CourseProgressItem";
 
 const CourseProgressList = () => {
   const [module, setModule] = useState([]);
-
   useEffect(() => {
     axios
       .get("http://localhost:3100/api/syllabus")
@@ -25,6 +24,7 @@ const CourseProgressList = () => {
                 date={subject.start_date}
                 course={subject.modules}
                 completed={subject.completed}
+                id={subject.id}
               />
             </div>
           );
