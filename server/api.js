@@ -115,17 +115,32 @@ router.get("/students/:id", (_, res, next) => {
   );
 });
 
-router.get("/feedback", (req, res, next) => {
-  const studentId = req.query.student_id;
+router.get("/feedback/:student_id", (req, res, next) => {
+  const studentId = Number(req.params.student_id);
+  const title = req.body.title;
   const stuQuery =
-    "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
-  Connection.query(stuQuery, [studentId], (err, result) => {
+    "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1 and title = $2";
+  Connection.query(stuQuery, [studentId, title], (err, result) => {
     if (err) {
       return next(err);
     }
-    res.json(result.rows[0]);
+    res.json(result.rows);
   });
 });
+
+// router.get("students/feedback", (req, res, next) => {
+//   const studentId = req.body.student_id;
+//   // const moduleName = req.body.title;
+//   const stuQuery =
+//     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
+//   Connection.query(stuQuery, [studentId], (err, result) => {
+//     if (err) {
+//       console.log("err", err);
+//       return next(err);
+//     }
+//     res.json(result.rows);
+//   });
+// });
 
 router.post("/feedback", (req, res) => {
   const mentorId = req.body.mentor_id;
@@ -292,17 +307,18 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
 });
 // student updates profile
 
-router.put("/students/:student_id", (req, res) => {
-  const studentId = req.params.student_id;
+router.put("/students/:id", (req, res) => {
+  const studentId = req.params.id;
 
   const editedName = req.body.name;
   const editedSurname = req.body.surname;
   const editedEmail = req.body.email;
+  const editedBio = req.body.biography;
   const eidtedProfileQuery =
-    "UPDATE users SET name =$2, surname=$3, email =$4 WHERE student_id = $1";
+    "UPDATE users SET name =$2, surname=$3, email =$4, biography =$5 WHERE id = $1";
   Connection.query(
     eidtedProfileQuery,
-    [studentId, editedName, editedSurname, editedEmail],
+    [studentId, editedName, editedSurname, editedEmail, editedBio],
     (err, results) => {
       if (err) {
         res.status(500).json(err);

@@ -12,8 +12,6 @@ function StudentProfile() {
 
   let { student_id } = useParams();
 
-  console.log(student_id);
-
   ////-----------Biography Section------------------>
   const [bio, setBio] = useState("about you...");
   const [submitBio, setSubmiBio] = useState("");

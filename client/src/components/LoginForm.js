@@ -21,11 +21,11 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
-        console.log(response.data.user_type);
+        console.log(response.data.id);
+
         if (response.data.user_type === "student") {
           setValidUser(true);
-          history.push("/student");
+          history.push(`/students/${response.data.id}`);
         } else {
           history.push(`/cohorts?mentorId=${response.data.id}`);
         }
