@@ -130,20 +130,6 @@ router.get("/feedback", (req, res, next) => {
   });
 });
 
-// router.get("students/feedback", (req, res, next) => {
-//   const studentId = req.body.student_id;
-//   // const moduleName = req.body.title;
-//   const stuQuery =
-//     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1";
-//   Connection.query(stuQuery, [studentId], (err, result) => {
-//     if (err) {
-//       console.log("err", err);
-//       return next(err);
-//     }
-//     res.json(result.rows);
-//   });
-// });
-
 router.post("/feedback", (req, res) => {
   const mentorId = req.body.mentor_id;
   const studentId = req.body.student_id;
