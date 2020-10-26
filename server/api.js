@@ -115,9 +115,11 @@ router.get("/students/:id", (_, res, next) => {
   );
 });
 
-router.get("/feedback/:student_id", (req, res, next) => {
-  const studentId = Number(req.params.student_id);
-  const title = req.body.title;
+router.get("/feedback", (req, res, next) => {
+  const studentId = Number(req.query.student_id);
+  console.log(studentId);
+  const title = req.query.title;
+  console.log(title);
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1 and title = $2";
   Connection.query(stuQuery, [studentId, title], (err, result) => {

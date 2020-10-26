@@ -5,63 +5,25 @@ import avatar from "./Avatar.png";
 import { useParams } from "react-router-dom";
 import "./StudentProfile.css";
 
-let student_id;
-
 function StudentProfile() {
-  const [profilePhoto, setProfilePhto] = useState(avatar);
-  const [studentDetails, setStudentDetails] = useState();
-  const [feedback, setFeedback] = useState();
-
-  console.log(studentDetails);
-  // console.log(studentDetails.biography);
-
-  let { id } = useParams();
-  console.log(id);
-
-  ////-----------Biography Section------------------>
+  const [profilePhoto, setProfilePhoto] = useState(avatar);
+  const [studentDetails, setStudentDetails] = useState({});
+  const [feedback, setFeedback] = useState([]);
+  const [moduleTitle, setModuleTitle] = useState("");
+  const [comment, setComment] = useState("");
+  const [isCommented, setIsCommented] = useState("");
+  const [data, setData] = useState("");
   const [bio, setBio] = useState("about you...");
   const [submitBio, setSubmitBio] = useState();
-  console.log(submitBio);
-  const handleBioSubmit = () => {
-    console.log(submitBio);
-    return submitBio;
-    // e.preventDefault();
-    // setBio(submitBio);
-    // document.getElementById("student-bio").value = "";
-  };
 
-  useEffect(() => {
-    // axios.get('/feedback', {
-    //   params: {
-    //     ID:
-    //   }
-    // })
-    axios
-      .get(`http//localhost:3100/api/feedback/${student_id}`, {
-        student_id: id,
-        title: "JAVASCRIPT-WEEK-1",
-      })
-      .then(function (response) {
-        if (response) {
-          setFeedback(response);
-          console.log(response);
-        }
-      })
-      .catch(function (error) {
-        if (error) {
-          console.log(error);
-        }
-      });
-  }, [student_id]);
+  let { id } = useParams();
 
   useEffect(() => {
     axios
       .get(`/api/students/${id}`)
       .then(function (response) {
         if (response.data) {
-          console.log(response.data);
           setStudentDetails(response.data);
-          console.log(response.data.biography);
           setSubmitBio(responde.data.biography);
         }
       })
@@ -71,11 +33,36 @@ function StudentProfile() {
       });
   }, [id]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/feedback`, {
+        params: {
+          student_id: id,
+          title: moduleTitle,
+        },
+      })
+      .then(function (response) {
+        if (response) {
+          setFeedback(response.data);
+        }
+      })
+      .catch(function (error) {
+        if (error) {
+          console.log(error);
+        }
+      });
+  }, [moduleTitle]);
+
+  ////-----------Biography Section------------------>
+
+  const handleBioSubmit = (e) => {
+    // return submitBio;
+    // e.preventDefault();
+    // setBio(submitBio);
+    // document.getElementById("student-bio").value = "";
+  };
+
   //------------ Modules list  handling -------->
-  const [moduleTitle, setModuleTitle] = useState("");
-  const [comment, setComment] = useState("");
-  const [isCommented, setIsCommented] = useState("");
-  const [data, setData] = useState("");
 
   const handleComentBtn = (e) => {
     e.preventDefault();
@@ -108,13 +95,12 @@ function StudentProfile() {
         <div id="student-body">
           <div id="student-profile">
             <img src={profilePhoto} id="avatar" />
-            <a href="#">Add a profile</a>
 
             <h4>
               {studentDetails &&
                 `${studentDetails.name} ${studentDetails.surname}`}
             </h4>
-            <h5>{bio}</h5>
+            <h5>{studentDetails.biography}</h5>
             <input
               id="student-bio"
               placeholder="add your biography"
@@ -158,9 +144,10 @@ function StudentProfile() {
               <select
                 id="modules"
                 name="Javascript"
-                onChange={(e) =>
-                  setModuleTitle(e.target.name + "-" + e.target.value)
-                }
+                onChange={(e) => {
+                  setModuleTitle(e.target.name + "-" + e.target.value);
+                  console.log(e);
+                }}
               >
                 <option>JAVASCRIPT</option>
                 <option>WEEK-1</option>
@@ -212,12 +199,12 @@ function StudentProfile() {
           <div id="feedback-panel">
             <div id="single-feedback">
               <h1>{moduleTitle} Feedback</h1>
-              <p>{feedback}</p>
+              <div>
+                {feedback.map((singleFeedback, i) => {
+                  return <p key={i}>{singleFeedback.body}</p>;
+                })}
+              </div>
 
-              <p>
-                _______________________________________________________________________________
-              </p>
-              <p>{isCommented}</p>
               <div id="comment">
                 <input
                   id="comment-input"
