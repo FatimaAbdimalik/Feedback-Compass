@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UpdateProfile from "./UpdateProfile";
-
 import "./StudentProfile.css";
 
 function StudentProfile() {
@@ -14,8 +13,6 @@ function StudentProfile() {
   const [moduleTitle, setModuleTitle] = useState("");
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
-  const [data, setData] = useState("");
-  const [bio, setBio] = useState("about you...");
   const [submitBio, setSubmitBio] = useState();
   console.log(studentDetails);
 
@@ -56,15 +53,6 @@ function StudentProfile() {
       });
   }, [moduleTitle]);
 
-  ////-----------Biography Section------------------>
-  const history = useHistory();
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    history.push(`/students/${id}/edit`);
-    // setBio(submitBio);
-    // document.getElementById("student-bio").value = "";
-  };
-
   //------------ Modules list  handling -------->
 
   const handleComentBtn = (e) => {
@@ -98,7 +86,7 @@ function StudentProfile() {
         <div id="student-body">
           <div id="student-profile">
             <img src={profilePhoto} id="avatar" />
-            {/* <a href="#">Add a profile</a> */}
+
             {studentDetails ? (
               <UpdateProfile
                 studentDetails={studentDetails}
