@@ -25,7 +25,9 @@ function LoginForm() {
         console.log(response.data.user_type);
         if (response.data.user_type === "student") {
           setValidUser(true);
-          history.push("/student");
+          let id = response.data.id;
+          console.log(response.data.id);
+          history.push(`/students/${id}`);
         } else {
           history.push(`/cohorts?mentorId=${response.data.id}`);
         }

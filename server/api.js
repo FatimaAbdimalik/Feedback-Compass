@@ -333,17 +333,17 @@ router.put("/feedback/:student_id", (req, res) => {
   });
 });
 
-router.get("/syllabus", (req, res) => {
-  Connection.query(
-    "SELECT s.id, s.modules,s.start_date ,p.completed FROM syllabus s JOIN progress p ON (s.id = p.syllabus_id)",
-    (err, result) => {
-      if (err) {
-        res.json(err);
-      }
-      res.json(result.rows);
-    }
-  );
-});
+// router.get("/syllabus", (req, res) => {
+//   Connection.query(
+//     "SELECT s.id, s.modules,s.start_date ,p.completed FROM syllabus s JOIN progress p ON (s.id = p.syllabus_id)",
+//     (err, result) => {
+//       if (err) {
+//         res.json(err);
+//       }
+//       res.json(result.rows);
+//     }
+//   );
+// });
 
 router.get("/syllabus/lessons", (req, res) => {
   const getQuery =
@@ -376,6 +376,18 @@ router.put("/syllabus", (req, res) => {
       }
     }
   );
+});
+
+router.get("/syllabus", (req, res) => {
+  const studentId = req.query.student_id;
+  const getQuery =
+    "SELECT s.modules, s.start_date, p.completed,p.syllabus_id FROM syllabus s JOIN progress p ON(s.id = p.syllabus_id) WHERE p.student_id = $1";
+  Connection.query(getQuery, [studentId], (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
 });
 
 // router.get("/reponses/:response_id", (req, res) => {
