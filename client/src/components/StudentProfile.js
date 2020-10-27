@@ -53,17 +53,6 @@ function StudentProfile() {
       });
   }, [moduleTitle]);
 
-  ////-----------Biography Section------------------>
-
-  const handleBioSubmit = (e) => {
-    // return submitBio;
-    // e.preventDefault();
-    // setBio(submitBio);
-    // document.getElementById("student-bio").value = "";
-  };
-
-  //------------ Modules list  handling -------->
-
   const handleComentBtn = (e) => {
     e.preventDefault();
     document.getElementById("comment-input").value = "";
@@ -146,7 +135,6 @@ function StudentProfile() {
                 name="Javascript"
                 onChange={(e) => {
                   setModuleTitle(e.target.name + "-" + e.target.value);
-                  console.log(e);
                 }}
               >
                 <option>JAVASCRIPT</option>

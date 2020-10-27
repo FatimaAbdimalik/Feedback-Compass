@@ -7,31 +7,12 @@ import moment from "moment";
 import { useParams } from "react-router-dom";
 
 function StudentProfile() {
-  const [profilePhoto, setProfilePhto] = useState(avatar);
-  const [studentDetails, setStudetDetails] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState(avatar);
+  const [studentDetails, setStudentDetails] = useState("");
+  const [moduleTitle, setModuleTitle] = useState("");
 
   let { student_id } = useParams();
 
-  ////-----------Biography Section------------------>
-  const [bio, setBio] = useState("about you...");
-  const [submitBio, setSubmiBio] = useState("");
-
-  const handleBioSubmit = (e) => {
-    e.preventDefault();
-
-    setBio(submitBio);
-    document.getElementById("student-bio").value = "";
-  };
-
-  console.log(
-    JSON.stringify({
-      postDate: moment(),
-    })
-  );
-  //------------ Modules list  handling -------->
-  const [moduleTitle, setModuleTitle] = useState("");
-
-  console.log(moduleTitle);
   let comment = "Great job";
 
   const handleComentBtn = (e) => {
@@ -60,8 +41,7 @@ function StudentProfile() {
       .get(`/api/students/${student_id}`)
       .then(function (response, err) {
         if (response) {
-          setStudetDetails(response.data);
-          console.log(response);
+          setStudentDetails(response.data);
           response.status(200);
         }
       })

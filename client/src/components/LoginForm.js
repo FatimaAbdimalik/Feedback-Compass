@@ -21,8 +21,6 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        console.log(response.data.id);
-
         if (response.data.user_type === "student") {
           setValidUser(true);
           history.push(`/students/${response.data.id}`);

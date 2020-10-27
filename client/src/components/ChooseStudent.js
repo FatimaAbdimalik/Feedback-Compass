@@ -5,7 +5,6 @@ import "./ChooseStudent.css";
 
 function ChooseStudents({ selectCohort }) {
   const [studentList, setStudentList] = useState([]);
-  const [select, setSelect] = useState();
   let location = useLocation();
 
   useEffect(() => {
@@ -20,7 +19,6 @@ function ChooseStudents({ selectCohort }) {
   }, [selectCohort]);
 
   let removeQmark = (string) => {
-    // return string.substring(string.length - 1);
     return string.substring(string.indexOf("=") + 1);
   };
   let mentorID = removeQmark(location.search);
