@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import UpdateProfile from "./UpdateProfile";
+
 import "./StudentProfile.css";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
-  const [studentDetails, setStudentDetails] = useState({});
+  const [studentDetails, setStudentDetails] = useState(null);
   const [feedback, setFeedback] = useState([]);
   const [moduleTitle, setModuleTitle] = useState("");
   const [comment, setComment] = useState("");
@@ -15,6 +17,7 @@ function StudentProfile() {
   const [data, setData] = useState("");
   const [bio, setBio] = useState("about you...");
   const [submitBio, setSubmitBio] = useState();
+  console.log(studentDetails);
 
   let { id } = useParams();
 
@@ -54,10 +57,10 @@ function StudentProfile() {
   }, [moduleTitle]);
 
   ////-----------Biography Section------------------>
-
-  const handleBioSubmit = (e) => {
-    // return submitBio;
-    // e.preventDefault();
+  const history = useHistory();
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+    history.push(`/students/${id}/edit`);
     // setBio(submitBio);
     // document.getElementById("student-bio").value = "";
   };
@@ -95,12 +98,20 @@ function StudentProfile() {
         <div id="student-body">
           <div id="student-profile">
             <img src={profilePhoto} id="avatar" />
+            {/* <a href="#">Add a profile</a> */}
+            {studentDetails ? (
+              <UpdateProfile
+                studentDetails={studentDetails}
+                setStudentDetails={setStudentDetails}
+              />
+            ) : null}
 
             <h4>
-              {studentDetails &&
-                `${studentDetails.name} ${studentDetails.surname}`}
+              {studentDetails
+                ? `${studentDetails.name} ${studentDetails.surname}`
+                : null}
             </h4>
-            <h5>{studentDetails.biography}</h5>
+            <h5>{studentDetails ? studentDetails.biography : null}</h5>
             <input
               id="student-bio"
               placeholder="add your biography"
@@ -110,8 +121,8 @@ function StudentProfile() {
                 setSubmitBio(e.target.value);
               }}
             />
-            <button id="modules" onClick={handleBioSubmit}>
-              save
+            <button id="modules" onClick={handleEditProfile}>
+              Save
             </button>
             <div id="modules-container">
               <h2>Modules</h2>

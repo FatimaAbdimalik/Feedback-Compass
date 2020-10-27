@@ -297,13 +297,13 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
 
 router.put("/students/:id", (req, res) => {
   const studentId = req.params.id;
-
+  console.log(req.body, "inside put endpoint");
   const editedName = req.body.name;
   const editedSurname = req.body.surname;
   const editedEmail = req.body.email;
   const editedBio = req.body.biography;
   const eidtedProfileQuery =
-    "UPDATE users SET name =$2, surname=$3, email =$4, biography =$5 WHERE id = $1";
+    "UPDATE users SET name =$2, surname=$3, email =$4, biography =$5 WHERE id = $1 RETURNING * ";
   Connection.query(
     eidtedProfileQuery,
     [studentId, editedName, editedSurname, editedEmail, editedBio],
@@ -311,7 +311,8 @@ router.put("/students/:id", (req, res) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        res.status(200).json(results.rows);
+        console.log(results.rows);
+        res.status(200).json(results.rows[0]);
       }
     }
   );
