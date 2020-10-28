@@ -7,7 +7,6 @@ import CourseProgressItem from "./CourseProgressItem";
 
 const CourseProgressList = () => {
   let student_id = useParams();
-  console.log("******", student_id.id);
 
   const [module, setModule] = useState([]);
 
