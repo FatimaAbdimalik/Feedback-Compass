@@ -17,15 +17,7 @@ const router = new Router();
 const clientId = process.env.Github_Client_ID;
 const clientSecret = process.env.Github_Client_Secret;
 
-const callbackUrl = "http://localhost:3000/login/github/callback";
-//http://localhost:3000/login/github/callback
-// router.get("/login/github", (req, res) => {
-//   console.log(url);
-//   const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000/login/github/callback&state=fat`;
-//   res.redirect(301, url);
-// });
-
-// router.get("/login/github/callback", (req, res) => {});
+const callbackUrl = "http://localhost:3000/api/callback";
 
 const client = new AuthorizationCode({
   client: {
@@ -42,7 +34,7 @@ const client = new AuthorizationCode({
 // Authorization uri definition
 const authorizationUri = client.authorizeURL({
   redirect_uri: callbackUrl,
-  scope: "email",
+  scope: "user:email",
   state: "3(#0/!~",
 });
 
@@ -76,7 +68,7 @@ router.get("/", (req, res) => {
     if (err) {
       return next(err);
     }
-    res.send('Hello<br><a href="/auth">Log in with Github</a>');
+    res.send('Hello<br><a href="/api/auth">Log in with Github</a>');
   });
 });
 
@@ -272,9 +264,9 @@ router.delete("/feedback/:student_id", (req, res) => {
   });
 });
 
-router.post("/feedback/:mentor_id/:student_id", (req, res) => {
-  const mentorId = req.params.mentor_id;
-  const studentId = req.params.student_id;
+router.post("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const studentId = req.body.student_id;
   const newTitle = req.body.title;
   const newBody = req.body.body;
   const sentDate = req.body.sent_date;
@@ -286,7 +278,7 @@ router.post("/feedback/:mentor_id/:student_id", (req, res) => {
     [mentorId, studentId, newTitle, newBody, sentDate],
     (err, result) => {
       if (err) {
-        res.status(404).json(err);
+        res.status(500).json(err);
       } else {
         res.json({ message: "successful" });
       }
@@ -332,18 +324,20 @@ router.put("/feedback/:student_id", (req, res) => {
   });
 });
 
-router.get("/syllabus", (req, res) => {
-  Connection.query("SELECT modules FROM syllabus", (err, result) => {
-    if (err) {
-      res.json(err);
-    }
-    res.json(result.rows);
-  });
-});
+// router.get("/syllabus", (req, res) => {
+//   Connection.query(
+//     "SELECT s.id, s.modules,s.start_date ,p.completed FROM syllabus s JOIN progress p ON (s.id = p.syllabus_id)",
+//     (err, result) => {
+//       if (err) {
+//         res.json(err);
+//       }
+//       res.json(result.rows);
+//     }
+//   );
+// });
 
 router.get("/syllabus/lessons", (req, res) => {
-  const getQuery =
-    "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.id)";
+  const getQuery = "SELECT description FROM lessons";
   Connection.query(getQuery, (err, result) => {
     if (err) {
       res.status(500).json(err);
@@ -353,9 +347,63 @@ router.get("/syllabus/lessons", (req, res) => {
   });
 });
 
-export default router;
+router.put("/syllabus", (req, res) => {
+  const studentId = req.query.student_id;
+  const syllabusId = req.body.syllabus_id;
+  const completed = req.body.completed;
 
-//UPDATE users SET name = 'Laylaa', surname = 'Jack' WHERE id = 57;
-//db
-// .query("UPDATE customers SET email=$2, phone = $3 WHERE id=$1",
-// [custId, newEmail, newPhone])
+  const updateTickBox =
+    "UPDATE progress SET completed = $3 WHERE syllabus_id = $2 and student_id = $1";
+
+  Connection.query(
+    updateTickBox,
+    [studentId, syllabusId, completed],
+    (err, result) => {
+      if (err) {
+        res.json();
+      } else {
+        res.json(result.rows);
+      }
+    }
+  );
+});
+
+router.get("/syllabus", (req, res) => {
+  const studentId = req.query.student_id;
+  const getQuery =
+    "SELECT s.modules, s.start_date, p.completed,p.syllabus_id FROM syllabus s JOIN progress p ON(s.id = p.syllabus_id) WHERE p.student_id = $1";
+  Connection.query(getQuery, [studentId], (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+router.get("/get-syllabus", (req, res) => {
+  const getAllModules = "select modules from syllabus";
+
+  Connection.query(getAllModules, (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+// router.get("/reponses/:response_id", (req, res) => {
+//   const responseId = Number(req.params.response_id);
+
+//   const getResponsesQuery =
+//     "SELECT response, sent_date FROM studentResponses WHERE response_id = $1";
+
+//   Connection.query(getResponsesQuery, [responseId], (err, result) => {
+//     if (err) {
+//       res.json(err);
+//     } else {
+//       res.json(result.rows);
+//     }
+//   });
+// });
+
+export default router;

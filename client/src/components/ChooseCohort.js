@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChooseStudent from "./ChooseStudent";
+import Loader from "react-loader-spinner";
+
 import axios from "axios";
 
 function ChooseCohort() {
@@ -18,7 +20,16 @@ function ChooseCohort() {
   }, []);
 
   return !cohort ? (
-    <div>Loading...</div>
+    <div style={{ marginLeft: "35rem" }}>
+      {" "}
+      <Loader
+        type="ThreeDots"
+        color="white"
+        height={500}
+        width={100}
+        timeout={3000} //3 secs
+      />
+    </div>
   ) : (
     <div>
       <section id="search-cohort">

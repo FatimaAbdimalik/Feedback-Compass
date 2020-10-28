@@ -11,8 +11,6 @@ function LoginForm(props) {
   const [validUser, setValidUser] = useState(false);
 
   const history = useHistory();
-  const { user_type } = useParams()
-  console.log(user_type);
   const handleSubmit = (e) => {
     e.preventDefault();
 
