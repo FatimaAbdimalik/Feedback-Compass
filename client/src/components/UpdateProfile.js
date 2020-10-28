@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import Modal from "react-bootstrap/Modal";
 
 function UpdateProfile({ studentDetails, setStudentDetails }) {
   const [value, setValue] = useState({
@@ -9,10 +8,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
     email: "",
     biography: "",
   });
-
-  //   const [show, setShow] = useState(false);
-  //   const handleClose = () => setShow(false);
-  //   const handleShow = () => setShow(true);
 
   let id = studentDetails.id;
 
@@ -26,7 +21,9 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
     });
   };
 
-  useEffect(() => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
     axios
       .put(`/api/students/${id}`, {
         name: value.name,
@@ -48,20 +45,14 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
           console.log(error);
         }
       });
-  }, [submitted]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
   };
 
   return (
     <div>
       <button>Update Profile</button>
-      <form onSubmit={handleSubmit}>
+      <form>
         {submitted ? <h3>Thank you for updating your details.</h3> : null}
-        {/* <Modal show={show} onHide={handleClose}>
-          <Modal.Body> */}
+
         <input
           type="text"
           name="name"
@@ -86,9 +77,9 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
           placeholder="Add a biography"
           onChange={handleChange}
         />
-        <button type="submit">Update profile</button>
-        {/* </Modal.Body>
-        </Modal> */}
+        <button type="submit" onClick={handleSubmit}>
+          Save
+        </button>
       </form>
     </div>
   );
