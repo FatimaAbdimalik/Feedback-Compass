@@ -27,7 +27,9 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
     });
   };
 
-  useEffect(() => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
     axios
       .put(`/api/students/${id}`, {
         name: value.name,
@@ -49,11 +51,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
           console.log(error);
         }
       });
-  }, [submitted]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
   };
 
   return (
