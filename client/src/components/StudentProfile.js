@@ -120,25 +120,7 @@ function StudentProfile() {
                       return <p key={i}>{singleFeedback.body}</p>;
                     })}
                   </div> */}
-
-                {/* <div id="comment">
-                  <input
-                    id="comment-input"
-                    placeholder="write a comment"
-                    type="text"
-                    name="comment"
-                    onChange={(e) => {
-                      setComment(e.target.value);
-                    }}
-                  /> */}
-                {/* <div id="buttons">
-                   
-                    <button id="comment-btn">Edit comment</button>
-                    <button id="comment-btn">Delete comment</button>
-                  </div> */}
               </div>
-
-              {/* <StudentSubmission /> */}
             </div>
           </div>
           <div id="feedback">
