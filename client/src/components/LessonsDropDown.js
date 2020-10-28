@@ -12,8 +12,6 @@ const LessonsDropDown = ({ module }) => {
     });
   }, []);
 
-  console.log(lesson);
-
   return !lesson ? (
     <div>Loading</div>
   ) : (

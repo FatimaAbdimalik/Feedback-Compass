@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import SubmissionCard from "./SubmissionCard";
 import ModuleDropDown from "./ModuleDropDown";
-import SubmitWork from "./SubmitWork";
 
 const StudentSubmission = () => {
   const [show, setShow] = useState(false);
@@ -29,9 +27,7 @@ const StudentSubmission = () => {
         centered
       >
         <Modal.Body>
-          {/* <SubmissionCard /> */}
           <ModuleDropDown />
-          {/* <SubmitWork /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button

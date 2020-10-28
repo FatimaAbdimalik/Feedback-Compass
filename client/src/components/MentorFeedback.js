@@ -12,26 +12,9 @@ function StudentProfile() {
 
   let { student_id } = useParams();
 
-  ////-----------Biography Section------------------>
-  const [bio, setBio] = useState("about you...");
-  const [submitBio, setSubmiBio] = useState("");
-
-  const handleBioSubmit = (e) => {
-    e.preventDefault();
-
-    setBio(submitBio);
-    document.getElementById("student-bio").value = "";
-  };
-
-  console.log(
-    JSON.stringify({
-      postDate: moment(),
-    })
-  );
   //------------ Modules list  handling -------->
   const [moduleTitle, setModuleTitle] = useState("");
 
-  console.log(moduleTitle);
   let comment = "Great job";
 
   const handleComentBtn = (e) => {

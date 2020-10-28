@@ -18,8 +18,6 @@ const ModuleDropDown = () => {
       });
   }, []);
 
-  console.log(subject);
-
   return !subject ? (
     <div>Loading</div>
   ) : (
