@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "./Logo.png";
-import axios from "axios";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -15,12 +14,12 @@ const LandingPage = () => {
       <h2 id="login-question">Log in as?</h2>
 
       <div id="options">
-        <a id="student" href="/login">
+        <Link id="student" to={"/login/student"}>
           STUDENT
-        </a>
-        <a id="mentor" href="/login">
+        </Link>
+        <Link id="mentor" to={"/login/mentor"}>
           MENTOR
-        </a>
+        </Link>
       </div>
     </div>
   );

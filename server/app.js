@@ -5,7 +5,7 @@ import path from "path";
 
 import router from "./api";
 import { httpsOnly, logErrors, pushStateRouting } from "./middleware";
-
+import cors from "cors";
 const apiRoot = "/api";
 const staticDir = path.join(__dirname, "static");
 
@@ -15,10 +15,11 @@ app.use(express.json());
 app.use(helmet());
 app.use(logErrors());
 app.use(morgan("dev"));
+app.use(cors());
 
 if (app.get("env") === "production") {
-	app.enable("trust proxy");
-	app.use(httpsOnly());
+  app.enable("trust proxy");
+  app.use(httpsOnly());
 }
 
 app.use(apiRoot, router);

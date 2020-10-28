@@ -1,14 +1,21 @@
-#studentsList{
-    top: 30%;
-    margin-left: 40%;
-    color: lavender;
-    list-style: none;
+#studentsList {
+  top: 30%;
+  margin-left: 40%;
+  color: lavender;
+  list-style: none;
 }
-ul{
-    list-style: none;
+ul,
+li,
+a {
+  list-style: none;
+  font-size: 20px;
+  float: left;
+}
 
-}
-li{
-    color: lavender;
-list-style: none;
+.student-name {
+  color: white;
+  text-align: left;
+
+  text-align: left;
+  align-items: left;
 }

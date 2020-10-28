@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [validUser, setValidUser] = useState(false);
 
   const history = useHistory();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,11 +20,11 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
-        console.log(response.data.user_type);
+        console.log(response.data.id);
+
         if (response.data.user_type === "student") {
           setValidUser(true);
-          history.push("/student");
+          history.push(`/students/${response.data.id}`);
         } else {
           history.push(`/cohorts?mentorId=${response.data.id}`);
         }
