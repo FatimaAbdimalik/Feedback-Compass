@@ -295,7 +295,7 @@ router.put("/students/:id", (req, res) => {
   const editedBio = req.body.biography;
 
   const eidtedProfileQuery =
-    "UPDATE users SET name =$2, surname=$3, email=$4, phone_number=$5, password=$6, biography=$7 WHERE id = $1";
+    "UPDATE users SET name =$2, surname=$3, email=$4, phone_number=$5, password=$6, biography=$7 WHERE id = $1 RETURNING *";
   Connection.query(
     eidtedProfileQuery,
     [
@@ -346,8 +346,7 @@ router.put("/feedback/:student_id", (req, res) => {
 // });
 
 router.get("/syllabus/lessons", (req, res) => {
-  const getQuery =
-    "SELECT s.modules, l.description FROM syllabus s JOIN lessons l ON (l.syllabusid = s.id)";
+  const getQuery = "SELECT description FROM lessons";
   Connection.query(getQuery, (err, result) => {
     if (err) {
       res.status(500).json(err);
@@ -383,6 +382,17 @@ router.get("/syllabus", (req, res) => {
   const getQuery =
     "SELECT s.modules, s.start_date, p.completed,p.syllabus_id FROM syllabus s JOIN progress p ON(s.id = p.syllabus_id) WHERE p.student_id = $1";
   Connection.query(getQuery, [studentId], (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+router.get("/get-syllabus", (req, res) => {
+  const getAllModules = "select modules from syllabus";
+
+  Connection.query(getAllModules, (err, result) => {
     if (err) {
       res.json(err);
     }

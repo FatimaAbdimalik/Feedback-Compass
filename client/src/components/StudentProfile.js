@@ -3,6 +3,7 @@ import Logo from "./Logo.png";
 import avatar from "./Avatar.png";
 import "./StudentProfile.css";
 import CourseProgressList from "./CourseProgressList";
+import StudentSubmission from "./StudentSubmission";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
@@ -20,19 +21,6 @@ function StudentProfile() {
     setBio(submitBio);
     document.getElementById("student-bio").value = "";
   };
-  // axios
-  // .get("/api/users", {
-  // })
-  // .then(function (response) {
-  //   if (response) {
-
-  //   }
-  // })
-  // .catch(function (error) {
-  //   if (error) {
-
-  //   }
-  // });
 
   //------------ Modules list  handling -------->
   const [moduleTitle, setModuleTitle] = useState("");
@@ -73,6 +61,9 @@ function StudentProfile() {
               save
             </button>
             <CourseProgressList />
+          </div>
+          <div id="feedback">
+            <StudentSubmission />
           </div>
         </div>
       </div>
