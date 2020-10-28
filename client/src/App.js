@@ -11,7 +11,8 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/login" component={Homepage} />
+      <Route path="/login/student" component={Homepage} />
+      <Route path="/login/mentor" component={Homepage} />
       <Route path="/students/:id" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
       <Route

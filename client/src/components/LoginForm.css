@@ -27,7 +27,7 @@ h4 {
 form {
   background-image: linear-gradient(0deg, #534444 0%, #ed4343 100%);
   width: 576px;
-  height: 882px;
+  height: auto;
   display: flex;
   flex-direction: column;
   width: 350px;

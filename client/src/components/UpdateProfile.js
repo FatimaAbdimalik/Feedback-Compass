@@ -7,7 +7,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
   const [value, setValue] = useState({
     name: "",
     surname: "",
-    email: "",
     biography: "",
   });
 
@@ -30,27 +29,35 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    axios
-      .put(`/api/students/${id}`, {
-        name: value.name,
-        surname: value.surname,
-        email: value.email,
-        biography: value.biography,
-      })
-      .then(function (response) {
-        setStudentDetails(response.data);
-        setValue({
-          name: "",
-          surname: "",
-          email: "",
-          biography: "",
+    if (value.name != "" && value.surname != "" && value.biography != "") {
+      axios
+        .put(`/api/students/${id}`, {
+          name: value.name,
+          surname: value.surname,
+          biography: value.biography,
+        })
+        .then(function (response) {
+          setStudentDetails(response.data);
+          // setValue({
+          //   name: "",
+          //   surname: "",
+          //   email: "",
+          //   biography: "",
+          // });
+          alert("Your Profile Is Updated")
+
+        })
+
+        .catch((error) => {
+          if (error) {
+            console.log(error);
+          }
         });
-      })
-      .catch((error) => {
-        if (error) {
-          console.log(error);
-        }
-      });
+    } else {
+      alert("Please add your details")
+    }
+
+
   };
 
   return (
@@ -59,11 +66,12 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
         onClick={handleShow}
       >Update Your Profile</button>
       <Modal show={show}
-        className="Modals"
+
         onHide={handleClose}>
         <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            {submitted ? <h3>Thank you for updating your details.</h3> : null}
+          <form className="Modals" onSubmit={handleSubmit}>
+            {/* {submitted ? <h3>Thank you for updating your details.</h3> : null} */}
+
             <input
               type="text"
               name="name"
@@ -76,12 +84,7 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
               placeholder="Surname"
               onChange={handleChange}
             />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-            />
+
             <input
               type="text"
               name="biography"

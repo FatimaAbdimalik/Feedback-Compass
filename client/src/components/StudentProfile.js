@@ -27,7 +27,6 @@ function StudentProfile() {
       .then(function (response) {
         if (response.data) {
           setStudentDetails(response.data);
-          setSubmitBio(responde.data.biography);
         }
       })
       .catch(function (error) {
@@ -113,15 +112,6 @@ function StudentProfile() {
                 : null}
             </h4>
             <h5>{studentDetails ? studentDetails.biography : null}</h5>
-            <input
-              id="student-bio"
-              placeholder="add your biography"
-              type="text"
-              name="bio"
-              onChange={(e) => {
-                setSubmitBio(e.target.value);
-              }}
-            />
             <button id="modules" onClick={handleEditProfile}>
               Save
             </button>
