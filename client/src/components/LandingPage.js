@@ -21,7 +21,7 @@ const LandingPage = () => {
           MENTOR
         </Link>
       </div>
-    </div >
+    </div>
   );
 };
 
