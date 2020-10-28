@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import SubmitWork from "./SubmitWork";
 
-const LessonsDropDown = () => {
+const LessonsDropDown = ({ module }) => {
   const [lesson, setLesson] = useState();
 
   useEffect(() => {
@@ -20,9 +21,14 @@ const LessonsDropDown = () => {
       <select style={{ backgroundColor: "gray" }}>
         <option>Select A Lesson</option>
         {lesson.map((item) => {
-          return <option>{item.description}</option>;
+          return (
+            <option>
+              {module}/{item.description}
+            </option>
+          );
         })}
       </select>
+      <SubmitWork />
     </div>
   );
 };

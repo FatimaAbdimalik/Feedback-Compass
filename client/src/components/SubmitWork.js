@@ -11,7 +11,6 @@ const SubmitWork = () => {
   function focusEditor() {
     editor.current.focus();
   }
-
   return (
     <div
       style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
@@ -21,7 +20,7 @@ const SubmitWork = () => {
         ref={editor}
         editorState={editorState}
         onChange={setEditorState}
-        placeholder="Add your Github Link please!"
+        placeholder="Add you work here"
         style={{ backgroundColor: "white" }}
       />
     </div>

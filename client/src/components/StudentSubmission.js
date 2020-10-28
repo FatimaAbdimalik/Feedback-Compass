@@ -31,7 +31,7 @@ const StudentSubmission = () => {
         <Modal.Body>
           {/* <SubmissionCard /> */}
           <ModuleDropDown />
-          <SubmitWork />
+          {/* <SubmitWork /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button

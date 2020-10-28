@@ -30,9 +30,8 @@ const CourseProgressItem = ({ date, course, completed, id }) => {
   return (
     <div style={{ display: "flex", justifyContent: "space-evenly" }}>
       <Row>
-        {" "}
         {date} {course}{" "}
-        <input type="checkbox" checked={isChecked} onChange={handleChange} />{" "}
+        <input type="checkbox" checked={isChecked} onChange={handleChange} />
       </Row>
     </div>
   );
