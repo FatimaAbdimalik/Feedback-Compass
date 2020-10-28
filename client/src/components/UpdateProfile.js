@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import Modal from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal";
+import "./UpdateProfile.css";
 
 function UpdateProfile({ studentDetails, setStudentDetails }) {
   const [value, setValue] = useState({
@@ -10,9 +11,9 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
     biography: "",
   });
 
-  //   const [show, setShow] = useState(false);
-  //   const handleClose = () => setShow(false);
-  //   const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let id = studentDetails.id;
 
@@ -57,39 +58,43 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
 
   return (
     <div>
-      <button>Update Profile</button>
-      <form onSubmit={handleSubmit}>
-        {submitted ? <h3>Thank you for updating your details.</h3> : null}
-        {/* <Modal show={show} onHide={handleClose}>
-          <Modal.Body> */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="surname"
-          placeholder="Surname"
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="biography"
-          placeholder="Add a biography"
-          onChange={handleChange}
-        />
-        <button type="submit">Update profile</button>
-        {/* </Modal.Body>
-        </Modal> */}
-      </form>
+      <button
+        onClick={handleShow}
+      >Update Your Profile</button>
+      <Modal show={show}
+        className="Modals"
+        onHide={handleClose}>
+        <Modal.Body>
+          <form onSubmit={handleSubmit}>
+            {submitted ? <h3>Thank you for updating your details.</h3> : null}
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="surname"
+              placeholder="Surname"
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="biography"
+              placeholder="Add a biography"
+              onChange={handleChange}
+            />
+            <button type="submit" onClick={handleClose} >Save</button>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

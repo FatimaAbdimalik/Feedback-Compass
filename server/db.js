@@ -18,7 +18,7 @@ if (process.env.DATABASE_URL) {
   config = {
     host: "localhost",
     database: "compass",
-    password: "cyf2020",
+    password: "hedyeh1365",
     port: 5432,
   };
 }

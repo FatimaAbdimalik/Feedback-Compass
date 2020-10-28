@@ -32,6 +32,7 @@ function StudentProfile() {
       })
       .catch(function (error) {
         if (error) {
+          console.log(error)
         }
       });
   }, [id]);
