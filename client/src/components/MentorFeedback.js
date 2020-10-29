@@ -5,6 +5,7 @@ import avatar from "./Avatar.png";
 import "./StudentProfile.css";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import MentorViewSubmission from "./MentorViewSubmission";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
@@ -162,22 +163,7 @@ function StudentProfile() {
                 our list has a background of white we changed the Main
                 background so that we could clearly see our selection.
               </p>
-              <div id="comment">
-                <p>{comment}</p>
-                <input
-                  id="comment-input"
-                  placeholder="write a comment"
-                  type="text"
-                  name="comment"
-                />
-                <div id="buttons">
-                  <button id="comment-btn" onClick={handleComentBtn}>
-                    Comment
-                  </button>
-                  <button id="comment-btn">Edit comment</button>
-                  <button id="comment-btn">Delete comment</button>
-                </div>
-              </div>
+              <MentorViewSubmission student_id={student_id} />
             </div>
           </div>
         </div>
