@@ -57,13 +57,13 @@ function StudentProfile() {
     <div>
       <div id="student-container">
         <div id="student-heading">
-          <img id="logo" src={Logo} width="210" height="150" />
+          <img id="logo" src={Logo} width="400" />
           <h1 className="welcom">Students Feedback</h1>
         </div>
         <div id="student-body">
           <div id="student-profile">
             <img src={profilePhoto} id="avatar" />
-            <h3>
+            <h3 id="student-name">
               {studentDetails.name} {studentDetails.surname}
             </h3>
             <h5>

@@ -1,22 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import ModuleDropDown from "./ModuleDropDown";
-import SubmitWork from "./SubmitWork";
+import "./StudentProfile.css";
+import axios from "axios";
 
-const SubmissionCard = () => {
-  //   let date = new Date();
-  //   let dd = String(date.getDate().padStart(2, "0"));
-  //   let mm = String(date.getMonth() + 1).padStart(2, "0");
-  //   let yyyy = date.getFullYear();
-  //   date = yyyy + "/" + mm + "/" + dd;
-  return (
+const SubmissionCard = ({ id }) => {
+  const [cardData, setCardData] = useState();
+  console.log(cardData);
+
+  useEffect(() => {
+    axios
+      .get(`/api/get-submissions/${id}`)
+      .then((response) => {
+        setCardData(response.data);
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+
+  const handleDate = (date) => {
+    return date.split("T")[0];
+  };
+  return !cardData ? (
+    <div>Loading...</div>
+  ) : (
     <div>
-      <Card.Body style={{ backgroundColor: "#686868" }}>
-        <Card.Title>
-          <ModuleDropDown />
-          {/* <SubmitWork /> */}
-        </Card.Title>
-      </Card.Body>
+      {cardData.map((card, index) => {
+        return (
+          <Card.Body id="submission-card">
+            <Card.Title>{card.title}</Card.Title>
+
+            <div>{handleDate(card.submission_date)}</div>
+            <div>{card.submission}</div>
+            <div>{card.body}</div>
+
+            <div id="comment">
+              <input
+                id="comment-input"
+                placeholder="write a comment"
+                type="text"
+                name="comment"
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+              />
+              <div id="buttons">
+                <button id="comment-btn">Submit comment</button>
+                <button id="comment-btn">Edit comment</button>
+                <button id="comment-btn">Delete comment</button>
+              </div>
+            </div>
+          </Card.Body>
+        );
+      })}
     </div>
   );
 };

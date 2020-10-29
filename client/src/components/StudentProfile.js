@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
-
+import SubmissionCard from "./SubmissionCard";
 import "./StudentProfile.css";
 
 function StudentProfile() {
@@ -88,28 +88,36 @@ function StudentProfile() {
     <div>
       <div id="student-container">
         <div id="student-heading">
-          <img id="logo" src={Logo} width="210" height="150" />
+          <a href="/">
+            <img id="logo" src={Logo} width="400" />
+          </a>
           <h1 className="welcom">Track Your Feedback</h1>
         </div>
         <div id="student-body">
           <div id="student-profile">
-            <img src={profilePhoto} id="avatar" />
-            {studentDetails ? (
-              <UpdateProfile
-                studentDetails={studentDetails}
-                setStudentDetails={setStudentDetails}
-              />
-            ) : null}
+            <div id="student-details">
+              <img src={profilePhoto} id="avatar" />
+              <div id="student-name">
+                <h4>
+                  {studentDetails
+                    ? `${studentDetails.name} ${studentDetails.surname}`
+                    : null}
+                </h4>
+                <h4>{studentDetails ? studentDetails.biography : null}</h4>
+                <h4>
+                  {studentDetails ? (
+                    <UpdateProfile
+                      studentDetails={studentDetails}
+                      setStudentDetails={setStudentDetails}
+                    />
+                  ) : null}
+                </h4>
 
-            <h4>
-              {studentDetails
-                ? `${studentDetails.name} ${studentDetails.surname}`
-                : null}
-            </h4>
-            <h5>{studentDetails ? studentDetails.biography : null}</h5>
-            {/* <button id="modules" onClick={handleEditProfile}>
-              Save
-            </button> */}
+                {/* <button id="modules" onClick={handleEditProfile}>
+                          Save
+                      </button> */}
+              </div>
+            </div>
 
             <CourseProgressList />
 
@@ -124,25 +132,9 @@ function StudentProfile() {
             </div>
           </div>
           <div id="feedback">
-            <h1> Feedback</h1>
-
-            <div id="comment">
-              <input
-                id="comment-input"
-                placeholder="write a comment"
-                type="text"
-                name="comment"
-                onChange={(e) => {
-                  setComment(e.target.value);
-                }}
-              />
-            </div>
-            <div id="buttons">
-              <button id="comment-btn">Submit comment</button>
-              <button id="comment-btn">Edit comment</button>
-              <button id="comment-btn">Delete comment</button>
-            </div>
-            <StudentSubmission />
+            <h1>Latest Feedback</h1>
+            <StudentSubmission id={id} />
+            <SubmissionCard id={id} />
           </div>
         </div>
       </div>

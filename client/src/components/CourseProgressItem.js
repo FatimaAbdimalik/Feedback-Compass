@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Row } from "react-bootstrap";
+import "./StudentProfile.css";
 const CourseProgressItem = ({ date, course, completed, id }) => {
   const [isChecked, setIsChecked] = useState(completed);
 
@@ -22,11 +23,11 @@ const CourseProgressItem = ({ date, course, completed, id }) => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-      <Row>
+    <div id="checkbox">
+      <div>
         {date} {course}{" "}
-        <input type="checkbox" checked={isChecked} onChange={handleChange} />
-      </Row>
+      </div>
+      <input type="checkbox" checked={isChecked} onChange={handleChange} />
     </div>
   );
 };
