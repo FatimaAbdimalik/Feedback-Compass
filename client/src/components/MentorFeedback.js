@@ -11,34 +11,35 @@ function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
 
-  let { student_id } = useParams();
+  let { student_id, mentor_id } = useParams();
 
+  console.log(mentor_id);
   //------------ Modules list  handling -------->
   const [moduleTitle, setModuleTitle] = useState("");
 
   let comment = "Great job";
 
-  const handleComentBtn = (e) => {
-    e.preventDefault();
-    document.getElementById("comment-input").value = "";
+  // const handleComentBtn = (e) => {
+  //   e.preventDefault();
+  //   document.getElementById("comment-input").value = "";
 
-    axios
-      .post(`/feedback/${mentor_id}/${student_id}`, {
-        title: moduleTitle,
-        body: comment,
-        sent_date: JSON.stringify({
-          postDate: moment(),
-        }),
-      })
-      .then(function (response, err) {
-        if (response) {
-          response.status(200);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //   axios
+  //     .post(`/feedback/${mentor_id}/${student_id}`, {
+  //       title: moduleTitle,
+  //       body: comment,
+  //       sent_date: JSON.stringify({
+  //         postDate: moment(),
+  //       }),
+  //     })
+  //     .then(function (response, err) {
+  //       if (response) {
+  //         response.status(200);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   useEffect(() => {
     axios
       .get(`/api/students/${student_id}`)
@@ -163,7 +164,10 @@ function StudentProfile() {
                 our list has a background of white we changed the Main
                 background so that we could clearly see our selection.
               </p>
-              <MentorViewSubmission student_id={student_id} />
+              <MentorViewSubmission
+                student_id={student_id}
+                mentor_id={mentor_id}
+              />
             </div>
           </div>
         </div>

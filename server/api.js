@@ -380,7 +380,7 @@ router.put("/feedback", (req, res) => {
   const mentorId = req.body.mentor_id;
   const newBody = req.body.body;
   const newDate = req.body.feedback_date;
-  const feedbackId = req.query.id;
+  const feedbackId = req.body.id;
 
   const putQuery =
     " update feedbacktable set mentor_id= $1, body= $2, feedback_date=$3 where  id = $4";
