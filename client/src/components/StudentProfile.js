@@ -16,8 +16,6 @@ function StudentProfile() {
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
 
-  console.log(studentDetails);
-
   let { id } = useParams();
 
   useEffect(() => {
@@ -132,7 +130,6 @@ function StudentProfile() {
             </div>
           </div>
           <div id="feedback">
-            <h1>Latest Feedback</h1>
             <StudentSubmission id={id} />
             <SubmissionCard id={id} />
           </div>

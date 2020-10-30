@@ -68,24 +68,52 @@ h2 {
 }
 /*  Modules  */
 
-#modules {
-  align-items: center;
-  width: 13em;
+#checkbox-container {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  background-color: rgb(61, 61, 61);
-  color: white;
-  font-size: 18px;
-  padding: 15px;
-  border-radius: 30px;
+  justify-content: start;
+  align-items: flex-start;
+  background-image: linear-gradient(0deg, #838383 0%, #cacaca 100%);
+  border-radius: 20px;
+  width: 20em;
+}
+#checkbox {
+  margin-right: 3px;
+  color: rgb(221, 221, 221);
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  font-size: 15px;
+  padding: 3px;
+  border-radius: 20px;
   border: solid 2px white;
 }
 
-#modules-container {
-  border-radius: 30px;
-  background-image: linear-gradient(0deg, #838383 0%, #ffffff 100%);
-  width: 20em;
+#modules {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Course-Progress {
+  font-weight: 600;
+  color: #494949;
+}
+
+#modules-title {
+  width: 12em;
+  font-size: 18px;
+  padding: 15px;
+  margin: 5px;
+  cursor: pointer;
+
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(61, 61, 61);
+  border-radius: 20px;
+  border: solid 2px white;
+  color: rgb(221, 221, 221);
 }
 
 /* feedback */
@@ -101,6 +129,13 @@ h2 {
 }
 
 #comment-input {
+  width: 80%;
+  padding: 15px;
+  border-radius: 20px;
+  border: 2px solid gray;
+  color: #534444;
+}
+.comment-input {
   width: 80%;
   padding: 15px;
   border-radius: 20px;
@@ -129,11 +164,6 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-
-#checkbox {
-  display: flex;
-}
-
 #courses_table {
   display: flex;
   justify-content: space-evenly;
@@ -146,6 +176,34 @@ h2 {
 }
 
 .submission-card {
+  background-color: hsl(0, 47%, 39%);
+  margin: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-date {
+  color: #838383;
+  font-style: italic;
+}
+#card-submitted {
   background-color: #ffffff;
   margin: 10px;
+}
+
+.card-color {
+  background-color: hsl(0, 0%, 92%);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.submission-link {
+  font-size: 15px;
+}
+
+#card-title {
+  color: #ffffff;
+  padding: 5px;
+  margin: 0px;
 }

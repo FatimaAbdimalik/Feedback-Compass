@@ -345,7 +345,8 @@ router.get("/get-syllabus", (req, res) => {
 router.get("/get-submissions/:student_id", (req, res) => {
   const studentId = req.params.student_id;
   const getAllSubmissions =
-    "select id, submission_date, title, body, submission from feedbacktable  where student_id = $1;";
+    "select id, submission_date, title, body, submission from feedbacktable  where student_id = $1";
+  // "select u.name,u.surname , f.id, f.submission_date, f.title, f.body, f.submission from users u join feedbacktable f on (u.id = f.student_id) where student_id= $1";
 
   Connection.query(getAllSubmissions, [studentId], (err, result) => {
     if (err) {
@@ -356,7 +357,7 @@ router.get("/get-submissions/:student_id", (req, res) => {
 });
 
 router.post("/submission", (req, res) => {
-  const studentId = req.body.student_id;
+  const studentId = Number(req.body.student_id);
   const newTitle = req.body.title;
   const newSubmission = req.body.submission;
   const sentDate = req.body.submission_date;
@@ -383,7 +384,7 @@ router.put("/feedback", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set mentor_id= $1, body= $2, feedback_date=$3 where  id = $4";
+    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4";
 
   Connection.query(
     putQuery,

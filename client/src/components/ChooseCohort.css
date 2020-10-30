@@ -1,0 +1,26 @@
+#cohort-container {
+  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
+    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
+  background-size: cover;
+  height: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#search-cohort {
+  background-image: linear-gradient(0deg, #534444 0%, #ed4343 100%);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  min-height: 300px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+#cohort-option {
+  background-color: gray;
+  color: white;
+}

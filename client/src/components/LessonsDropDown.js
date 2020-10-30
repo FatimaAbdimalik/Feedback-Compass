@@ -21,9 +21,9 @@ const LessonsDropDown = ({ module, id }) => {
         onChange={(e) => setLessonValue(e.target.value)}
       >
         <option>Select A Lesson</option>
-        {lesson.map((item) => {
+        {lesson.map((item, index) => {
           return (
-            <option>
+            <option key={index}>
               {module}/{item.description}
             </option>
           );

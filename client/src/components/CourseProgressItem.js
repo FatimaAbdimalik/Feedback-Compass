@@ -23,11 +23,16 @@ const CourseProgressItem = ({ date, course, completed, id }) => {
   };
 
   return (
-    <div id="checkbox">
-      <div>
-        {date} {course}{" "}
+    <div id="modules">
+      <div id="modules-title">
+        {date} {course}
       </div>
-      <input type="checkbox" checked={isChecked} onChange={handleChange} />
+      <input
+        type="checkbox"
+        id="checkbox"
+        checked={isChecked}
+        onChange={handleChange}
+      />
     </div>
   );
 };
