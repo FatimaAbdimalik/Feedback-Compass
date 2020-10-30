@@ -5,39 +5,41 @@ import avatar from "./Avatar.png";
 import "./StudentProfile.css";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import MentorViewSubmission from "./MentorViewSubmission";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
 
-  let { student_id } = useParams();
+  let { student_id, mentor_id } = useParams();
 
+  console.log(mentor_id);
   //------------ Modules list  handling -------->
   const [moduleTitle, setModuleTitle] = useState("");
 
   let comment = "Great job";
 
-  const handleComentBtn = (e) => {
-    e.preventDefault();
-    document.getElementById("comment-input").value = "";
+  // const handleComentBtn = (e) => {
+  //   e.preventDefault();
+  //   document.getElementById("comment-input").value = "";
 
-    axios
-      .post(`/feedback/${mentor_id}/${student_id}`, {
-        title: moduleTitle,
-        body: comment,
-        sent_date: JSON.stringify({
-          postDate: moment(),
-        }),
-      })
-      .then(function (response, err) {
-        if (response) {
-          response.status(200);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //   axios
+  //     .post(`/feedback/${mentor_id}/${student_id}`, {
+  //       title: moduleTitle,
+  //       body: comment,
+  //       sent_date: JSON.stringify({
+  //         postDate: moment(),
+  //       }),
+  //     })
+  //     .then(function (response, err) {
+  //       if (response) {
+  //         response.status(200);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   useEffect(() => {
     axios
       .get(`/api/students/${student_id}`)
@@ -57,13 +59,13 @@ function StudentProfile() {
     <div>
       <div id="student-container">
         <div id="student-heading">
-          <img id="logo" src={Logo} width="210" height="150" />
+          <img id="logo" src={Logo} width="400" />
           <h1 className="welcom">Students Feedback</h1>
         </div>
         <div id="student-body">
           <div id="student-profile">
             <img src={profilePhoto} id="avatar" />
-            <h3>
+            <h3 id="student-name">
               {studentDetails.name} {studentDetails.surname}
             </h3>
             <h5>
@@ -162,22 +164,10 @@ function StudentProfile() {
                 our list has a background of white we changed the Main
                 background so that we could clearly see our selection.
               </p>
-              <div id="comment">
-                <p>{comment}</p>
-                <input
-                  id="comment-input"
-                  placeholder="write a comment"
-                  type="text"
-                  name="comment"
-                />
-                <div id="buttons">
-                  <button id="comment-btn" onClick={handleComentBtn}>
-                    Comment
-                  </button>
-                  <button id="comment-btn">Edit comment</button>
-                  <button id="comment-btn">Delete comment</button>
-                </div>
-              </div>
+              <MentorViewSubmission
+                student_id={student_id}
+                mentor_id={mentor_id}
+              />
             </div>
           </div>
         </div>

@@ -1,28 +1,48 @@
-import React, { useState, useRef } from "react";
-import { Editor, EditorState } from "draft-js";
+import React, { useState } from "react";
+import axios from "axios";
 import "draft-js/dist/Draft.css";
+import "./StudentProfile.css";
+import moment from "moment";
 
-const SubmitWork = () => {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+const SubmitWork = ({ lessonValue, id }) => {
+  console.log(Number(id));
+  const [submission, setSubmission] = useState();
+  console.log(lessonValue);
+  console.log(submission);
+  const currentDate = JSON.stringify(moment());
+  const handleDate = (date) => {
+    return date.split("T")[0].substring(1);
+  };
+  console.log(handleDate(currentDate));
+  const handleSubmit = () => {
+    axios
+      .post("/api/submission", {
+        student_id: id,
+        title: lessonValue,
+        submission: submission,
+        submission_date: handleDate(currentDate),
+      })
+      .then(function (response, err) {
+        if (response) {
+          response.status(200);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  const editor = useRef(null);
-  function focusEditor() {
-    editor.current.focus();
-  }
   return (
-    <div
-      style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
-      onClick={focusEditor}
-    >
-      <Editor
-        ref={editor}
-        editorState={editorState}
-        onChange={setEditorState}
+    <div>
+      <input
+        id="submission"
+        type="text"
         placeholder="Add you work here"
-        style={{ backgroundColor: "white" }}
+        onChange={(e) => setSubmission(e.target.value)}
       />
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };

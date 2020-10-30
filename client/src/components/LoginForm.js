@@ -4,7 +4,7 @@ import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
 
-function LoginForm(props) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -39,9 +39,9 @@ function LoginForm(props) {
   };
 
   return (
-    <div>
+    <div id="login-container">
       <div id="heading">
-        <img id="logo" src={Logo} width="210" height="110" />
+        <img id="logo" src={Logo} width="400" />
       </div>
       <div className="container">
         <h2 className="welcom">Welcome to </h2>

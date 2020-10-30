@@ -23,11 +23,11 @@ const CourseProgressList = () => {
     <div id="modules-container">
       <h2>Course Progress</h2>
       {!module ? (
-        <div>Loading</div>
+        <div>Loading...</div>
       ) : (
         module.map((subject, index) => {
           return (
-            <div key={index}>
+            <div id="course-progress">
               <CourseProgressItem
                 date={subject.start_date}
                 course={subject.modules}

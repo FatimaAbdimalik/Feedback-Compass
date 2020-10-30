@@ -7,20 +7,21 @@ const LandingPage = () => {
   return (
     <div id="container">
       <div id="heading">
-        <img id="logo" src={Logo} width="210" height="110" />
+        <img id="logo" src={Logo} width="400" />
         <h1 className="welcom">Welcome to CYF feedback tracker</h1>
       </div>
 
       <h2 id="login-question">Log in as?</h2>
 
       <div id="options">
-        <Link id="student" to={"/login/student"}>
-          STUDENT
-        </Link>
-        <Link id="mentor" to={"/login/mentor"}>
-          MENTOR
-        </Link>
+        <a href="/login/student">
+          <button id="student">STUDENT</button>
+        </a>
+        <a href="/login/mentor">
+          <button id="mentor">MENTOR</button>
+        </a>
       </div>
+      <footer>CYF copyright@2020</footer>
     </div>
   );
 };

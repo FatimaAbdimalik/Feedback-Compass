@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import SubmitWork from "./SubmitWork";
 
-const LessonsDropDown = ({ module }) => {
+const LessonsDropDown = ({ module, id }) => {
   const [lesson, setLesson] = useState();
-
+  const [lessonValue, setLessonValue] = useState();
   useEffect(() => {
     axios.get("http://localhost:3100/api/syllabus/lessons").then((response) => {
       console.log(response);
@@ -16,7 +16,10 @@ const LessonsDropDown = ({ module }) => {
     <div>Loading</div>
   ) : (
     <div>
-      <select style={{ backgroundColor: "gray" }}>
+      <select
+        style={{ backgroundColor: "gray" }}
+        onChange={(e) => setLessonValue(e.target.value)}
+      >
         <option>Select A Lesson</option>
         {lesson.map((item) => {
           return (
@@ -26,7 +29,7 @@ const LessonsDropDown = ({ module }) => {
           );
         })}
       </select>
-      <SubmitWork />
+      <SubmitWork id={id} lessonValue={lessonValue} />
     </div>
   );
 };

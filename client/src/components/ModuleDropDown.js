@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LessonsDropDown from "./LessonsDropDown";
-const ModuleDropDown = () => {
+const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
   const [select, setSelect] = useState();
-
+  console.log(id);
   const handleChange = (e) => {
     setSelect(e.target.value);
   };
-  console.log(select);
+
   useEffect(() => {
     axios
       .get("http://localhost:3100/api/get-syllabus")
@@ -28,7 +28,7 @@ const ModuleDropDown = () => {
           return <option>{sub.modules}</option>;
         })}
       </select>
-      {select ? <LessonsDropDown module={select} /> : null}
+      {select ? <LessonsDropDown module={select} id={id} /> : null}
     </div>
   );
 };
