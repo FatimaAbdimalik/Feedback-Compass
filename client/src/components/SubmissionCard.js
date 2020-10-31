@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { Accordion, Button } from "react-bootstrap";
+import { Accordion, Card, Button } from "react-bootstrap";
 import "./StudentProfile.css";
 import axios from "axios";
 

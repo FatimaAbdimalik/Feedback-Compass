@@ -33,54 +33,12 @@ function StudentProfile() {
       });
   }, [id]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:3000/api/feedback`, {
-  //       params: {
-  //         student_id: id,
-  //         title: moduleTitle,
-  //       },
-  //     })
-  //     .then(function (response) {
-  //       if (response) {
-  //         setFeedback(response.data);
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       if (error) {
-  //         console.log(error);
-  //       }
-  //     });
-  // }, [moduleTitle]);
-
   ////-----------Biography Section------------------>
   const history = useHistory();
   const handleEditProfile = (e) => {
     e.preventDefault();
     history.push(`/students/${id}/edit`);
   };
-
-  //------------ Modules list  handling -------->
-
-  // const handleComentBtn = (e) => {
-  //   e.preventDefault();
-  //   document.getElementById("comment-input").value = "";
-
-  //   setIsCommented(comment);
-
-  //   axios
-  //     .put("api/students/comments/3/2", {
-  //       response: comment,
-  //     })
-  //     .then(function (response) {
-  //       if (response) {
-  //         alert("comment posted");
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       if (error) {
-  //       }
-  //     })}
 
   return (
     <div>
@@ -110,23 +68,13 @@ function StudentProfile() {
                     />
                   ) : null}
                 </h4>
-
-                {/* <button id="modules" onClick={handleEditProfile}>
-                          Save
-                      </button> */}
               </div>
             </div>
 
             <CourseProgressList />
 
             <div id="feedback-panel">
-              <div id="single-feedback">
-                {/* <div>
-                    {feedback.map((singleFeedback, i) => {
-                      return <p key={i}>{singleFeedback.body}</p>;
-                    })}
-                  </div> */}
-              </div>
+              <div id="single-feedback"></div>
             </div>
           </div>
           <div id="feedback">
