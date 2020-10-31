@@ -28,7 +28,7 @@ const SubmissionCard = ({ id }) => {
           <Accordion>
             <Card className="submission-card" key={index}>
               <Card.Title style={{ width: "40rem", display: "flex" }}>
-                <Accordion.Toggle as={Button} eventKey="0">
+                <Accordion.Toggle as={Button} variant="light" eventKey="0">
                   {" "}
                   {card.title}
                 </Accordion.Toggle>
