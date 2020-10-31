@@ -11,10 +11,14 @@
   background-size: cover;
   height: 670px;
 }
+.welcom-form {
+  font-size: 50px !important;
+  font-weight: 600;
+}
+
 h2,
 h4 {
   font-family: sans-serif;
-  text-transform: uppercase;
   text-align: center;
   font-size: 20px;
   margin: 0 0 35px 0;

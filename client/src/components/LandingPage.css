@@ -10,6 +10,9 @@ body {
   background-size: cover;
   height: 670px;
 }
+.heading-title {
+  font-weight: 700;
+}
 #heading {
   background-color: rgb(216, 216, 216);
   display: flex;
