@@ -201,6 +201,7 @@ h2 {
   background-color: hsl(0, 0%, 92%);
   border-radius: 20px;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 .submission-link {
