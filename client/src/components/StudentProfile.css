@@ -130,6 +130,7 @@ h2 {
   flex-direction: column;
   width: 100%;
   border-radius: 20px;
+  overflow: scroll;
 }
 
 #comment-input {
