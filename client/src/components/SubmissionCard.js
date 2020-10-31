@@ -27,8 +27,8 @@ const SubmissionCard = ({ id }) => {
         return (
           <Accordion>
             <Card className="submission-card" key={index}>
-              <Card.Title style={{ width: "40rem" }}>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+              <Card.Title style={{ width: "40rem", display: "flex" }}>
+                <Accordion.Toggle as={Button} eventKey="0">
                   {" "}
                   {card.title}
                 </Accordion.Toggle>
@@ -80,16 +80,4 @@ const SubmissionCard = ({ id }) => {
   );
 };
 
-///<Accordion>
-//   <Card>
-//   <Card.Header>
-//     <Accordion.Toggle as={Button} variant="link" eventKey="0">
-//       Click me!
-//     </Accordion.Toggle>
-//   </Card.Header>
-//   <Accordion.Collapse eventKey="0">
-//     <Card.Body>Hello! I'm the body</Card.Body>
-//   </Accordion.Collapse>
-// </Card>
-// </Accordion>
 export default SubmissionCard;
