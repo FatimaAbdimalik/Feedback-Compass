@@ -79,9 +79,9 @@ function StudentProfile() {
             </div>
           </div>
           <div id="feedback">
-            <Filter id={id} />
-            {/* <StudentSubmission id={id} /> */}
-            {/* <SubmissionCard id={id} /> */}
+            {/* <Filter id={id} /> */}
+            <StudentSubmission id={id} />
+            <SubmissionCard id={id} />
           </div>
         </div>
       </div>
