@@ -3,23 +3,16 @@ import { Accordion, Card, Button } from "react-bootstrap";
 import "./StudentProfile.css";
 import axios from "axios";
 
-import Filter from "./Filter";
-
 const SubmissionCard = ({ id }) => {
   const [cardData, setCardData] = useState();
-  const [filteredTitle, setFilteredTitle] = useState();
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
-  console.log(cardData);
-  // console.log(filteredTitle);
 
   useEffect(() => {
     axios
       .get(`/api/get-submissions/${id}`)
       .then((response) => {
         setCardData(response.data);
-        setFilteredTitle(response.data.map((p) => p.title));
       })
       .catch((err) => console.log(err));
   }, []);
