@@ -7,6 +7,7 @@ import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
+import Filter from "./Filter";
 import "./StudentProfile.css";
 
 function StudentProfile() {
@@ -78,8 +79,9 @@ function StudentProfile() {
             </div>
           </div>
           <div id="feedback">
-            <StudentSubmission id={id} />
-            <SubmissionCard id={id} />
+            <Filter id={id} />
+            {/* <StudentSubmission id={id} /> */}
+            {/* <SubmissionCard id={id} /> */}
           </div>
         </div>
       </div>
