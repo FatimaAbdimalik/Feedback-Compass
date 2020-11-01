@@ -147,7 +147,7 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                         placeholder="write a feedback"
                         type="text"
                         name="comment"
-                        onChange={handleInputChange}
+                        onChange={handleChange}
                       />
                       <div id="buttons">
                         <button
