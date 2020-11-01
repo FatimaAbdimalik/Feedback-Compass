@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import "./StudentProfile.css";
+import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
-
+import StudentResponse from "./StudentResponse";
 const SubmissionCard = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [feedback, setfeedack] = useState();
-
+  const splitLines = (str) => str.split(/\r?\n/);
   const handleChange = (e) => {
     if (value.filter((p) => p[0] == e.target.id).length > 0) {
       value.forEach((p, index) => {
@@ -22,7 +23,6 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
   };
 
   const handleSubmitFeedback = (e) => {
-    console.log(value);
     if (!value.find((p) => p[0] == "input" + e.target.value)) {
       alert("please add a comment before submitting!!!");
       return;
@@ -36,11 +36,12 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
         .put(`/api/feedback`, {
           id: e.target.value,
           mentor_id: mentor_id,
-          body: value.find((p) => p[0] == "input" + e.target.value)[1],
+          body: value.find((p) => p[0] == "input" + e.target.value)[1] + "\n",
           feedback_date: handleDate(currentDate),
         })
         .then(function (response) {
           alert("Feedback submitted");
+          window.location.reload(false);
         })
 
         .catch((error) => {
@@ -77,7 +78,7 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                 <div id="card-date">
                   Sent: {handleDate(card.submission_date)}
                 </div>
-                <div>
+                <div id="card-submitted">
                   <span>
                     <a
                       className="submission-link"
@@ -88,7 +89,17 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                     </a>
                   </span>
                 </div>
-                <div>{card.body}</div>
+                <div id="mentor-feedback">
+                  {card.body ? (
+                    <div>
+                      {splitLines(card.body).map((r, i) => (
+                        <p key={i}>{r}</p>
+                      ))}{" "}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
 
                 <div id="comment">
                   <input
@@ -105,10 +116,8 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                       value={card.id}
                       onClick={handleSubmitFeedback}
                     >
-                      Submit Feedback
+                      SEND
                     </button>
-                    <button id="comment-btn">Edit Feedback</button>
-                    <button id="comment-btn">Delete Feedback</button>
                   </div>
                 </div>
               </div>

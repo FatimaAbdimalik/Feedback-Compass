@@ -1,0 +1,12 @@
+.single-response {
+  padding-left: 20px;
+  margin: 10px;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.waiting-feedback {
+  color: rgb(223, 158, 158);
+  margin: 5px;
+}
