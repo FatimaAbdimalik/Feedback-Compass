@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./StudentProfile.css";
-
 import axios from "axios";
 import CourseProgressItem from "./CourseProgressItem";
 
@@ -9,8 +8,6 @@ const CourseProgressList = () => {
   let student_id = useParams();
 
   const [module, setModule] = useState([]);
-
-  console.log("this is modules", module);
 
   useEffect(() => {
     axios
@@ -20,14 +17,14 @@ const CourseProgressList = () => {
   }, []);
 
   return (
-    <div id="modules-container">
-      <h2>Course Progress</h2>
+    <div id="checkbox-container">
+      <h2 id="Course-Progress">Course Progress</h2>
       {!module ? (
-        <div>Loading</div>
+        <div id="Course-Progress">Loading...</div>
       ) : (
         module.map((subject, index) => {
           return (
-            <div>
+            <div id="course-progress" key={index}>
               <CourseProgressItem
                 date={subject.start_date}
                 course={subject.modules}

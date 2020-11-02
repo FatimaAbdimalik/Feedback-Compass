@@ -1,6 +1,24 @@
-.Modals{
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    width:40vw;
+.Modals {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: auto;
+}
+
+#edit-profile-btn {
+  margin: 5px;
+  border-radius: 20px;
+  color: rgb(218, 218, 218);
+  background-color: #973636;
+  border: 5px solid rgb(218, 218, 218);
+  padding: 7px;
+  justify-self: center;
+}
+#edit-profile {
+  justify-content: center;
+  align-items: center;
+}
+#editprofile-input {
+  width: auto;
+  background-color: rgb(250, 250, 250, 0.7);
 }

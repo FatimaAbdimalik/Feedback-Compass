@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChooseStudent from "./ChooseStudent";
 import Loader from "react-loader-spinner";
+import "./ChooseCohort.css";
 
 import axios from "axios";
 
@@ -23,28 +24,26 @@ function ChooseCohort() {
     <div style={{ marginLeft: "35rem" }}>
       <Loader
         type="ThreeDots"
-        color="white"
+        color="red"
         height={500}
         width={100}
         timeout={3000} //3 secs
       />
     </div>
   ) : (
-      <div>
+      <div id="cohort-container">
         <section id="search-cohort">
-          <form>
-            <h2>Select cohort and student</h2>
-            <select onChange={(e) => setSelectCohort(e.target.value)}>
-              <option>Select a cohort</option>
-              {cohort.map((cohort, index) => (
-                <option value={cohort.cohort_name} key={index}>
-                  {cohort.cohort_name}
-                </option>
-              ))}
-            </select>
+          <h2>Select cohort and student</h2>
+          <select onChange={(e) => setSelectCohort(e.target.value)}>
+            <option id="cohort-option">Select a cohort</option>
+            {cohort.map((cohort, index) => (
+              <option id="cohort-option" value={cohort.cohort_name} key={index}>
+                {cohort.cohort_name}
+              </option>
+            ))}
+          </select>
 
-            {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
-          </form>
+          {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
         </section>
       </div>
     );

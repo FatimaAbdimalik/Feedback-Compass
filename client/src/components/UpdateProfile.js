@@ -44,8 +44,7 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
           //   email: "",
           //   biography: "",
           // });
-          alert("Your Profile Is Updated")
-
+          alert("Your Profile Is Updated");
         })
 
         .catch((error) => {
@@ -54,29 +53,27 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
           }
         });
     } else {
-      alert("Please add your details")
+      alert("Please add your details");
     }
-
-
   };
 
   return (
-    <div>
-      <button
-        onClick={handleShow}
-      >Update Your Profile</button>
-      <Modal show={show}
-
-        onHide={handleClose}>
+    <div id="edit-profile">
+      <button id="edit-profile-btn" onClick={handleShow}>
+        Update Your Profile
+      </button>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           <form className="Modals" onSubmit={handleSubmit}>
             <input
+              id="editprofile-input"
               type="text"
               name="name"
               placeholder="Name"
               onChange={handleChange}
             />
             <input
+              id="editprofile-input"
               type="text"
               name="surname"
               placeholder="Surname"
@@ -84,12 +81,15 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
             />
 
             <input
+              id="editprofile-input"
               type="text"
               name="biography"
               placeholder="Add a biography"
               onChange={handleChange}
             />
-            <button type="submit" onClick={handleClose} >Save</button>
+            <button id="edit-profile-btn" type="submit" onClick={handleClose}>
+              Save
+            </button>
           </form>
         </Modal.Body>
       </Modal>

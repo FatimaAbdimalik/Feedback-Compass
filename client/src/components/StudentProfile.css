@@ -1,14 +1,21 @@
 .welcom {
   font-size: 50px;
   font-weight: 600;
+  margin-left: 5em;
 }
-
+#student-container {
+  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
+    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
+  background-size: contain;
+  min-height: 670px;
+}
 #student-heading {
   display: flex;
   flex-wrap: wrap;
   color: white;
   justify-content: flex-start;
   align-items: center;
+  text-align: center;
 }
 
 #student-body {
@@ -16,27 +23,50 @@
 }
 
 #student-profile {
-  max-width: 300px;
+  max-width: 450px;
   padding: 20px;
   margin: 15px;
   background-color: rgba(230, 230, 230, 0.7);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   border-radius: 20px;
+  height: 1200px;
 }
 
 #avatar {
-  width: 14em;
+  align-self: center;
+  width: 8em;
   height: auto;
-  border-radius: 50%;
+  border-radius: 100%;
+  margin-top: -50px;
+  border: 10px solid rgb(197, 197, 197, 0.5);
+  justify-self: center;
 }
 
-#student-bio {
-  padding: 15px;
-  border-radius: 20px;
-  border: none;
+#student-name {
+  background-color: white;
+  padding: 40px;
+  width: 350px;
+}
+h4 {
+  color: rgb(65, 65, 65);
+  background-color: rgba(204, 204, 204, 0.5);
+  border-radius: 40px;
+  padding: 5px;
+  font-weight: 600;
+}
+
+#student-details {
+  background-color: #973636;
+  border-radius: 23px 23px 0 0;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  margin-top: 2.5rem;
 }
 
 h2 {
@@ -44,32 +74,53 @@ h2 {
 }
 /*  Modules  */
 
-#modules {
-  align-items: center;
-  width: 13em;
+#checkbox-container {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  background-color: rgb(61, 61, 61);
-  color: white;
-  font-size: 18px;
-  padding: 15px;
+  justify-content: start;
+  align-items: flex-start;
+  background-image: linear-gradient(0deg, #838383 0%, #cacaca 100%);
+  border-radius: 20px;
+  width: 20em;
+  margin-top: 2rem;
+}
+#checkbox {
+  margin-right: 3px;
+  color: rgb(221, 221, 221);
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  font-size: 15px;
+  padding: 3px;
   border-radius: 20px;
   border: solid 2px white;
 }
-#modules:hover {
-  background-color: rgb(221, 221, 221);
-  color: rgb(95, 95, 95);
+
+#modules {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#modules-container {
-  border-radius: 20px;
-  background-color: rgb(61, 61, 61, 0.5);
-  width: 18em;
+#Course-Progress {
+  font-weight: 600;
+  color: #494949;
 }
 
-option {
-  background-color: rgb(221, 221, 221);
-  color: rgb(95, 95, 95);
+#modules-title {
+  width: 12em;
+  font-size: 18px;
+  padding: 15px;
+  margin: 5px;
+  cursor: pointer;
+
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(61, 61, 61);
+  border-radius: 20px;
+  border: solid 2px white;
+  color: rgb(221, 221, 221);
 }
 
 /* feedback */
@@ -77,32 +128,53 @@ option {
 #feedback {
   padding: 20px;
   margin: 15px;
-  background-color: rgba(230, 230, 230, 0.7);
+  background-color: rgba(240, 240, 240, 0.7);
   display: flex;
   flex-direction: column;
   width: 100%;
   border-radius: 20px;
+  overflow: scroll;
+  height: 1200px;
 }
 
-/* #comment-input {
+#card-feedback {
+  color: aliceblue;
+  padding: 10px;
+  background-color: rgb(71, 71, 71);
+  border-radius: 10px;
+
+  margin: 15px;
+}
+
+#comment-input {
   width: 80%;
   padding: 15px;
   border-radius: 20px;
-  border: none;
+  border: 2px solid gray;
+  color: #534444;
+}
+.comment-input {
+  width: 80%;
+  padding: 15px;
+
+  color: #534444;
 }
 
 #comment {
+  margin: 5px;
+  border-radius: 20px;
+  border: 2px solid gray;
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
   align-items: center;
 }
 #comment-btn {
   margin: 10px;
-  background-color: rgb(31, 87, 82);
+  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
   color: white;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: solid 2px white;
 }
 
@@ -111,13 +183,51 @@ option {
   justify-content: center;
   align-items: center;
 }
-
 #courses_table {
   display: flex;
   justify-content: space-evenly;
 }
-**/
-
-[type="checkbox"] {
+* [type="checkbox"] {
   vertical-align: middle !important;
+}
+#submission {
+  color: #534444;
+}
+
+.submission-card {
+  background-color: hsl(0, 47%, 39%);
+  margin: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-date {
+  color: #838383;
+  font-style: italic;
+}
+#card-submitted {
+  background-color: #ffffff;
+  margin: 10px;
+
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.card-color {
+  background-color: hsl(0, 0%, 92%);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.submission-link {
+  font-size: 15px;
+  background-color: white;
+}
+
+#card-title {
+  color: #ffffff;
+  padding: 5px;
+  margin: 5px;
 }

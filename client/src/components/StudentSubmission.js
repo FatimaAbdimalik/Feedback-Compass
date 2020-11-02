@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import ModuleDropDown from "./ModuleDropDown";
 
-const StudentSubmission = () => {
+const StudentSubmission = ({ id }) => {
   const [show, setShow] = useState(false);
 
   const handleModalOpen = () => {
@@ -15,10 +15,10 @@ const StudentSubmission = () => {
   return (
     <div>
       <Button
-        style={{ backgroundColor: "black", marginLeft: "19em" }}
+        style={{ backgroundColor: "black", marginLeft: "16rem" }}
         onClick={handleModalOpen}
       >
-        Submit You Work Here
+        Submit Your HomeWork Here
       </Button>
       <Modal
         show={show}
@@ -27,14 +27,14 @@ const StudentSubmission = () => {
         centered
       >
         <Modal.Body>
-          <ModuleDropDown />
+          <ModuleDropDown id={id} />
         </Modal.Body>
         <Modal.Footer>
           <Button
             onClick={handleModalClose}
             style={{ backgroundColor: "#686868" }}
           >
-            Sumbit
+            CLOSE
           </Button>
         </Modal.Footer>
       </Modal>

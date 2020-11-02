@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LessonsDropDown from "./LessonsDropDown";
-const ModuleDropDown = () => {
+const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
   const [select, setSelect] = useState();
-
   const handleChange = (e) => {
     setSelect(e.target.value);
   };
@@ -23,11 +22,11 @@ const ModuleDropDown = () => {
       <div>
         <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
           <option>Select A Module</option>
-          {subject.map((sub) => {
-            return <option>{sub.modules}</option>;
+          {subject.map((sub, i) => {
+            return <option key={i}>{sub.modules}</option>;
           })}
         </select>
-        {select ? <LessonsDropDown module={select} /> : null}
+        {select ? <LessonsDropDown module={select} id={id} /> : null}
       </div>
     );
 };
