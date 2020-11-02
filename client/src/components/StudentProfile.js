@@ -8,6 +8,7 @@ import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
 import Filter from "./Filter";
+import Logout from "./Logout";
 import "./StudentProfile.css";
 
 function StudentProfile() {
@@ -52,9 +53,7 @@ function StudentProfile() {
           <h1 className="welcom">Track Your Feedback</h1>
         </div>
         <div>
-          <div>
-            <Logout />
-          </div>
+          <Logout />
         </div>
 
         <div id="student-body">

@@ -1,0 +1,22 @@
+#logout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#logout-btn {
+  background-color: #4d4c51;
+  border-radius: 5px;
+  border: 1px solid #c5c3c1;
+  display: flex;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 8px 25px;
+  margin: 0 50px;
+  margin-left: 50px;
+  text-decoration: none;
+}
+#logout-btn:hover {
+  background-color: #c5c3c1;
+  color: #000000;
+}

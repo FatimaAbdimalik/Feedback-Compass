@@ -7,6 +7,7 @@ import moment from "moment";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
+import Logout from "./Logout";
 
 function StudentProfile() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
@@ -40,6 +41,10 @@ function StudentProfile() {
 
           <h1 className="welcom">Students Feedback</h1>
         </div>
+        <div>
+          <Logout />
+        </div>
+
         <div id="student-body">
           <div id="student-profile">
             <div id="student-details">
