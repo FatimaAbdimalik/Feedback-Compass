@@ -7,6 +7,9 @@ import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
+import LoginForm from "./LoginForm";
+import Logout from "./Logout";
+
 import "./StudentProfile.css";
 
 function StudentProfile() {
@@ -91,8 +94,15 @@ function StudentProfile() {
           <a href="/">
             <img id="logo" src={Logo} width="400" />
           </a>
+
           <h1 className="welcom">Track Your Feedback</h1>
         </div>
+        <div>
+          <div>
+            <Logout />
+          </div>
+        </div>
+
         <div id="student-body">
           <div id="student-profile">
             <div id="student-details">
