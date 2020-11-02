@@ -8,7 +8,7 @@ const LandingPage = () => {
     <div id="container">
       <div id="heading">
         <img id="logo" src={Logo} width="400" />
-        <h1 className="welcom">Welcome to CYF feedback tracker</h1>
+        <h1 className="heading-title">Welcome to CYF feedback tracker</h1>
       </div>
 
       <h2 id="login-question">Log in as?</h2>

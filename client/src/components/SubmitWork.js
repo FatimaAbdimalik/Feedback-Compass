@@ -5,16 +5,16 @@ import "./StudentProfile.css";
 import moment from "moment";
 
 const SubmitWork = ({ lessonValue, id }) => {
-  console.log(Number(id));
   const [submission, setSubmission] = useState();
-  console.log(lessonValue);
-  console.log(submission);
+
   const currentDate = JSON.stringify(moment());
   const handleDate = (date) => {
     return date.split("T")[0].substring(1);
   };
-  console.log(handleDate(currentDate));
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    window.location.reload(false);
+    e.preventDefault();
     axios
       .post("/api/submission", {
         student_id: id,
@@ -24,7 +24,7 @@ const SubmitWork = ({ lessonValue, id }) => {
       })
       .then(function (response, err) {
         if (response) {
-          response.status(200);
+          alert("work is submitted");
         }
       })
       .catch((err) => {
@@ -40,7 +40,7 @@ const SubmitWork = ({ lessonValue, id }) => {
         placeholder="Add you work here"
         onChange={(e) => setSubmission(e.target.value)}
       />
-      <button type="submit" onClick={handleSubmit}>
+      <button id="edit-profile-btn" type="submit" onClick={handleSubmit}>
         Submit
       </button>
     </div>

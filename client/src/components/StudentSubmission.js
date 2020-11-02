@@ -15,10 +15,10 @@ const StudentSubmission = ({ id }) => {
   return (
     <div>
       <Button
-        style={{ backgroundColor: "black", marginLeft: "19em" }}
+        style={{ backgroundColor: "black", marginLeft: "16rem" }}
         onClick={handleModalOpen}
       >
-        Submit You Work Here
+        Submit Your HomeWork Here
       </Button>
       <Modal
         show={show}

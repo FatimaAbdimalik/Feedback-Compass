@@ -4,7 +4,6 @@ import LessonsDropDown from "./LessonsDropDown";
 const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
   const [select, setSelect] = useState();
-  console.log(id);
   const handleChange = (e) => {
     setSelect(e.target.value);
   };
@@ -24,8 +23,8 @@ const ModuleDropDown = ({ id }) => {
     <div>
       <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
         <option>Select A Module</option>
-        {subject.map((sub) => {
-          return <option>{sub.modules}</option>;
+        {subject.map((sub, i) => {
+          return <option key={i}>{sub.modules}</option>;
         })}
       </select>
       {select ? <LessonsDropDown module={select} id={id} /> : null}

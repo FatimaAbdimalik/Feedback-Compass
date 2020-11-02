@@ -6,9 +6,12 @@ body {
   margin: 0;
   padding: 0;
   background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
-    url("./images/GettyImages-685797188-low2-1200x675.jpg");
-  background-size: 100%;
-  height: 650px;
+    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
+  background-size: cover;
+  height: 670px;
+}
+.heading-title {
+  font-weight: 700;
 }
 #heading {
   background-color: rgb(216, 216, 216);
@@ -40,7 +43,7 @@ body {
 }
 
 #student {
-  background-color: rgb(111, 107, 167);
+  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
   color: white;
   padding: 20px;
   margin: 10px;
@@ -52,17 +55,17 @@ body {
 }
 
 #student:hover {
-  background-color: #3f3e8e;
+  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
 }
 
 #student:active {
-  background-color: #6b44f7;
+  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
   box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
 }
 
 #mentor {
-  background-color: rgb(43, 139, 131);
+  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
   color: white;
   padding: 20px;
   margin-left: 10px;
@@ -73,7 +76,7 @@ body {
   cursor: pointer;
 }
 #mentor:hover {
-  background-color: #00645c;
+  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
 }
 
 #mentor:active {

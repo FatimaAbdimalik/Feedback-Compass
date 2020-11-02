@@ -7,7 +7,6 @@ const LessonsDropDown = ({ module, id }) => {
   const [lessonValue, setLessonValue] = useState();
   useEffect(() => {
     axios.get("http://localhost:3100/api/syllabus/lessons").then((response) => {
-      console.log(response);
       setLesson(response.data);
     });
   }, []);
@@ -21,9 +20,9 @@ const LessonsDropDown = ({ module, id }) => {
         onChange={(e) => setLessonValue(e.target.value)}
       >
         <option>Select A Lesson</option>
-        {lesson.map((item) => {
+        {lesson.map((item, index) => {
           return (
-            <option>
+            <option key={index}>
               {module}/{item.description}
             </option>
           );

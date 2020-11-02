@@ -67,8 +67,6 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        console.log(response.data.id);
-
         if (response.data.user_type === "student") {
           setValidUser(true);
 
@@ -79,9 +77,10 @@ function LoginForm() {
       })
       .catch(function (error) {
         if (error) {
+          window.location.reload(false);
           setEmail("");
           setPassword("");
-          setMessage("Invalid email or password!");
+          alert("Invalid email or password!");
         }
       });
   };
@@ -92,7 +91,7 @@ function LoginForm() {
         <img id="logo" src={Logo} width="400" />
       </div>
       <div className="container">
-        <h2 className="welcom">Welcome to </h2>
+        <h2 className="welcom-form">Welcome to </h2>
         <h4>CYF feedback tracker</h4>
         <h2>Sign In</h2>
         <form>
