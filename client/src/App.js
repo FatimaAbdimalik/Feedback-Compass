@@ -6,14 +6,15 @@ import StudentProfile from "./components/StudentProfile";
 import ChooseCohort from "./components/ChooseCohort";
 import MentorFeedback from "./components/MentorFeedback";
 import "./App.css";
+import PrivateRoute from "./components/LoginForm";
 
 function App() {
   return (
     <Router>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/login/student" component={Homepage} />
+      <PrivateRoute exact path="/login/student" component={Homepage} />
       <Route path="/login/mentor" component={Homepage} />
-      <Route path="/students/:id" component={StudentProfile} />
+      <Route exact path="/students/:id" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
       <Route
         path="/feedback/:student_id/:mentor_id"
