@@ -146,22 +146,6 @@ router.post("/feedback", (req, res) => {
   );
 });
 
-router.put("/feedback/:student_id", (req, res) => {
-  const studentId = req.params.student_id;
-  const newResponse = req.body.response;
-
-  const putQuery =
-    "UPDATE feedbacktable SET response = $2 WHERE student_id = $1";
-
-  Connection.query(putQuery, [studentId, newResponse], (err, result) => {
-    if (err) {
-      res.status(404).json(err);
-    } else {
-      res.json({ message: "successful" });
-    }
-  });
-});
-
 router.get("/students", (req, res, next) => {
   const cityName = req.query.city;
   const cohortName = req.query.cohort;
@@ -264,27 +248,6 @@ router.delete("/feedback/:student_id", (req, res) => {
   });
 });
 
-router.post("/feedback", (req, res) => {
-  const mentorId = req.body.mentor_id;
-  const studentId = req.body.student_id;
-  const newTitle = req.body.title;
-  const newBody = req.body.body;
-  const sentDate = req.body.sent_date;
-  const postQuery =
-    "INSERT INTO feedbacktable (mentor_id,student_id,title, body, sent_date) " +
-    "VALUES ($1,$2,$3,$4,$5)";
-  Connection.query(
-    postQuery,
-    [mentorId, studentId, newTitle, newBody, sentDate],
-    (err, result) => {
-      if (err) {
-        res.status(500).json(err);
-      } else {
-        res.json({ message: "successful" });
-      }
-    }
-  );
-});
 // student updates profile
 
 router.put("/students/:id", (req, res) => {
@@ -323,18 +286,6 @@ router.put("/feedback/:student_id", (req, res) => {
     }
   });
 });
-
-// router.get("/syllabus", (req, res) => {
-//   Connection.query(
-//     "SELECT s.id, s.modules,s.start_date ,p.completed FROM syllabus s JOIN progress p ON (s.id = p.syllabus_id)",
-//     (err, result) => {
-//       if (err) {
-//         res.json(err);
-//       }
-//       res.json(result.rows);
-//     }
-//   );
-// });
 
 router.get("/syllabus/lessons", (req, res) => {
   const getQuery = "SELECT description FROM lessons";
@@ -391,19 +342,96 @@ router.get("/get-syllabus", (req, res) => {
   });
 });
 
-// router.get("/reponses/:response_id", (req, res) => {
-//   const responseId = Number(req.params.response_id);
+router.get("/get-submissions/:student_id", (req, res) => {
+  const studentId = req.params.student_id;
+  const getAllSubmissions =
+    "select id, submission_date,mentor_id, title, body,response, submission from feedbacktable  where student_id = $1 ORDER BY submission_date DESC";
+  // "select u.name,u.surname , f.id, f.submission_date, f.title, f.body, f.submission from users u join feedbacktable f on (u.id = f.student_id) where student_id= $1";
 
-//   const getResponsesQuery =
-//     "SELECT response, sent_date FROM studentResponses WHERE response_id = $1";
+  Connection.query(getAllSubmissions, [studentId], (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
 
-//   Connection.query(getResponsesQuery, [responseId], (err, result) => {
-//     if (err) {
-//       res.json(err);
-//     } else {
-//       res.json(result.rows);
-//     }
-//   });
-// });
+router.get("/get-mentor-names", (req, res) => {
+  const getAllSubmissions =
+    "select id ,name, surname from users where user_type = 'mentor'";
+  Connection.query(getAllSubmissions, (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+router.post("/submission", (req, res) => {
+  const studentId = Number(req.body.student_id);
+  const newTitle = req.body.title;
+  const newSubmission = req.body.submission;
+  const sentDate = req.body.submission_date;
+  const postQuery =
+    "INSERT INTO feedbacktable (student_id, title, submission, submission_date)" +
+    "VALUES ($1,$2,$3,$4) returning *";
+  Connection.query(
+    postQuery,
+    [studentId, newTitle, newSubmission, sentDate],
+    (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+router.put("/feedback", (req, res) => {
+  const mentorId = req.body.mentor_id;
+  const newBody = req.body.body;
+  const newDate = req.body.feedback_date;
+  const feedbackId = req.body.id;
+
+  const putQuery =
+    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4";
+
+  Connection.query(
+    putQuery,
+    [mentorId, newBody, newDate, feedbackId],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+///// student response
+
+router.put("/response", (req, res) => {
+  const studentId = req.body.student_id;
+  const newResponse = req.body.response;
+  const newDate = req.body.response_date;
+  const feedbackId = req.body.id;
+
+  const putQuery =
+    " update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4";
+
+  Connection.query(
+    putQuery,
+    [studentId, newResponse, newDate, feedbackId],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
 
 export default router;

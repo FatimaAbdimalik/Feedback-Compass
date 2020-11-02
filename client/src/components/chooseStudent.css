@@ -1,21 +1,29 @@
 #studentsList {
-  top: 30%;
-  margin-left: 40%;
   color: lavender;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-ul,
-li,
-a {
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(49, 49, 49, 0.7);
   list-style: none;
   font-size: 20px;
-  float: left;
+  border-radius: 20px;
 }
 
 .student-name {
-  color: white;
+  color: rgb(219, 219, 219);
   text-align: left;
-
-  text-align: left;
-  align-items: left;
+}
+.student-name:hover {
+  color: rgb(255, 89, 89);
+  text-decoration: none;
 }
