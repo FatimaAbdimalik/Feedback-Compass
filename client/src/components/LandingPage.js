@@ -14,12 +14,10 @@ const LandingPage = () => {
       <h2 id="login-question">Log in as?</h2>
 
       <div id="options">
-        <a href="/login/student">
-          <button id="student">STUDENT</button>
-        </a>
-        <a href="/login/mentor">
-          <button id="mentor">MENTOR</button>
-        </a>
+        <Link to={"/login/:student"}><button id="student">STUDENT</button></Link>
+
+        <Link to={"/login/:mentor"}> <button id="mentor">MENTOR</button></Link>
+
       </div>
       <footer>CYF copyright@2020</footer>
     </div>
