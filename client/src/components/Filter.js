@@ -25,8 +25,6 @@ const Filter = ({ foundTitle }) => {
         }}
         onChange={handleChange}
       />
-      {/* <StudentSubmission id={id} /> */}
-      {/* <SubmissionCard id={id} /> */}
     </div>
   );
 };

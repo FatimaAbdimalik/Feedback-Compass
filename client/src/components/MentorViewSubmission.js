@@ -27,7 +27,6 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
   };
 
   const handleSubmitFeedback = (e) => {
-    console.log(value);
     if (!value.find((p) => p[0] == "input" + e.target.value)) {
       alert("please add a comment before submitting!!!");
       return;
@@ -71,8 +70,6 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
         p.title.toLowerCase().includes(searchItem.toLowerCase())
       );
       setSearchResult(foundTiles);
-      console.log(cardData);
-      console.log(foundTiles);
     }
   }, [searchItem]);
 

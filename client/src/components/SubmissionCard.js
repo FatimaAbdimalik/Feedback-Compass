@@ -23,8 +23,6 @@ const SubmissionCard = ({ id }) => {
         p.title.toLowerCase().includes(searchItem.toLowerCase())
       );
       setSearchResult(foundTiles);
-      console.log(cardData);
-      console.log(foundTiles);
     }
   }, [searchItem]);
 
