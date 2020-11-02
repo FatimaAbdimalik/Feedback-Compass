@@ -1,54 +1,8 @@
-import React, { component, useState } from "react";
-import { useHistory, useLocation, useParams, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
-
-// const authentication = {
-//   isLoggedIn: false,
-//   onAuthentication() {
-//     isLoggedIn = true;
-//   },
-//   getLoginStatus() {
-//     return isLoggedIn;
-//   },
-// };
-
-// export function PrivateRoute({ component: Component, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         validUser ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to={{ pathname: "/" }} />
-//         )
-//       }
-//     />
-//   );
-// }
-
-export function PrivateRoute({ children, ...rest }) {
-  let location = useLocation();
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        validUser ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-}
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -69,7 +23,6 @@ function LoginForm() {
       .then(function (response) {
         if (response.data.user_type === "student") {
           setValidUser(true);
-
           history.push(`/students/${response.data.id}`);
         } else {
           history.push(`/cohorts?mentorId=${response.data.id}`);
