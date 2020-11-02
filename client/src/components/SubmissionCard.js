@@ -51,25 +51,21 @@ const SubmissionCard = ({ id }) => {
               )}
             </Card.Title>
             <div className="card-color">
-              <div id="card-date">
-                {" "}
-                Sent: {handleDate(card.submission_date)}
-              </div>
+              <div id="card-date">Sent: {handleDate(card.submission_date)}</div>
               <div id="card-submitted">
-                <h5>Submitted Work:</h5>{" "}
+                <h5>Submitted Work:</h5>
                 <span>
                   <a
                     className="submission-link"
                     href={card.submission}
                     target="_blank"
                   >
-                    {"    " + card.submission}{" "}
+                    {"    " + card.submission}
                   </a>
                 </span>
                 <br />
               </div>
               <span>
-                {" "}
                 <div id="card-feedback">
                   <h5>
                     {card.body && mentorName

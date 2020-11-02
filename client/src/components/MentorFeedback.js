@@ -16,27 +16,7 @@ function StudentProfile() {
 
   //------------ Modules list  handling -------->
   const [moduleTitle, setModuleTitle] = useState("");
-  // const handleComentBtn = (e) => {
-  //   e.preventDefault();
-  //   document.getElementById("comment-input").value = "";
 
-  //   axios
-  //     .post(`/feedback/${mentor_id}/${student_id}`, {
-  //       title: moduleTitle,
-  //       body: comment,
-  //       sent_date: JSON.stringify({
-  //         postDate: moment(),
-  //       }),
-  //     })
-  //     .then(function (response, err) {
-  //       if (response) {
-  //         response.status(200);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
   useEffect(() => {
     axios
       .get(`/api/students/${student_id}`)

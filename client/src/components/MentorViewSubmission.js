@@ -8,7 +8,6 @@ import StudentResponse from "./StudentResponse";
 const SubmissionCard = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
-  const [feedback, setfeedack] = useState();
   const splitLines = (str) => str.split(/\r?\n/);
   const handleChange = (e) => {
     if (value.filter((p) => p[0] == e.target.id).length > 0) {
@@ -57,7 +56,6 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
       .get(`/api/get-submissions/${student_id}`)
       .then((response) => {
         setCardData(response.data);
-        console.log(response.data.map((id) => id.id));
       })
       .catch((err) => console.log(err));
   }, [student_id]);
