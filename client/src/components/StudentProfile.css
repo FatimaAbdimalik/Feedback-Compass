@@ -137,6 +137,15 @@ h2 {
   height: 1200px;
 }
 
+#card-feedback {
+  color: aliceblue;
+  padding: 10px;
+  background-color: rgb(71, 71, 71);
+  border-radius: 10px;
+
+  margin: 15px;
+}
+
 #comment-input {
   width: 80%;
   padding: 15px;
@@ -147,24 +156,25 @@ h2 {
 .comment-input {
   width: 80%;
   padding: 15px;
-  border-radius: 20px;
-  border: 2px solid gray;
+
   color: #534444;
 }
 
 #comment {
+  margin: 5px;
+  border-radius: 20px;
+  border: 2px solid gray;
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
 }
 #comment-btn {
   margin: 10px;
   background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
   color: white;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: solid 2px white;
 }
 
@@ -199,6 +209,9 @@ h2 {
 #card-submitted {
   background-color: #ffffff;
   margin: 10px;
+
+  border-radius: 20px;
+  padding: 15px;
 }
 
 .card-color {
@@ -210,10 +223,11 @@ h2 {
 
 .submission-link {
   font-size: 15px;
+  background-color: white;
 }
 
 #card-title {
   color: #ffffff;
   padding: 5px;
-  margin: 0px;
+  margin: 5px;
 }

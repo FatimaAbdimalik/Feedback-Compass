@@ -82,7 +82,10 @@ option {
 
   border-radius: 20px;
 }
-
+#mentor-feedback {
+  background-color: black;
+  color: white;
+}
 #comment-input {
   width: 80%;
   padding: 15px;

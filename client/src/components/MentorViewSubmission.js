@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card } from "react-bootstrap";
 import "./StudentProfile.css";
+import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
+import StudentResponse from "./StudentResponse";
 
-const SubmissionCard = ({ student_id, mentor_id }) => {
+const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+
+  if (cardData) {
+    console.log(cardData.map((p) => p.response));
+  }
+
+  const splitLines = (str) => str.split(/\r?\n/);
 
   const handleChange = (e) => {
     if (value.filter((p) => p[0] == e.target.id).length > 0) {
@@ -35,16 +43,16 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
       const handleDate = (date) => {
         return date.split("T")[0];
       };
-
       axios
         .put(`/api/feedback`, {
           id: e.target.value,
           mentor_id: mentor_id,
-          body: value.find((p) => p[0] == "input" + e.target.value)[1],
+          body: value.find((p) => p[0] == "input" + e.target.value)[1] + "\n",
           feedback_date: handleDate(currentDate),
         })
         .then(function (response) {
           alert("Feedback submitted");
+          window.location.reload(false);
         })
 
         .catch((error) => {
@@ -53,6 +61,7 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
           }
         });
     }
+    window.location.reload(false);
   };
 
   useEffect(() => {
@@ -70,6 +79,8 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
         p.title.toLowerCase().includes(searchItem.toLowerCase())
       );
       setSearchResult(foundTiles);
+      console.log(cardData);
+      console.log(foundTiles);
     }
   }, [searchItem]);
 
@@ -135,7 +146,28 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                         </a>
                       </span>
                     </div>
-                    <div>{card.body}</div>
+                    <div id="card-feedback">
+                      {card.body ? (
+                        <div>
+                          {splitLines(card.body).map((r, i) => (
+                            <p key={i}>{r}</p>
+                          ))}{" "}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div id="submission-link">
+                      {card.response ? (
+                        <div>
+                          {splitLines(card.response).map((r, i) => (
+                            <p key={i}>{r}</p>
+                          ))}{" "}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
 
                     <div id="comment">
                       <input
@@ -152,10 +184,8 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                           value={card.id}
                           onClick={handleSubmitFeedback}
                         >
-                          Submit Feedback
+                          SEND
                         </button>
-                        <button id="comment-btn">Edit Feedback</button>
-                        <button id="comment-btn">Delete Feedback</button>
                       </div>
                     </div>
                   </div>
@@ -211,20 +241,47 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
                   </div>
                   <span>
                     {" "}
-                    <div id="card-feedback"> {card.body}</div>
+                    <div id="card-feedback">
+                      {card.body ? (
+                        <div>
+                          {splitLines(card.body).map((r, i) => (
+                            <p key={i}>{r}</p>
+                          ))}{" "}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div id="submission-link">
+                      {card.response ? (
+                        <div>
+                          {splitLines(card.response).map((r, i) => (
+                            <p key={i}>{r}</p>
+                          ))}{" "}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </span>
 
                   <div id="comment">
                     <input
-                      id="comment-input"
-                      placeholder="write a comment"
+                      className="comment-input"
+                      id={"input" + card.id}
+                      placeholder="write a feedback"
                       type="text"
                       name="comment"
+                      onChange={handleChange}
                     />
                     <div id="buttons">
-                      <button id="comment-btn">Submit comment</button>
-                      <button id="comment-btn">Edit comment</button>
-                      <button id="comment-btn">Delete comment</button>
+                      <button
+                        id="comment-btn"
+                        value={card.id}
+                        onClick={handleSubmitFeedback}
+                      >
+                        SEND
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -237,4 +294,4 @@ const SubmissionCard = ({ student_id, mentor_id }) => {
   );
 };
 
-export default SubmissionCard;
+export default MentorViewSubmission;

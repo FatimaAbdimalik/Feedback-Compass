@@ -345,10 +345,21 @@ router.get("/get-syllabus", (req, res) => {
 router.get("/get-submissions/:student_id", (req, res) => {
   const studentId = req.params.student_id;
   const getAllSubmissions =
-    "select id, submission_date, title, body, submission from feedbacktable  where student_id = $1";
+    "select id, submission_date,mentor_id, title, body,response, submission from feedbacktable  where student_id = $1";
   // "select u.name,u.surname , f.id, f.submission_date, f.title, f.body, f.submission from users u join feedbacktable f on (u.id = f.student_id) where student_id= $1";
 
   Connection.query(getAllSubmissions, [studentId], (err, result) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(result.rows);
+  });
+});
+
+router.get("/get-mentor-names", (req, res) => {
+  const getAllSubmissions =
+    "select id ,name, surname from users where user_type = 'mentor'";
+  Connection.query(getAllSubmissions, (err, result) => {
     if (err) {
       res.json(err);
     }
@@ -389,6 +400,30 @@ router.put("/feedback", (req, res) => {
   Connection.query(
     putQuery,
     [mentorId, newBody, newDate, feedbackId],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.json({ message: "successful" });
+      }
+    }
+  );
+});
+
+///// student response
+
+router.put("/response", (req, res) => {
+  const studentId = req.body.student_id;
+  const newResponse = req.body.response;
+  const newDate = req.body.response_date;
+  const feedbackId = req.body.id;
+
+  const putQuery =
+    " update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4";
+
+  Connection.query(
+    putQuery,
+    [studentId, newResponse, newDate, feedbackId],
     (err, result) => {
       if (err) {
         res.status(404).json(err);
