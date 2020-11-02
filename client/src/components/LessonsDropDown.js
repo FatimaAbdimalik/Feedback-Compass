@@ -7,7 +7,6 @@ const LessonsDropDown = ({ module, id }) => {
   const [lessonValue, setLessonValue] = useState();
   useEffect(() => {
     axios.get("http://localhost:3100/api/syllabus/lessons").then((response) => {
-      console.log(response);
       setLesson(response.data);
     });
   }, []);

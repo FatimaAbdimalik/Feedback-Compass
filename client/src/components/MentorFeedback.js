@@ -23,8 +23,6 @@ function StudentProfile() {
       .then(function (response, err) {
         if (response) {
           setStudetDetails(response.data);
-          console.log(response);
-          response.status(200);
         }
       })
       .catch((err) => {

@@ -5,7 +5,6 @@ import "./StudentProfile.css";
 import moment from "moment";
 
 const SubmitWork = ({ lessonValue, id }) => {
-  console.log(Number(id));
   const [submission, setSubmission] = useState();
 
   const currentDate = JSON.stringify(moment());

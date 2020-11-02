@@ -4,7 +4,6 @@ import LessonsDropDown from "./LessonsDropDown";
 const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
   const [select, setSelect] = useState();
-
   const handleChange = (e) => {
     setSelect(e.target.value);
   };
