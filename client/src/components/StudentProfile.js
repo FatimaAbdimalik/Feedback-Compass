@@ -16,7 +16,6 @@ function StudentProfile() {
   const [comment, setComment] = useState("");
   const [isCommented, setIsCommented] = useState("");
 
-  console.log(studentDetails);
 
   let { id } = useParams();
 

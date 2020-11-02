@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import "./UpdateProfile.css";
@@ -70,8 +70,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
         onHide={handleClose}>
         <Modal.Body>
           <form className="Modals" onSubmit={handleSubmit}>
-            {/* {submitted ? <h3>Thank you for updating your details.</h3> : null} */}
-
             <input
               type="text"
               name="name"

@@ -21,7 +21,6 @@ function ChooseCohort() {
 
   return !cohort ? (
     <div style={{ marginLeft: "35rem" }}>
-      {" "}
       <Loader
         type="ThreeDots"
         color="white"
@@ -31,24 +30,24 @@ function ChooseCohort() {
       />
     </div>
   ) : (
-    <div>
-      <section id="search-cohort">
-        <form>
-          <h2>Select cohort and student</h2>
-          <select onChange={(e) => setSelectCohort(e.target.value)}>
-            <option>Select a cohort</option>
-            {cohort.map((cohort, index) => (
-              <option value={cohort.cohort_name} key={index}>
-                {cohort.cohort_name}
-              </option>
-            ))}
-          </select>
+      <div>
+        <section id="search-cohort">
+          <form>
+            <h2>Select cohort and student</h2>
+            <select onChange={(e) => setSelectCohort(e.target.value)}>
+              <option>Select a cohort</option>
+              {cohort.map((cohort, index) => (
+                <option value={cohort.cohort_name} key={index}>
+                  {cohort.cohort_name}
+                </option>
+              ))}
+            </select>
 
-          {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
-        </form>
-      </section>
-    </div>
-  );
+            {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
+          </form>
+        </section>
+      </div>
+    );
 }
 
 export default ChooseCohort;

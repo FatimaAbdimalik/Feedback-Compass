@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
 
-function LoginForm(props) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -20,8 +20,6 @@ function LoginForm(props) {
         password: password,
       })
       .then(function (response) {
-        console.log(response.data.id);
-
         if (response.data.user_type === "student") {
           setValidUser(true);
           history.push(`/students/${response.data.id}`);
@@ -61,6 +59,9 @@ function LoginForm(props) {
           />
           <button className="btn" type="submit" onClick={handleSubmit}>
             login
+          </button>
+          <button className="btn" type="submit" >
+            <Link to={"/signup"}>Sign Up</Link>
           </button>
         </form>
       </div>
