@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from "react";
-import StudentSubmission from "./StudentSubmission";
-import SubmissionCard from "./SubmissionCard";
+import React from "react";
 
-const Filter = ({ foundTitle }) => {
-  const [searchItem, setSearchItem] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-
-  useEffect(() => {}, []);
-
-  const handleChange = (e) => {
-    return setSearchItem(e.target.value);
-  };
+const Filter = ({ searchItem, handleChange }) => {
   return (
     <div>
       <input

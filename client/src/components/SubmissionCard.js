@@ -3,6 +3,7 @@ import { Accordion, Card, Button } from "react-bootstrap";
 import "./StudentProfile.css";
 import axios from "axios";
 import StudentResponse from "./StudentResponse";
+import Filter from "./Filter";
 
 const SubmissionCard = ({ id }) => {
   const [cardData, setCardData] = useState();
@@ -44,39 +45,18 @@ const SubmissionCard = ({ id }) => {
   };
 
   const handleChange = (e) => {
-    return setSearchItem(e.target.value);
+    setSearchItem(e.target.value);
   };
 
   return !cardData ? (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
       Loading...
     </div>
   ) : cardData && !searchItem ? (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
+
       {cardData.map((card, index) => {
         return (
           <Accordion>
@@ -154,18 +134,7 @@ const SubmissionCard = ({ id }) => {
     </div>
   ) : (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
       {searchResult.map((card, index) => {
         return (
           <Accordion>
