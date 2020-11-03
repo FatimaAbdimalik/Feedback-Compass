@@ -2,10 +2,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./Logout.css";
 
-const Logout = () => {
+const Logout = ({ setValidUser }) => {
   const history = useHistory();
 
   const handleLogout = () => {
+    setValidUser(false);
     history.push("/");
   };
   return (

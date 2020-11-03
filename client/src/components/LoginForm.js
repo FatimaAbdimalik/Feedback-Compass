@@ -4,13 +4,13 @@ import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginForm({ setValidUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [validUser, setValidUser] = useState(false);
 
   const history = useHistory();
+  console.log(typeof setValidUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,12 +25,14 @@ function LoginForm() {
           setValidUser(true);
           history.push(`/students/${response.data.id}`);
         } else {
+          setValidUser(true);
           history.push(`/cohorts?mentorId=${response.data.id}`);
         }
       })
       .catch(function (error) {
         if (error) {
-          window.location.reload(false);
+          console.log(error);
+          // window.location.reload(false);
           setEmail("");
           setPassword("");
           alert("Invalid email or password!");

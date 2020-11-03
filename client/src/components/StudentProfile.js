@@ -11,7 +11,7 @@ import Filter from "./Filter";
 import Logout from "./Logout";
 import "./StudentProfile.css";
 
-function StudentProfile() {
+function StudentProfile({ setValidUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
   const [feedback, setFeedback] = useState([]);
@@ -53,7 +53,7 @@ function StudentProfile() {
           <h1 className="welcom">Track Your Feedback</h1>
         </div>
         <div>
-          <Logout />
+          <Logout setValidUser={setValidUser} />
         </div>
 
         <div id="student-body">
