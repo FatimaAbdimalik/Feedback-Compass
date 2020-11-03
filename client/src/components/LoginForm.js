@@ -30,7 +30,6 @@ function LoginForm({ setValidUser }) {
       })
       .catch(function (error) {
         if (error) {
-          console.log(error);
           window.location.reload(false);
           setEmail("");
           setPassword("");
