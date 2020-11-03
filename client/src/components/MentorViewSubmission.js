@@ -5,6 +5,7 @@ import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
 import StudentResponse from "./StudentResponse";
+import Filter from "./Filter";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
@@ -12,13 +13,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-  if (cardData) {
-    console.log(cardData.map((p) => p.response));
-  }
-
   const splitLines = (str) => str.split(/\r?\n/);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     if (value.filter((p) => p[0] == e.target.id).length > 0) {
       value.forEach((p, index) => {
         if (p[0] == e.target.id) {
@@ -30,7 +27,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     setValue(value);
   };
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     return setSearchItem(e.target.value);
   };
 
@@ -89,34 +86,13 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   };
   return !cardData ? (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleInputChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
       Loading...
     </div>
   ) : cardData && !searchItem ? (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleInputChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
+
       {cardData.map((card, index) => {
         return (
           <div>
@@ -176,7 +152,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                         placeholder="write a feedback"
                         type="text"
                         name="comment"
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                       />
                       <div id="buttons">
                         <button
@@ -198,18 +174,8 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     </div>
   ) : (
     <div>
-      <input
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
-        onChange={handleInputChange}
-      />
+      <Filter searchItem={searchItem} handleChange={handleChange} />
+
       {searchResult.map((card, index) => {
         return (
           <Accordion>
@@ -272,7 +238,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                       placeholder="write a feedback"
                       type="text"
                       name="comment"
-                      onChange={handleChange}
+                      onChange={handleInputChange}
                     />
                     <div id="buttons">
                       <button
