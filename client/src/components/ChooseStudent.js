@@ -20,7 +20,6 @@ function ChooseStudents({ selectCohort }) {
   }, [selectCohort]);
 
   let removeQmark = (string) => {
-    // return string.substring(string.length - 1);
     return string.substring(string.indexOf("=") + 1);
   };
   let mentorID = removeQmark(location.search);
