@@ -209,7 +209,24 @@ const SubmissionCard = ({ id }) => {
                   </div>
                   <span>
                     {" "}
-                    <div id="card-feedback"> {card.body}</div>
+                    <div id="card-feedback">
+                      {" "}
+                      <h5>
+                        {card.body && mentorName
+                          ? mentorName.find((m) => m.id === card.mentor_id)
+                              .name +
+                            " " +
+                            mentorName.find((m) => m.id === card.mentor_id)
+                              .surname +
+                            " : "
+                          : ""}
+                      </h5>{" "}
+                      {card.body
+                        ? splitLines(card.body).map((f, i) => (
+                            <p key={i}>{f}</p>
+                          ))
+                        : ""}
+                    </div>
                   </span>
 
                   <StudentResponse
