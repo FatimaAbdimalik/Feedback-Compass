@@ -10,7 +10,6 @@ function LoginForm({ setValidUser }) {
   const [message, setMessage] = useState("");
 
   const history = useHistory();
-  console.log(typeof setValidUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ function LoginForm({ setValidUser }) {
       .catch(function (error) {
         if (error) {
           console.log(error);
-          // window.location.reload(false);
+          window.location.reload(false);
           setEmail("");
           setPassword("");
           alert("Invalid email or password!");

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import StudentProfile from "./components/StudentProfile";
@@ -12,7 +12,6 @@ function App() {
 
   return (
     <div>
-      (
       {validUser ? (
         <Router>
           <Route
@@ -27,19 +26,19 @@ function App() {
         </Router>
       ) : (
         <Router>
-          <Route exact path="/" component={LandingPage} />
-          <Route
-            path="/login/student"
-            component={() => <Homepage setValidUser={setValidUser} />}
-          />
-
-          <Route
-            path="/login/mentor"
-            component={() => <Homepage setValidUser={setValidUser} />}
-          />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route
+              path="/login/student"
+              component={() => <Homepage setValidUser={setValidUser} />}
+            />
+            <Route
+              path="/login/mentor"
+              component={() => <Homepage setValidUser={setValidUser} />}
+            />
+          </Switch>
         </Router>
       )}
-      ){" "}
     </div>
   );
 }
