@@ -31,22 +31,22 @@ function ChooseCohort() {
       />
     </div>
   ) : (
-      <div id="cohort-container">
-        <section id="search-cohort">
-          <h2>Select cohort and student</h2>
-          <select onChange={(e) => setSelectCohort(e.target.value)}>
-            <option id="cohort-option">Select a cohort</option>
-            {cohort.map((cohort, index) => (
-              <option id="cohort-option" value={cohort.cohort_name} key={index}>
-                {cohort.cohort_name}
-              </option>
-            ))}
-          </select>
+    <div id="cohort-container">
+      <section id="search-cohort">
+        <h2>Select cohort and student</h2>
+        <select onChange={(e) => setSelectCohort(e.target.value)}>
+          <option id="cohort-option">Select a cohort</option>
+          {cohort.map((cohort, index) => (
+            <option id="cohort-option" value={cohort.cohort_name} key={index}>
+              {cohort.cohort_name}
+            </option>
+          ))}
+        </select>
 
-          {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
-        </section>
-      </div>
-    );
+        {selectCohort && <ChooseStudent selectCohort={selectCohort} />}
+      </section>
+    </div>
+  );
 }
 
 export default ChooseCohort;

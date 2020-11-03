@@ -60,7 +60,7 @@ select {
 
 .btn {
   text-transform: uppercase;
-  width: 30%;
+
   outline: none;
   margin: 10px auto;
   padding: 10px;
@@ -81,4 +81,10 @@ footer {
   color: aliceblue;
   text-align: center;
   margin-top: 250px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

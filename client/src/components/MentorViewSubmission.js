@@ -4,17 +4,12 @@ import "./StudentProfile.css";
 import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
-import StudentResponse from "./StudentResponse";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
-  if (cardData) {
-    console.log(cardData.map((p) => p.response));
-  }
 
   const splitLines = (str) => str.split(/\r?\n/);
 
@@ -79,8 +74,6 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
         p.title.toLowerCase().includes(searchItem.toLowerCase())
       );
       setSearchResult(foundTiles);
-      console.log(cardData);
-      console.log(foundTiles);
     }
   }, [searchItem]);
 

@@ -100,7 +100,7 @@ router.post("/signup", (req, res) => {
   const user_type = req.body.user_type;
   const postQuery =
     "INSERT INTO users (user_type,name,surname, email,phone_number, password,cohort_name) " +
-    "VALUES ($1,$2,$3,$4,$5,$6,$7)"
+    "VALUES ($1,$2,$3,$4,$5,$6,$7) returning *";
 
   Connection.query(
     postQuery,
@@ -109,11 +109,11 @@ router.post("/signup", (req, res) => {
       if (err) {
         res.status(404).json(err);
       } else {
-        res.status(200).json({ message: "successful" });
+        res.status(200).json({ user: result.rows });
       }
     }
-  )
-})
+  );
+});
 
 // edited after database recreation
 router.get("/students/:id", (_, res, next) => {
@@ -456,6 +456,21 @@ router.put("/response", (req, res) => {
       }
     }
   );
+});
+
+/////show studen progress
+router.post("/progress", (req, res) => {
+  const studentId = Number(req.body.student_id);
+
+  const postQuery =
+    "insert into progress  (syllabus_id, student_id, completed) values(1, $1 ,false),(2, $1 ,false),(3, $1 ,false),(4,$1 ,false),(5,$1 ,false),(6, $1,false),(7, $1,false)";
+  Connection.query(postQuery, [studentId], (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
 });
 
 export default router;

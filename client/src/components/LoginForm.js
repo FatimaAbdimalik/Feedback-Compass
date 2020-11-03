@@ -11,8 +11,7 @@ function LoginForm() {
   const [validUser, setValidUser] = useState(false);
   const history = useHistory();
   let location = useLocation();
-  const params = new URLSearchParams(window.location.search)
-  console.log(params);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,19 +21,36 @@ function LoginForm() {
         password: password,
       })
       .then(function (response) {
-        if (response.data.user_type === "student") {
+        if (
+          response.data.user_type === "student" &&
+          location.pathname.slice(7) == "student"
+        ) {
           setValidUser(true);
           history.push(`/students/${response.data.id}`);
-        } else {
+        } else if (
+          response.data.user_type === "mentor" &&
+          location.pathname.slice(7) == "student"
+        ) {
+          alert("Invalid student account!!");
+          return;
+        } else if (
+          response.data.user_type === "mentor" &&
+          location.pathname.slice(7) == "mentor"
+        ) {
           history.push(`/cohorts?mentorId=${response.data.id}`);
+        } else if (
+          response.data.user_type === "student" &&
+          location.pathname.slice(7) == "mentor"
+        ) {
+          alert("Invalid mentor account!!");
         }
       })
       .catch(function (error) {
         if (error) {
-          window.location.reload(false);
+          window.location.reload(true);
           setEmail("");
           setPassword("");
-          alert("Invalid email or password!");
+          setMessage("Invalid email or password!");
         }
       });
   };
@@ -42,7 +58,9 @@ function LoginForm() {
   return (
     <div id="login-container">
       <div id="heading">
-        <img id="logo" src={Logo} width="400" />
+        <a href="/">
+          <img id="logo" src={Logo} width="400" />
+        </a>
       </div>
       <div className="container">
         <h2 className="welcom-form">Welcome to </h2>
@@ -60,12 +78,18 @@ function LoginForm() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="btn" type="submit" onClick={handleSubmit}>
-            login
-          </button>
-          <button className="btn" type="submit" >
-            <Link to={"/signup"}>Sign Up</Link>
-          </button>
+          <div className="buttons">
+            <button className="btn" type="submit" onClick={handleSubmit}>
+              login
+            </button>
+
+            <Link to={`/signup/${location.pathname.slice(7)}`}>
+              {" "}
+              <button className="btn" type="submit">
+                Sign Up{" "}
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
