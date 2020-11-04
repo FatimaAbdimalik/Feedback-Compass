@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import RatingHomeWork from "./RatingHomeWork";
 import SubmitWork from "./SubmitWork";
 
 const LessonsDropDown = ({ module, id }) => {
@@ -28,6 +29,7 @@ const LessonsDropDown = ({ module, id }) => {
           );
         })}
       </select>
+      <RatingHomeWork />
       <SubmitWork id={id} lessonValue={lessonValue} />
     </div>
   );
