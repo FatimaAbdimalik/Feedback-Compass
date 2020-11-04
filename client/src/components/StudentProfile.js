@@ -13,12 +13,10 @@ import "./StudentProfile.css";
 function StudentProfile() {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
-  const [feedback, setFeedback] = useState([]);
-  const [comment, setComment] = useState("");
-  const [isCommented, setIsCommented] = useState("");
 
   let { id } = useParams();
 
+  console.log(id);
   useEffect(() => {
     axios
       .get(`/api/students/${id}`)
@@ -36,10 +34,6 @@ function StudentProfile() {
 
   ////-----------Biography Section------------------>
   const history = useHistory();
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    history.push(`/students/${id}/edit`);
-  };
 
   return (
     <div>
@@ -72,7 +66,7 @@ function StudentProfile() {
               </div>
             </div>
 
-            <CourseProgressList />
+            <CourseProgressList id={id} />
 
             <div id="feedback-panel">
               <div id="single-feedback"></div>

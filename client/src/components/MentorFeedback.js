@@ -53,6 +53,7 @@ function StudentProfile() {
                 <h4>{studentDetails ? studentDetails.biography : null}</h4>
               </div>
             </div>
+            <CourseProgressList id={student_id} />
           </div>
           <div id="feedback">
             <div>

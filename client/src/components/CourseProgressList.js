@@ -4,14 +4,14 @@ import "./StudentProfile.css";
 import axios from "axios";
 import CourseProgressItem from "./CourseProgressItem";
 
-const CourseProgressList = () => {
-  let student_id = useParams();
+const CourseProgressList = ({ id }) => {
+  // let student_id = useParams();
 
   const [module, setModule] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3100/api/syllabus?student_id=${student_id.id}`)
+      .get(`http://localhost:3100/api/syllabus?student_id=${id}`)
       .then((res) => res)
       .then((data) => setModule(data.data));
   }, []);
