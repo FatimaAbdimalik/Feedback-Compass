@@ -6,7 +6,10 @@ const Logout = ({ setValidUser }) => {
   const history = useHistory();
 
   const handleLogout = () => {
+    localStorage.clear();
     setValidUser(false);
+
+    console.log("from logout");
     history.push("/");
   };
   return (

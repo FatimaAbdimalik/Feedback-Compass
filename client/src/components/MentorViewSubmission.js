@@ -10,6 +10,10 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+<<<<<<< HEAD
+=======
+  console.log(value);
+>>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
 
   const splitLines = (str) => str.split(/\r?\n/);
 
@@ -46,9 +50,23 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
           feedback_date: handleDate(currentDate),
         })
         .then(function (response) {
+          // response needs to be the updated feedback update api.js
           alert("Feedback submitted");
+<<<<<<< HEAD
           window.location.reload(false);
           setValidUser(true);
+=======
+          // call setCardData with the original card data and the new response
+          console.log(response.data.feedback);
+          const updatedCardData = cardData.map((card) => {
+            if (card.id === response.data.feedback.id) {
+              return { ...response.data.feedback };
+            } else {
+              return { ...card };
+            }
+          });
+          setCardData(updatedCardData);
+>>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
         })
 
         .catch((error) => {
@@ -57,9 +75,12 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
           }
         });
     }
+<<<<<<< HEAD
 
     window.location.reload(false);
     setValidUser(true);
+=======
+>>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
   };
 
   useEffect(() => {

@@ -10,22 +10,26 @@ import SignUp from "./components/SignUp";
 
 function App() {
   const [validUser, setValidUser] = useState(false);
-
-  return (
+  console.log(validUser);
+  const storageUser = localStorage.getItem("validUser");
+  console.log(storageUser);
+  return storageUser ? (
     <div>
-      {validUser ? (
-        <Router>
-          <Route
-            path="/students/:id"
-            component={() => <StudentProfile setValidUser={setValidUser} />}
-          />
-          <Route path="/cohorts" component={ChooseCohort} />
-          <Route
-            path="/feedback/:student_id/:mentor_id"
-            component={() => <MentorFeedback setValidUser={setValidUser} />}
-          />
-        </Router>
-      ) : (
+      <Router>
+        <Route
+          path="/students/:id"
+          component={() => <StudentProfile setValidUser={setValidUser} />}
+        />
+        <Route path="/cohorts" component={ChooseCohort} />
+        <Route
+          path="/feedback/:student_id/:mentor_id"
+          component={() => <MentorFeedback setValidUser={setValidUser} />}
+        />
+      </Router>
+    </div>
+  ) : (
+    <div>
+      {
         <Router>
           <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -43,7 +47,7 @@ function App() {
             />
           </Switch>
         </Router>
-      )}
+      }
     </div>
   );
 }

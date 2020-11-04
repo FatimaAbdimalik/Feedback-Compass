@@ -26,6 +26,7 @@ function LoginForm({ setValidUser }) {
           response.data.user_type === "student" &&
           location.pathname.slice(7) == "student"
         ) {
+          localStorage.setItem("validUser", "true");
           setValidUser(true);
           history.push(`/students/${response.data.id}`);
         } else if (
@@ -38,6 +39,7 @@ function LoginForm({ setValidUser }) {
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "mentor"
         ) {
+          localStorage.setItem("validUser", "true");
           setValidUser(true);
           history.push(`/cohorts?mentorId=${response.data.id}`);
         } else if (
