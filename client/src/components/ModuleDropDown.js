@@ -21,7 +21,10 @@ const ModuleDropDown = ({ id }) => {
     <div>Loading</div>
   ) : (
     <div>
-      <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
+      <select
+        onChange={handleChange}
+        style={{ backgroundColor: "gray", marginLeft: "15rem" }}
+      >
         <option>Select A Module</option>
         {subject.map((sub, i) => {
           return <option key={i}>{sub.modules}</option>;

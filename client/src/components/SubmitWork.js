@@ -34,15 +34,25 @@ const SubmitWork = ({ lessonValue, id }) => {
 
   return (
     <div>
-      <input
-        id="submission"
-        type="text"
-        placeholder="Add you work here"
-        onChange={(e) => setSubmission(e.target.value)}
-      />
-      <button id="edit-profile-btn" type="submit" onClick={handleSubmit}>
-        Submit
-      </button>
+      <div>
+        <input
+          id="submission"
+          type="text"
+          placeholder="Add you work here"
+          onChange={(e) => setSubmission(e.target.value)}
+          style={{ width: "29rem", border: "1px solid black" }}
+        />
+      </div>
+      <div>
+        <button
+          id="edit-profile-btn"
+          type="submit"
+          onClick={handleSubmit}
+          style={{ marginLeft: "12rem" }}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
