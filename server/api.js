@@ -369,8 +369,7 @@ router.get("/get-syllabus", (req, res) => {
 router.get("/get-submissions/:student_id", (req, res) => {
   const studentId = req.params.student_id;
   const getAllSubmissions =
-    "select id, submission_date,mentor_id, title, body,response, submission from feedbacktable  where student_id = $1 ORDER BY submission_date DESC";
-  // "select u.name,u.surname , f.id, f.submission_date, f.title, f.body, f.submission from users u join feedbacktable f on (u.id = f.student_id) where student_id= $1";
+    "select id, submission_date,mentor_id, title, body,response, submission from feedbacktable  where student_id = $1 ORDER BY id DESC";
 
   Connection.query(getAllSubmissions, [studentId], (err, result) => {
     if (err) {

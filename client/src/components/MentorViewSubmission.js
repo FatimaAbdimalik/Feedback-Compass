@@ -5,7 +5,7 @@ import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
 
-const MentorViewSubmission = ({ student_id, mentor_id }) => {
+const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
@@ -48,6 +48,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
         .then(function (response) {
           alert("Feedback submitted");
           window.location.reload(false);
+          setValidUser(true);
         })
 
         .catch((error) => {
@@ -56,7 +57,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
           }
         });
     }
+
     window.location.reload(false);
+    setValidUser(true);
   };
 
   useEffect(() => {

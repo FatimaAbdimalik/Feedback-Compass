@@ -3,12 +3,13 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
+import SignUp from "./SignUp";
 
-function LoginForm() {
+function LoginForm({ setValidUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [validUser, setValidUser] = useState(false);
+
   const history = useHistory();
   let location = useLocation();
 
@@ -31,18 +32,19 @@ function LoginForm() {
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "student"
         ) {
-          alert("Invalid student account!!");
+          alert("Invalid STUDENT account!!");
           return;
         } else if (
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "mentor"
         ) {
+          setValidUser(true);
           history.push(`/cohorts?mentorId=${response.data.id}`);
         } else if (
           response.data.user_type === "student" &&
           location.pathname.slice(7) == "mentor"
         ) {
-          alert("Invalid mentor account!!");
+          alert("Invalid MENTOR account!!");
         }
       })
       .catch(function (error) {
@@ -72,27 +74,32 @@ function LoginForm() {
             name="email"
             type="email"
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             name="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className="buttons">
             <button className="btn" type="submit" onClick={handleSubmit}>
               login
             </button>
 
-            <Link to={`/signup/${location.pathname.slice(7)}`}>
-              {" "}
-              <button className="btn" type="submit">
-                Sign Up{" "}
-              </button>
-            </Link>
+            {
+              <Link to={`/signup/${location.pathname.slice(7)}`}>
+                {" "}
+                <button className="btn" type="submit">
+                  Sign Up{" "}
+                </button>
+              </Link>
+            }
           </div>
         </form>
       </div>
     </div>
   );
 }
+
 export default LoginForm;

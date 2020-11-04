@@ -3,10 +3,9 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./SignUp.css";
-function SignUp() {
+function SignUp({ serValidUser }) {
   const [selectCohort, setSelectCohort] = useState();
-  const [studentId, setStudentId] = useState();
-  console.log(studentId);
+
   const [value, setValue] = useState({
     user_type: "",
     name: "",

@@ -8,9 +8,10 @@ import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
 import Filter from "./Filter";
+import Logout from "./Logout";
 import "./StudentProfile.css";
 
-function StudentProfile() {
+function StudentProfile({ setValidUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
   const [feedback, setFeedback] = useState([]);
@@ -48,8 +49,13 @@ function StudentProfile() {
           <a href="/">
             <img id="logo" src={Logo} width="400" />
           </a>
+
           <h1 className="welcom">Track Your Feedback</h1>
+          <div>
+            <Logout setValidUser={setValidUser} />
+          </div>
         </div>
+
         <div id="student-body">
           <div id="student-profile">
             <div id="student-details">
@@ -81,7 +87,7 @@ function StudentProfile() {
           <div id="feedback">
             {/* <Filter id={id} /> */}
             <StudentSubmission id={id} />
-            <SubmissionCard id={id} />
+            <SubmissionCard setValidUser={setValidUser} id={id} />
           </div>
         </div>
       </div>
