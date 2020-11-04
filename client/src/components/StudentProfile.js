@@ -72,7 +72,7 @@ function StudentProfile() {
               </div>
             </div>
 
-            <CourseProgressList />
+            <CourseProgressList id={id} />
 
             <div id="feedback-panel">
               <div id="single-feedback"></div>
@@ -90,4 +90,3 @@ function StudentProfile() {
 }
 
 export default StudentProfile;
-

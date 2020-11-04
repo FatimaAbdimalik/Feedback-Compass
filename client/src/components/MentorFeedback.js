@@ -14,9 +14,6 @@ function StudentProfile() {
 
   let { student_id, mentor_id } = useParams();
 
-  //------------ Modules list  handling -------->
-  const [moduleTitle, setModuleTitle] = useState("");
-
   useEffect(() => {
     axios
       .get(`/api/students/${student_id}`)
@@ -53,6 +50,8 @@ function StudentProfile() {
                 <h4>{studentDetails ? studentDetails.biography : null}</h4>
               </div>
             </div>
+
+            <CourseProgressList id={student_id} />
           </div>
 
           <div id="feedback">
