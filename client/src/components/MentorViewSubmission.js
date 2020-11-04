@@ -11,10 +11,8 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
-  if (cardData) {
-    console.log(cardData.map((p) => p.response));
-  }
+  
+ 
 
   const splitLines = (str) => str.split(/\r?\n/);
 
@@ -51,8 +49,18 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
           feedback_date: handleDate(currentDate),
         })
         .then(function (response) {
+          // response needs to be the updated feedback update api.js
           alert("Feedback submitted");
-          window.location.reload(false);
+          // call setCardData with the original card data and the new response
+          console.log(response.data.feedback);
+          const updatedCardData = cardData.map((card) => {
+            if (card.id === response.data.feedback.id) {
+              return { ...response.data.feedback };
+            } else {
+              return { ...card };
+            }
+          });
+          setCardData(updatedCardData);
         })
 
         .catch((error) => {
@@ -61,7 +69,6 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
           }
         });
     }
-    window.location.reload(false);
   };
 
   useEffect(() => {

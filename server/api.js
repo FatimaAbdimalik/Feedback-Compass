@@ -394,7 +394,7 @@ router.put("/feedback", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4";
+    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4 returning *";
 
   Connection.query(
     putQuery,
@@ -403,7 +403,7 @@ router.put("/feedback", (req, res) => {
       if (err) {
         res.status(404).json(err);
       } else {
-        res.json({ message: "successful" });
+        res.json({ feedback: result.rows[0] });
       }
     }
   );

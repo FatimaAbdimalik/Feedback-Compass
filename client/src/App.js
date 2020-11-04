@@ -9,36 +9,38 @@ import "./App.css";
 
 function App() {
   const [validUser, setValidUser] = useState(false);
-
-  return (
+  console.log(validUser);
+  const storageUser = localStorage.getItem("validUser");
+  console.log(storageUser);
+  return storageUser ? (
     <div>
-      {validUser ? (
-        <Router>
+      <Router>
+        <Route
+          path="/students/:id"
+          component={() => <StudentProfile setValidUser={setValidUser} />}
+        />
+        <Route path="/cohorts" component={ChooseCohort} />
+        <Route
+          path="/feedback/:student_id/:mentor_id"
+          component={() => <MentorFeedback setValidUser={setValidUser} />}
+        />
+      </Router>
+    </div>
+  ) : (
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
           <Route
-            path="/students/:id"
-            component={() => <StudentProfile setValidUser={setValidUser} />}
+            path="/login/student"
+            component={() => <Homepage setValidUser={setValidUser} />}
           />
-          <Route path="/cohorts" component={ChooseCohort} />
           <Route
-            path="/feedback/:student_id/:mentor_id"
-            component={() => <MentorFeedback setValidUser={setValidUser} />}
+            path="/login/mentor"
+            component={() => <Homepage setValidUser={setValidUser} />}
           />
-        </Router>
-      ) : (
-        <Router>
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route
-              path="/login/student"
-              component={() => <Homepage setValidUser={setValidUser} />}
-            />
-            <Route
-              path="/login/mentor"
-              component={() => <Homepage setValidUser={setValidUser} />}
-            />
-          </Switch>
-        </Router>
-      )}
+        </Switch>
+      </Router>
     </div>
   );
 }

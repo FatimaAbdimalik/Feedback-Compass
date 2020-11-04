@@ -21,9 +21,12 @@ function LoginForm({ setValidUser }) {
       })
       .then(function (response) {
         if (response.data.user_type === "student") {
+          localStorage.setItem("validUser", "true");
+
           setValidUser(true);
           history.push(`/students/${response.data.id}`);
         } else {
+          localStorage.setItem("validUser", "true");
           setValidUser(true);
           history.push(`/cohorts?mentorId=${response.data.id}`);
         }
