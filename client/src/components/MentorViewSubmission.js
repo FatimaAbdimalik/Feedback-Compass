@@ -11,8 +11,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  
- 
+  console.log(value);
 
   const splitLines = (str) => str.split(/\r?\n/);
 
