@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
 
-function StudentProfile() {
+function MentorFeedback() {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
 
@@ -69,4 +69,4 @@ function StudentProfile() {
   );
 }
 
-export default StudentProfile;
+export default MentorFeedback;
