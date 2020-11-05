@@ -64,7 +64,7 @@ const SubmissionCard = ({ id }) => {
       Loading...
     </div>
   ) : cardData && !searchItem ? (
-    <div>
+    <div style={{margin: "0 auto"}}>
       <input
         type="search"
         value={searchItem}
@@ -102,7 +102,6 @@ const SubmissionCard = ({ id }) => {
               <Accordion.Collapse eventKey="0">
                 <div className="card-color">
                   <div id="card-date">
-                    {" "}
                     Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
@@ -113,15 +112,13 @@ const SubmissionCard = ({ id }) => {
                         href={card.submission}
                         target="_blank"
                       >
-                        {card.submission}{" "}
+                        {card.submission}
                       </a>
                     </span>
                     <br />
                   </div>
                   <span>
-                    {" "}
                     <div id="card-feedback">
-                      {" "}
                       <h5>
                         {card.body && mentorName
                           ? mentorName.find((m) => m.id === card.mentor_id)

@@ -3,11 +3,10 @@
   font-weight: 600;
   margin-left: 5em;
 }
-#student-container {
+body {
   background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
     url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
-  background-size: contain;
-  min-height: 670px;
+  background-size: cover;
 }
 #student-heading {
   display: flex;
@@ -20,10 +19,12 @@
 
 #student-body {
   display: flex;
+  flex-direction:column;
+  background-color:red;
 }
 
 #student-profile {
-  max-width: 450px;
+  /* max-width: 40vw; */
   padding: 20px;
   margin: 15px;
   background-color: rgba(230, 230, 230, 0.7);
@@ -31,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  height: 1200px;
+  /* height: 1200px; */
 }
 
 #avatar {
@@ -48,6 +49,8 @@
   background-color: white;
   padding: 40px;
   width: 350px;
+   border-radius: 23px 23px 23px 23px;
+    margin: 20px;
 }
 h4 {
   color: rgb(65, 65, 65);
@@ -59,7 +62,7 @@ h4 {
 
 #student-details {
   background-color: #973636;
-  border-radius: 23px 23px 0 0;
+  border-radius: 23px 23px 23px 23px;
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -131,10 +134,10 @@ h2 {
   background-color: rgba(240, 240, 240, 0.7);
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   border-radius: 20px;
   overflow: scroll;
-  height: 1200px;
+  /* height: 1200px; */
 }
 
 #card-feedback {
@@ -195,11 +198,12 @@ h2 {
 }
 
 .submission-card {
-  background-color: hsl(0, 47%, 39%);
+    background-color: hsl(0, 47%, 39%);
   margin: 10px;
   border-radius: 20px;
+  display:flex;
   justify-content: center;
-  align-items: center;
+  padding:20px;
 }
 
 #card-date {
@@ -215,10 +219,12 @@ h2 {
 }
 
 .card-color {
+  margin: 0 auto;
   background-color: hsl(0, 0%, 92%);
   border-radius: 20px;
   padding: 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  
 }
 
 .submission-link {
@@ -228,6 +234,37 @@ h2 {
 
 #card-title {
   color: #ffffff;
+  display:flex;
   padding: 5px;
   margin: 5px;
+  margin: 0 auto;
+}
+
+/* @media (min-width: 320px) and (max-width: 767px) */
+@media (min-width: 300px) and (max-width: 767px) {
+  #student-profile{
+    width:97%;
+  }
+  #checkbox-container{
+    width:90%;
+
+  }
+  #feedback{
+    background-color:blue;
+   width:97%;
+
+  }
+  #student-name{
+    width:90%;
+  }
+  #student-details{
+    width:90%
+  }
+  .card-color{
+    width:80%;
+    background-color:green;
+  }
+  /* .submission-card{
+    
+  } */
 }

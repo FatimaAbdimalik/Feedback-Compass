@@ -42,8 +42,8 @@ function StudentProfile() {
   };
 
   return (
-    <div>
-      <div id="student-container">
+    <div id="student-container">
+      <div >
         <div id="student-heading">
           <a href="/">
             <img id="logo" src={Logo} width="400" />
