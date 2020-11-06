@@ -38,7 +38,7 @@ function StudentProfile() {
             <img id="logo" src={Logo} width="400" />
           </a>
 
-          <h1 className="welcom">Students Feedback</h1>
+          <h1 className="welcom">Student Feedback</h1>
         </div>
         <div id="student-body">
           <div id="student-profile">
@@ -54,6 +54,7 @@ function StudentProfile() {
               </div>
             </div>
           </div>
+
           <div id="feedback">
             <div>
               <MentorViewSubmission

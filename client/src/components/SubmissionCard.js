@@ -48,33 +48,22 @@ const SubmissionCard = ({ id }) => {
   };
 
   return !cardData ? (
-    <div>
-      <input
+    <div  >
+      <input  
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleChange}
       />
       Loading...
-    </div>
+    </div >
   ) : cardData && !searchItem ? (
-    <div style={{margin: "0 auto"}}>
-      <input
+    <div >
+      <input style={{margin:"0 auto"}}
+            id="search-bar"
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleChange}
       />
       {cardData.map((card, index) => {
@@ -82,11 +71,10 @@ const SubmissionCard = ({ id }) => {
           <Accordion>
             <Card className="submission-card" key={index}>
               <Card.Title
-                style={{ width: "40rem", display: "flex" }}
+                style={{ width: "80%", display: "flex" }}
                 id="card-title"
               >
                 <Accordion.Toggle as={Button} variant="light" eventKey="0">
-                  {" "}
                   {mentorName && card.body ? (
                     "Feedback from " +
                     mentorName.find((m) => m.id === card.mentor_id).name +
@@ -105,7 +93,7 @@ const SubmissionCard = ({ id }) => {
                     Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
-                    <h5>Submitted Work:</h5>{" "}
+                    <h5>Submitted Work:</h5>
                     <span>
                       <a
                         className="submission-link"
@@ -128,7 +116,7 @@ const SubmissionCard = ({ id }) => {
                               .surname +
                             " : "
                           : ""}
-                      </h5>{" "}
+                      </h5>
                       {card.body
                         ? splitLines(card.body).map((f, i) => (
                             <p key={i}>{f}</p>

@@ -4,14 +4,17 @@ import "./StudentProfile.css";
 import axios from "axios";
 import CourseProgressItem from "./CourseProgressItem";
 
-const CourseProgressList = () => {
+const CourseProgressList = ({ studentID }) => {
   let student_id = useParams();
-
   const [module, setModule] = useState([]);
-
+  const [id, setId] = useState(student_id.id);
+  if (studentID) {
+    console.log(studentID);
+    setId(studentID);
+  }
   useEffect(() => {
     axios
-      .get(`http://localhost:3100/api/syllabus?student_id=${student_id.id}`)
+      .get(`http://localhost:3100/api/syllabus?student_id=${id}`)
       .then((res) => res)
       .then((data) => setModule(data.data));
   }, []);

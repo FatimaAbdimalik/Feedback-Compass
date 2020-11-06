@@ -6,6 +6,7 @@ import StudentProfile from "./components/StudentProfile";
 import ChooseCohort from "./components/ChooseCohort";
 import MentorFeedback from "./components/MentorFeedback";
 import "./App.css";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route exact path="/" component={LandingPage} />
       <Route path="/login/student" component={Homepage} />
       <Route path="/login/mentor" component={Homepage} />
+
+      <Route path="/signup" component={SignUp} />
       <Route path="/students/:id" component={StudentProfile} />
       <Route path="/cohorts" component={ChooseCohort} />
       <Route

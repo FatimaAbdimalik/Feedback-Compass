@@ -1,17 +1,16 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+
 #container {
   margin: 0;
   padding: 0;
   background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
     url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
   background-size: cover;
-  height: 670px;
+height:100%;
 }
 .heading-title {
-  font-weight: 700;
+  font-weight: 500;
+    font-size: 35px;
+
 }
 #heading {
   background-color: rgb(216, 216, 216);
@@ -28,17 +27,18 @@ body {
 }
 
 #options {
-  margin: 20px;
+  margin-top: 100px;
   padding: 20px;
   background-color: rgb(231, 231, 231, 0.5);
   display: flex;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
 }
 
 #login-question {
   margin: 30px;
-  font-size: 30px;
+  font-size: 80px;
   color: rgb(255, 255, 255);
 }
 
@@ -46,14 +46,28 @@ body {
   background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
   color: white;
   padding: 20px;
-  margin: 10px;
+  width:30vw;
+  font-size: 60px;
+  font-weight: 600;
+  border: none;
+  margin:0 auto;
+  margin-top: 100px;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
+}
+#mentor {
+  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+  color: white;
+   width:30vw;
+  padding: 20px;
+  margin:0 auto;
+  margin-top: 100px;
   font-size: 60px;
   font-weight: 600;
   border: none;
   box-shadow: 0 9px #999;
   cursor: pointer;
 }
-
 #student:hover {
   background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
 }
@@ -64,17 +78,7 @@ body {
   transform: translateY(4px);
 }
 
-#mentor {
-  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
-  color: white;
-  padding: 20px;
-  margin-left: 10px;
-  font-size: 60px;
-  font-weight: 600;
-  border: none;
-  box-shadow: 0 9px #999;
-  cursor: pointer;
-}
+
 #mentor:hover {
   background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
 }
@@ -83,4 +87,32 @@ body {
   background-color: #00b899;
   box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
+}
+
+
+
+@media (min-width: 300px) and (max-width: 768px){
+  #options{
+    display:flex;
+    /* flex-direction:column; */
+  }
+  #footer{
+  height:50vh;
+  position: fixed;
+  width: 100%;
+
+}
+
+}
+@media (min-device-width: 769px) and (max-device-width: 3000px){
+  #options{
+    display:flex;
+    flex-direction:row;
+  }
+  #student{
+    margin:30px;
+  }
+  #mentor{
+   margin:30px;
+  }
 }

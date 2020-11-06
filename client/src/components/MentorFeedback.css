@@ -113,3 +113,9 @@ option {
   justify-content: center;
   align-items: center;
 }
+#search-bar{
+   width: 60%;
+   background-color: white;
+   display:flex;
+ flex-direction:center;  
+}

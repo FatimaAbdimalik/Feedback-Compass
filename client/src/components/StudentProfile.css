@@ -17,14 +17,9 @@ body {
   text-align: center;
 }
 
-#student-body {
-  display: flex;
-  flex-direction:column;
-  background-color:red;
-}
+
 
 #student-profile {
-  /* max-width: 40vw; */
   padding: 20px;
   margin: 15px;
   background-color: rgba(230, 230, 230, 0.7);
@@ -32,7 +27,6 @@ body {
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  /* height: 1200px; */
 }
 
 #avatar {
@@ -48,9 +42,10 @@ body {
 #student-name {
   background-color: white;
   padding: 40px;
-  width: 350px;
    border-radius: 23px 23px 23px 23px;
+   width:70vw;
     margin: 20px;
+
 }
 h4 {
   color: rgb(65, 65, 65);
@@ -58,18 +53,24 @@ h4 {
   border-radius: 40px;
   padding: 5px;
   font-weight: 600;
+  font-size:20px;
+
 }
 
 #student-details {
   background-color: #973636;
   border-radius: 23px 23px 23px 23px;
-  margin: 20px;
-  display: flex;
+  margin: 0 auto;
+  display: flex; 
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 350px;
   margin-top: 2.5rem;
+}
+#search-bar{
+   width: 60%;
+   background-color: white;
+   display:flex;
+ flex-direction:center;
 }
 
 h2 {
@@ -80,12 +81,12 @@ h2 {
 #checkbox-container {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   background-image: linear-gradient(0deg, #838383 0%, #cacaca 100%);
   border-radius: 20px;
-  width: 20em;
   margin-top: 2rem;
+  width:70vw;
 }
 #checkbox {
   margin-right: 3px;
@@ -112,12 +113,11 @@ h2 {
 }
 
 #modules-title {
-  width: 12em;
+  width: 25em;
   font-size: 18px;
   padding: 15px;
   margin: 5px;
   cursor: pointer;
-
   justify-content: center;
   align-items: center;
   background-color: rgb(61, 61, 61);
@@ -134,10 +134,8 @@ h2 {
   background-color: rgba(240, 240, 240, 0.7);
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
   border-radius: 20px;
   overflow: scroll;
-  /* height: 1200px; */
 }
 
 #card-feedback {
@@ -145,7 +143,6 @@ h2 {
   padding: 10px;
   background-color: rgb(71, 71, 71);
   border-radius: 10px;
-
   margin: 15px;
 }
 
@@ -159,7 +156,6 @@ h2 {
 .comment-input {
   width: 80%;
   padding: 15px;
-
   color: #534444;
 }
 
@@ -198,7 +194,7 @@ h2 {
 }
 
 .submission-card {
-    background-color: hsl(0, 47%, 39%);
+  background-color: hsl(0, 47%, 39%);
   margin: 10px;
   border-radius: 20px;
   display:flex;
@@ -222,9 +218,7 @@ h2 {
   margin: 0 auto;
   background-color: hsl(0, 0%, 92%);
   border-radius: 20px;
-  padding: 10px;
-  /* margin-bottom: 20px; */
-  
+  padding: 10px;  
 }
 
 .submission-link {
@@ -233,22 +227,26 @@ h2 {
 }
 
 #card-title {
-  color: #ffffff;
-  display:flex;
+  color: green;
   padding: 5px;
   margin: 5px;
   margin: 0 auto;
+   width:50%;
+
+}
+.modal-body{
+
 }
 
-/* @media (min-width: 320px) and (max-width: 767px) */
-@media (min-width: 300px) and (max-width: 767px) {
+@media (min-width: 300px) and (max-width: 768px) {
+  #student-body{
+  display:flex;
+  flex-direction:row;
+  }
   #student-profile{
     width:97%;
   }
-  #checkbox-container{
-    width:90%;
 
-  }
   #feedback{
     background-color:blue;
    width:97%;
@@ -258,13 +256,48 @@ h2 {
     width:90%;
   }
   #student-details{
-    width:90%
+    width:100vw;
   }
   .card-color{
     width:80%;
-    background-color:green;
   }
-  /* .submission-card{
-    
-  } */
+
 }
+
+
+@media (min-device-width: 769px) and (max-device-width: 3000px){
+  #student-body{
+  display:flex;
+  flex-direction:wrap;
+  }
+  #feedback{
+   width:70%;
+  }
+  #card-title {
+  padding: 5px;
+  margin: 0 auto;
+   width:70%;
+  }
+ .btn-light{
+  width:50%;
+  }
+  #student-profile{
+  width:30vw;
+  }
+  #student-name{
+  width:20vw;
+  }
+ .submission-card{
+  width:60vw;
+   margin:0 auto; 
+
+  }
+
+  #modules-title{
+  width:20vw;
+  }
+  #checkbox-container{
+  width:25vw;
+  }
+}
+

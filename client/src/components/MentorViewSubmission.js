@@ -4,17 +4,12 @@ import "./StudentProfile.css";
 import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
-import StudentResponse from "./StudentResponse";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
-  if (cardData) {
-    console.log(cardData.map((p) => p.response));
-  }
 
   const splitLines = (str) => str.split(/\r?\n/);
 
@@ -79,8 +74,6 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
         p.title.toLowerCase().includes(searchItem.toLowerCase())
       );
       setSearchResult(foundTiles);
-      console.log(cardData);
-      console.log(foundTiles);
     }
   }, [searchItem]);
 
@@ -89,7 +82,8 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   };
   return !cardData ? (
     <div>
-      <input
+      <input 
+        
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
@@ -106,15 +100,11 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   ) : cardData && !searchItem ? (
     <div>
       <input
+       id="search-bar"
+      style={{margin:"0 auto"}}
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleInputChange}
       />
       {cardData.map((card, index) => {
@@ -198,16 +188,11 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     </div>
   ) : (
     <div>
-      <input
+      <input style={{margin:"0 auto"}}
+      id="search-bar"
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleInputChange}
       />
       {searchResult.map((card, index) => {
@@ -216,37 +201,34 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
             <Card className="submission-card" key={index}>
               <Card.Title style={{ width: "40rem", display: "flex" }}>
                 <Accordion.Toggle as={Button} variant="light" eventKey="0">
-                  {" "}
                   {card.title}
                 </Accordion.Toggle>
               </Card.Title>
               <Accordion.Collapse eventKey="0">
                 <div className="card-color">
                   <div id="card-date">
-                    {" "}
                     Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
-                    <h5>Submitted Work:</h5>{" "}
+                    <h5>Submitted Work:</h5>
                     <span>
                       <a
                         className="submission-link"
                         href={card.submission}
                         target="_blank"
                       >
-                        {card.submission}{" "}
+                        {card.submission}
                       </a>
                     </span>
                     <br />
                   </div>
                   <span>
-                    {" "}
                     <div id="card-feedback">
                       {card.body ? (
                         <div>
                           {splitLines(card.body).map((r, i) => (
                             <p key={i}>{r}</p>
-                          ))}{" "}
+                          ))}
                         </div>
                       ) : (
                         ""
@@ -257,7 +239,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                         <div>
                           {splitLines(card.response).map((r, i) => (
                             <p key={i}>{r}</p>
-                          ))}{" "}
+                          ))}
                         </div>
                       ) : (
                         ""

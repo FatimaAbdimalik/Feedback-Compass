@@ -40,7 +40,6 @@ const authorizationUri = client.authorizeURL({
 
 // Initial page redirecting to Github
 router.get("/auth", (req, res) => {
-  console.log(authorizationUri);
   res.redirect(authorizationUri);
 });
 
@@ -58,7 +57,6 @@ router.get("/callback", async (req, res) => {
 
     return res.status(200).json(accessToken.token);
   } catch (error) {
-    console.error("Access Token Error", error.message);
     return res.status(500).json("Authentication failed");
   }
 });
@@ -89,6 +87,32 @@ router.post("/login", (req, res, next) => {
       }
     );
   }
+});
+
+// sign up endpoint
+router.post("/signup", (req, res) => {
+  const firstName = req.body.name;
+  const surname = req.body.surname;
+  const email = req.body.email;
+  const password = req.body.password;
+  const cohort = req.body.cohort_name;
+  const phoneNumber = req.body.phone_number;
+  const user_type = req.body.user_type;
+  const postQuery =
+    "INSERT INTO users (user_type,name,surname, email,phone_number, password,cohort_name) " +
+    "VALUES ($1,$2,$3,$4,$5,$6,$7) returning *";
+
+  Connection.query(
+    postQuery,
+    [user_type, firstName, surname, email, phoneNumber, password, cohort],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.status(200).json({ user: result.rows });
+      }
+    }
+  );
 });
 
 // edited after database recreation
@@ -431,6 +455,21 @@ router.put("/response", (req, res) => {
       }
     }
   );
+});
+
+/////show studen progress
+router.post("/progress", (req, res) => {
+  const studentId = Number(req.body.student_id);
+
+  const postQuery =
+    "insert into progress  (syllabus_id, student_id, completed) values(1, $1 ,false),(2, $1 ,false),(3, $1 ,false),(4,$1 ,false),(5,$1 ,false),(6, $1,false),(7, $1,false)";
+  Connection.query(postQuery, [studentId], (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
 });
 
 export default router;
