@@ -59,7 +59,7 @@ const SubmissionCard = ({ id }) => {
     return setSearchItem(e.target.value);
   };
 
-  return !cardData ? (
+  return !cardData.length ? (
     <div>
       <input
         type="search"
