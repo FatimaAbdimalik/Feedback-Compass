@@ -32,8 +32,6 @@ const StudentResponse = ({ id, student_id, responses }) => {
         response_date: handleDate(currentDate),
       })
       .then(function (res) {
-        console.log(value);
-        console.log(response);
         alert("Response sent");
         const updatedResponse = [...response, value];
         setResponse(updatedResponse);

@@ -8,6 +8,8 @@ const FeedbackField = ({ id, mentor_id, cardData, setCardData }) => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+
+  console.log(cardData);
   const handleSubmitFeedback = (e) => {
     const currentDate = JSON.stringify(moment());
     const handleDate = (date) => {

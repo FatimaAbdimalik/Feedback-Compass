@@ -22,15 +22,6 @@ const SubmissionCard = ({ id }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   if (cardData !== undefined) {
-  //     const foundTiles = cardData.filter((p) =>
-  //       p.title.toLowerCase().includes(searchItem.toLowerCase())
-  //     );
-  //     setSearchResult(foundTiles);
-  //   }
-  // }, [searchItem]);
-
   const filterCardData = (term) => {
     if (!term) {
       return cardData;
@@ -52,7 +43,7 @@ const SubmissionCard = ({ id }) => {
   }, []);
 
   const handleDate = (date) => {
-    return date.split("T")[0];
+    return date.split("T")[0].slice(1);
   };
 
   const handleChange = (e) => {
