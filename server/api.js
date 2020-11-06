@@ -70,7 +70,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -80,7 +80,7 @@ router.post("/login", (req, res, next) => {
       [email, password],
       (err, result) => {
         if (result.rowCount > 0) {
-          return res.status(200).send(result.rows[0]);
+          res.status(200).send(result.rows[0]);
         } else {
           res.status(500).json(err);
         }

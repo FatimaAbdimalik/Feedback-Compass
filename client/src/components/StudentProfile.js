@@ -11,7 +11,7 @@ import Filter from "./Filter";
 import Logout from "./Logout";
 import "./StudentProfile.css";
 
-function StudentProfile({ setValidUser }) {
+function StudentProfile({ setUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
   const [feedback, setFeedback] = useState([]);
@@ -52,7 +52,7 @@ function StudentProfile({ setValidUser }) {
 
           <h1 className="welcom">Track Your Feedback</h1>
           <div>
-            <Logout setValidUser={setValidUser} />
+            <Logout setUser={setUser} />
           </div>
         </div>
 
@@ -87,7 +87,7 @@ function StudentProfile({ setValidUser }) {
           <div id="feedback">
             {/* <Filter id={id} /> */}
             <StudentSubmission id={id} />
-            <SubmissionCard setValidUser={setValidUser} id={id} />
+            <SubmissionCard id={id} />
           </div>
         </div>
       </div>

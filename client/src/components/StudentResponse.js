@@ -27,16 +27,15 @@ const StudentResponse = ({ id, student_id, responses }) => {
   }, []);
 
   const handleSubmitResponse = (e) => {
-    window.location.reload(false);
     if (!value.find((p) => p[0] == "input" + e.target.value)) {
       alert("please add a comment before submitting!!!");
       return;
     } else {
       const currentDate = JSON.stringify(moment());
       const handleDate = (date) => {
-        return date.split("T")[0];
+        return date.split("T")[0].slice(1);
       };
-
+      console.log(handleDate(currentDate));
       axios
         .put("/api/response", {
           id: e.target.value,

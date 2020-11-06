@@ -5,15 +5,11 @@ import "./MentorFeedback";
 import axios from "axios";
 import moment from "moment";
 
-const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
+const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState();
   const [value, setValue] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-<<<<<<< HEAD
-=======
-  console.log(value);
->>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
 
   const splitLines = (str) => str.split(/\r?\n/);
 
@@ -32,7 +28,11 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
   const handleInputChange = (e) => {
     return setSearchItem(e.target.value);
   };
-
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // let ele = this.inputValue;
+    // console.log(ele);
+  };
   const handleSubmitFeedback = (e) => {
     if (!value.find((p) => p[0] == "input" + e.target.value)) {
       alert("please add a comment before submitting!!!");
@@ -52,10 +52,6 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
         .then(function (response) {
           // response needs to be the updated feedback update api.js
           alert("Feedback submitted");
-<<<<<<< HEAD
-          window.location.reload(false);
-          setValidUser(true);
-=======
           // call setCardData with the original card data and the new response
           console.log(response.data.feedback);
           const updatedCardData = cardData.map((card) => {
@@ -66,7 +62,6 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
             }
           });
           setCardData(updatedCardData);
->>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
         })
 
         .catch((error) => {
@@ -75,12 +70,6 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
           }
         });
     }
-<<<<<<< HEAD
-
-    window.location.reload(false);
-    setValidUser(true);
-=======
->>>>>>> df3dadb76e84f92798bc61a56b2d36ec652fc35c
   };
 
   useEffect(() => {
@@ -137,78 +126,82 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
       {cardData.map((card, index) => {
         return (
           <div>
-            <Accordion>
-              <Card className="submission-card" key={index}>
-                <Card.Title
-                  id="card-title"
-                  style={{ width: "40rem", display: "flex" }}
-                >
-                  <Accordion.Toggle as={Button} variant="light" eventKey="0">
-                    {card.title}
-                  </Accordion.Toggle>
-                </Card.Title>
-                <Accordion.Collapse eventKey="0">
-                  <div className="card-color">
-                    <div id="card-date">
-                      Sent: {handleDate(card.submission_date)}
-                    </div>
-                    <div>
-                      <span>
-                        <a
-                          className="submission-link"
-                          href={card.submission}
-                          target="_blank"
-                        >
-                          {card.submission}{" "}
-                        </a>
-                      </span>
-                    </div>
-                    <div id="card-feedback">
-                      {card.body ? (
-                        <div>
-                          {splitLines(card.body).map((r, i) => (
-                            <p key={i}>{r}</p>
-                          ))}{" "}
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div id="submission-link">
-                      {card.response ? (
-                        <div>
-                          {splitLines(card.response).map((r, i) => (
-                            <p key={i}>{r}</p>
-                          ))}{" "}
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+            <form onSubmit={handleFormSubmit}>
+              <Accordion>
+                <Card className="submission-card" key={index}>
+                  <Card.Title
+                    id="card-title"
+                    style={{ width: "40rem", display: "flex" }}
+                  >
+                    <Accordion.Toggle as={Button} variant="light" eventKey="0">
+                      {card.title}
+                    </Accordion.Toggle>
+                  </Card.Title>
+                  <Accordion.Collapse eventKey="0">
+                    <div className="card-color">
+                      <div id="card-date">
+                        Sent: {handleDate(card.submission_date)}
+                      </div>
+                      <div>
+                        <span>
+                          <a
+                            className="submission-link"
+                            href={card.submission}
+                            target="_blank"
+                          >
+                            {card.submission}{" "}
+                          </a>
+                        </span>
+                      </div>
+                      <div id="card-feedback">
+                        {card.body ? (
+                          <div>
+                            {splitLines(card.body).map((r, i) => (
+                              <p key={i}>{r}</p>
+                            ))}{" "}
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div id="submission-link">
+                        {card.response ? (
+                          <div>
+                            {splitLines(card.response).map((r, i) => (
+                              <p key={i}>{r}</p>
+                            ))}{" "}
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
 
-                    <div id="comment">
-                      <input
-                        className="comment-input"
-                        id={"input" + card.id}
-                        placeholder="write a feedback"
-                        type="text"
-                        name="comment"
-                        onChange={handleChange}
-                      />
-                      <div id="buttons">
-                        <button
-                          id="comment-btn"
-                          value={card.id}
-                          onClick={handleSubmitFeedback}
-                        >
-                          SEND
-                        </button>
+                      <div id="comment">
+                        <input
+                          className="comment-input"
+                          id={"input" + card.id}
+                          placeholder="write a feedback"
+                          type="text"
+                          name="comment"
+                          onChange={handleChange}
+                        />
+
+                        <div id="buttons">
+                          <button
+                            type="submit"
+                            id="comment-btn"
+                            value={card.id}
+                            onClick={handleSubmitFeedback}
+                          >
+                            SEND
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </form>
           </div>
         );
       })}
@@ -293,6 +286,7 @@ const MentorViewSubmission = ({ student_id, mentor_id, setValidUser }) => {
                     />
                     <div id="buttons">
                       <button
+                        type="submit"
                         id="comment-btn"
                         value={card.id}
                         onClick={handleSubmitFeedback}

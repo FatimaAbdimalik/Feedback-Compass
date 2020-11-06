@@ -13,7 +13,6 @@ const SubmitWork = ({ lessonValue, id }) => {
   };
 
   const handleSubmit = (e) => {
-    window.location.reload(false);
     e.preventDefault();
     axios
       .post("/api/submission", {

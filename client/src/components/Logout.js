@@ -2,19 +2,17 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./Logout.css";
 
-const Logout = ({ setValidUser }) => {
+const Logout = ({ setUser }) => {
   const history = useHistory();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    setValidUser(false);
+  const handleLogout2 = () => {
+    setUser(false);
 
-    console.log("from logout");
     history.push("/");
   };
   return (
     <div id="logout">
-      <button id="logout-btn" onClick={handleLogout}>
+      <button id="logout-btn" onClick={handleLogout2}>
         Logout
       </button>
     </div>

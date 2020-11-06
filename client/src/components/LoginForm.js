@@ -5,7 +5,7 @@ import axios from "axios";
 import "./LoginForm.css";
 import SignUp from "./SignUp";
 
-function LoginForm({ setValidUser }) {
+function LoginForm({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -26,8 +26,7 @@ function LoginForm({ setValidUser }) {
           response.data.user_type === "student" &&
           location.pathname.slice(7) == "student"
         ) {
-          localStorage.setItem("validUser", "true");
-          setValidUser(true);
+          setUser(true);
           history.push(`/students/${response.data.id}`);
         } else if (
           response.data.user_type === "mentor" &&
@@ -39,8 +38,7 @@ function LoginForm({ setValidUser }) {
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "mentor"
         ) {
-          localStorage.setItem("validUser", "true");
-          setValidUser(true);
+          setUser(true);
           history.push(`/cohorts?mentorId=${response.data.id}`);
         } else if (
           response.data.user_type === "student" &&
@@ -51,9 +49,8 @@ function LoginForm({ setValidUser }) {
       })
       .catch(function (error) {
         if (error) {
-          window.location.reload(true);
-          setEmail("");
-          setPassword("");
+          document.getElementById("password-input").value = "";
+          document.getElementById("email-input").value = "";
           setMessage("Invalid email or password!");
         }
       });
@@ -69,16 +66,19 @@ function LoginForm({ setValidUser }) {
       <div className="container">
         <h2 className="welcom-form">Welcome to </h2>
         <h4>CYF feedback tracker</h4>
+
         <h2>Sign In</h2>
         <form>
           <h3>{message}</h3>
           <input
+            id="email-input"
             name="email"
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
+            id="password-input"
             name="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}

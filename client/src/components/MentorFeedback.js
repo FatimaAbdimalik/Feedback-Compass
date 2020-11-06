@@ -9,7 +9,7 @@ import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
 import Logout from "./Logout";
 
-function MentorFeedback({ setValidUser }) {
+function MentorFeedback({ setUser }) {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
 
@@ -39,7 +39,7 @@ function MentorFeedback({ setValidUser }) {
           <h1 className="welcom">Students Feedback</h1>
         </div>
         <div>
-          <Logout setValidUser={setValidUser} />
+          <Logout setUser={setUser} />
         </div>
 
         <div id="student-body">
@@ -62,7 +62,6 @@ function MentorFeedback({ setValidUser }) {
           <div id="feedback">
             <div>
               <MentorViewSubmission
-                setValidUser={setValidUser}
                 student_id={student_id}
                 mentor_id={mentor_id}
               />
