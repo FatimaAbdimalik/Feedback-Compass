@@ -156,7 +156,6 @@ const SubmissionCard = ({ id }) => {
                     id={card.id}
                     student_id={id}
                     responses={card.response}
-                    // cardData={filterCardData(searchItem)}
                   />
                 </div>
               </Accordion.Collapse>
