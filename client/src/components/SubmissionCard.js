@@ -107,7 +107,9 @@ const SubmissionCard = ({ id }) => {
                     " On " +
                     card.title
                   ) : (
-                    <p className="waiting-feedback">Waiting for feedback ...</p>
+                    <p className="waiting-feedback">
+                      Waiting for feedback on {card.title}
+                    </p>
                   )}
                 </Accordion.Toggle>
               </Card.Title>
