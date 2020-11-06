@@ -32,7 +32,6 @@ function LoginForm({ setUser }) {
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "student"
         ) {
-          alert("Invalid STUDENT account!!");
           return;
         } else if (
           response.data.user_type === "mentor" &&
@@ -44,7 +43,6 @@ function LoginForm({ setUser }) {
           response.data.user_type === "student" &&
           location.pathname.slice(7) == "mentor"
         ) {
-          alert("Invalid MENTOR account!!");
         }
       })
       .catch(function (error) {

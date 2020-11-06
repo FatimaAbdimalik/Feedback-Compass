@@ -414,7 +414,7 @@ router.put("/feedback", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4 returning *";
+    "update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4 returning *";
 
   Connection.query(
     putQuery,
@@ -423,7 +423,7 @@ router.put("/feedback", (req, res) => {
       if (err) {
         res.status(404).json(err);
       } else {
-        res.json({ feedback: result.rows[0] });
+        res.json(result.rows[0]);
       }
     }
   );
@@ -438,16 +438,17 @@ router.put("/response", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4";
+    "update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4 returning *";
 
   Connection.query(
     putQuery,
     [studentId, newResponse, newDate, feedbackId],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(404).json(err);
       } else {
-        res.json({ message: "successful" });
+        res.json(result.rows[0]);
       }
     }
   );

@@ -64,7 +64,6 @@ function SignUp({ serValidUser }) {
           });
         })
         .then(function (user) {
-          alert("Sign Up is successful");
           history.push(`/login/${location.pathname.slice(8)}`);
         })
         .catch(function (error) {
@@ -72,8 +71,6 @@ function SignUp({ serValidUser }) {
             console.log(error);
           }
         });
-    } else {
-      alert("please Fill The Form");
     }
   };
 

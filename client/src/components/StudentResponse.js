@@ -4,20 +4,11 @@ import axios from "axios";
 import moment from "moment";
 
 const StudentResponse = ({ id, student_id, responses }) => {
-  const [value, setValue] = useState([]);
-  const [response, setResponse] = useState();
+  const [value, setValue] = useState("");
+  const [response, setResponse] = useState([]);
 
   const handleChange = (e) => {
-    if (value.filter((p) => p[0] == e.target.id).length > 0) {
-      value.forEach((p, index) => {
-        if (p[0] == e.target.id) {
-          value.splice(index, 1);
-        }
-      });
-    }
-
-    value.push([e.target.id, e.target.value]);
-    setValue(value);
+    setValue(e.target.value);
   };
   useEffect(() => {
     if (responses) {
@@ -27,33 +18,30 @@ const StudentResponse = ({ id, student_id, responses }) => {
   }, []);
 
   const handleSubmitResponse = (e) => {
-    if (!value.find((p) => p[0] == "input" + e.target.value)) {
-      alert("please add a comment before submitting!!!");
-      return;
-    } else {
-      const currentDate = JSON.stringify(moment());
-      const handleDate = (date) => {
-        return date.split("T")[0].slice(1);
-      };
+    const currentDate = JSON.stringify(moment());
 
-      axios
-        .put("/api/response", {
-          id: e.target.value,
-          student_id: student_id,
-          response:
-            value.find((p) => p[0] == "input" + e.target.value)[1] + "\n",
-          response_date: handleDate(currentDate),
-        })
-        .then(function (response) {
-          alert("Response sent");
-        })
+    const handleDate = (date) => {
+      return date.split("T")[0];
+    };
 
-        .catch((error) => {
-          if (error) {
-            console.log(error);
-          }
-        });
-    }
+    axios
+      .put("/api/response", {
+        id: e.target.value,
+        student_id: student_id,
+        response: value + "\n",
+        response_date: handleDate(currentDate),
+      })
+      .then(function (res) {
+        const updatedResponse = [...response, value];
+        setResponse(updatedResponse);
+        setValue("");
+      })
+
+      .catch((error) => {
+        if (error) {
+          console.log(error);
+        }
+      });
   };
 
   return (
@@ -70,11 +58,12 @@ const StudentResponse = ({ id, student_id, responses }) => {
       <div id="comment">
         <input
           className="comment-input"
-          id={"input" + id}
+          id={id}
           placeholder="Write a comment"
           type="text"
           name="comment"
           onChange={handleChange}
+          value={value}
         />
 
         <button id="comment-btn" value={id} onClick={handleSubmitResponse}>

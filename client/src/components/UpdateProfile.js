@@ -38,13 +38,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
         })
         .then(function (response) {
           setStudentDetails(response.data);
-          // setValue({
-          //   name: "",
-          //   surname: "",
-          //   email: "",
-          //   biography: "",
-          // });
-          alert("Your Profile Is Updated");
         })
 
         .catch((error) => {
@@ -52,8 +45,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
             console.log(error);
           }
         });
-    } else {
-      alert("Please add your details");
     }
   };
 
