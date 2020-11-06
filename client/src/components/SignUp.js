@@ -59,13 +59,11 @@ function SignUp({ serValidUser }) {
           cohort_name: value.cohort_name,
         })
         .then((res) => {
-          console.log(res.data.user[0].id);
           return axios.post("/api/progress", {
             student_id: res.data.user[0].id,
           });
         })
         .then(function (user) {
-          console.log(user);
           alert("Sign Up is successful");
           history.push(`/login/${location.pathname.slice(8)}`);
         })

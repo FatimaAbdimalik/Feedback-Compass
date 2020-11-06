@@ -20,7 +20,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log(user);
     if (user) {
       localStorage.setItem("user", "true");
     } else {

@@ -30,8 +30,6 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // let ele = this.inputValue;
-    // console.log(ele);
   };
   const handleSubmitFeedback = (e) => {
     if (!value.find((p) => p[0] == "input" + e.target.value)) {
@@ -51,9 +49,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
         })
         .then(function (response) {
           // response needs to be the updated feedback update api.js
-          alert("Feedback submitted");
+
           // call setCardData with the original card data and the new response
-          console.log(response.data.feedback);
+
           const updatedCardData = cardData.map((card) => {
             if (card.id === response.data.feedback.id) {
               return { ...response.data.feedback };

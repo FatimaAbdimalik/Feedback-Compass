@@ -15,9 +15,7 @@ const CourseProgressItem = ({ date, course, completed, id }) => {
         completed: e.target.checked,
         syllabus_id: id,
       })
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   };
 

@@ -35,7 +35,7 @@ const StudentResponse = ({ id, student_id, responses }) => {
       const handleDate = (date) => {
         return date.split("T")[0].slice(1);
       };
-      console.log(handleDate(currentDate));
+
       axios
         .put("/api/response", {
           id: e.target.value,

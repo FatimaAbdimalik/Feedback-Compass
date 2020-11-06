@@ -53,8 +53,6 @@ router.get("/callback", async (req, res) => {
   try {
     const accessToken = await client.getToken(options);
 
-    console.log("The resulting token: ", accessToken.token);
-
     return res.status(200).json(accessToken.token);
   } catch (error) {
     return res.status(500).json("Authentication failed");
@@ -133,9 +131,8 @@ router.get("/students/:id", (_, res, next) => {
 
 router.get("/feedback", (req, res, next) => {
   const studentId = Number(req.query.student_id);
-  console.log(studentId);
+
   const title = req.query.title;
-  console.log(title);
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1 and title = $2";
   Connection.query(stuQuery, [studentId, title], (err, result) => {
@@ -288,7 +285,6 @@ router.put("/students/:id", (req, res) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        console.log(results.rows);
         res.status(200).json(results.rows[0]);
       }
     }
