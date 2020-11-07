@@ -7,12 +7,7 @@ const Filter = ({ searchItem, handleChange }) => {
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
+        style={{ margin: "0 auto" }}
         onChange={handleChange}
       />
     </div>

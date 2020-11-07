@@ -5,15 +5,16 @@ import axios from "axios";
 import CourseProgressItem from "./CourseProgressItem";
 
 const CourseProgressList = ({ id }) => {
-  // let student_id = useParams();
-
   const [module, setModule] = useState([]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3100/api/syllabus?student_id=${id}`)
       .then((res) => res)
-      .then((data) => setModule(data.data));
+      .then((data) => setModule(data.data))
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -30,6 +31,7 @@ const CourseProgressList = ({ id }) => {
                 course={subject.modules}
                 completed={subject.completed}
                 id={subject.syllabus_id}
+                student_id={id}
               />
             </div>
           );

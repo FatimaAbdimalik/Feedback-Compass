@@ -40,7 +40,6 @@ const authorizationUri = client.authorizeURL({
 
 // Initial page redirecting to Github
 router.get("/auth", (req, res) => {
-  console.log(authorizationUri);
   res.redirect(authorizationUri);
 });
 
@@ -54,11 +53,8 @@ router.get("/callback", async (req, res) => {
   try {
     const accessToken = await client.getToken(options);
 
-    console.log("The resulting token: ", accessToken.token);
-
     return res.status(200).json(accessToken.token);
   } catch (error) {
-    console.error("Access Token Error", error.message);
     return res.status(500).json("Authentication failed");
   }
 });
@@ -72,7 +68,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -82,13 +78,39 @@ router.post("/login", (req, res, next) => {
       [email, password],
       (err, result) => {
         if (result.rowCount > 0) {
-          return res.status(200).send(result.rows[0]);
+          res.status(200).send(result.rows[0]);
         } else {
           res.status(500).json(err);
         }
       }
     );
   }
+});
+
+// sign up endpoint
+router.post("/signup", (req, res) => {
+  const firstName = req.body.name;
+  const surname = req.body.surname;
+  const email = req.body.email;
+  const password = req.body.password;
+  const cohort = req.body.cohort_name;
+  const phoneNumber = req.body.phone_number;
+  const user_type = req.body.user_type;
+  const postQuery =
+    "INSERT INTO users (user_type,name,surname, email,phone_number, password,cohort_name) " +
+    "VALUES ($1,$2,$3,$4,$5,$6,$7) returning *";
+
+  Connection.query(
+    postQuery,
+    [user_type, firstName, surname, email, phoneNumber, password, cohort],
+    (err, result) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.status(200).json({ user: result.rows });
+      }
+    }
+  );
 });
 
 // edited after database recreation
@@ -109,9 +131,8 @@ router.get("/students/:id", (_, res, next) => {
 
 router.get("/feedback", (req, res, next) => {
   const studentId = Number(req.query.student_id);
-  console.log(studentId);
+
   const title = req.query.title;
-  console.log(title);
   const stuQuery =
     "SELECT sent_date, title, body, response FROM feedbacktable WHERE student_id= $1 and title = $2";
   Connection.query(stuQuery, [studentId, title], (err, result) => {
@@ -264,7 +285,6 @@ router.put("/students/:id", (req, res) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        console.log(results.rows);
         res.status(200).json(results.rows[0]);
       }
     }
@@ -394,7 +414,7 @@ router.put("/feedback", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4";
+    "update feedbacktable set mentor_id= $1, body = CONCAT(body, $2::text) , feedback_date=$3 where  id = $4 returning *";
 
   Connection.query(
     putQuery,
@@ -403,7 +423,7 @@ router.put("/feedback", (req, res) => {
       if (err) {
         res.status(404).json(err);
       } else {
-        res.json({ message: "successful" });
+        res.json(result.rows[0]);
       }
     }
   );
@@ -418,19 +438,35 @@ router.put("/response", (req, res) => {
   const feedbackId = req.body.id;
 
   const putQuery =
-    " update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4";
+    "update feedbacktable set student_id= $1, response = CONCAT(response, $2::text) , response_date=$3 where  id = $4 returning *";
 
   Connection.query(
     putQuery,
     [studentId, newResponse, newDate, feedbackId],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(404).json(err);
       } else {
-        res.json({ message: "successful" });
+        res.json(result.rows[0]);
       }
     }
   );
+});
+
+/////show studen progress
+router.post("/progress", (req, res) => {
+  const studentId = Number(req.body.student_id);
+
+  const postQuery =
+    "insert into progress  (syllabus_id, student_id, completed) values(1, $1 ,false),(2, $1 ,false),(3, $1 ,false),(4,$1 ,false),(5,$1 ,false),(6, $1,false),(7, $1,false)";
+  Connection.query(postQuery, [studentId], (err, result) => {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json({ message: "successful" });
+    }
+  });
 });
 
 export default router;

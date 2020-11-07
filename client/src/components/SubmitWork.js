@@ -13,7 +13,6 @@ const SubmitWork = ({ lessonValue, id }) => {
   };
 
   const handleSubmit = (e) => {
-    window.location.reload(false);
     e.preventDefault();
     axios
       .post("/api/submission", {
@@ -24,7 +23,7 @@ const SubmitWork = ({ lessonValue, id }) => {
       })
       .then(function (response, err) {
         if (response) {
-          alert("work is submitted");
+          window.location.reload(false);
         }
       })
       .catch((err) => {
@@ -48,7 +47,7 @@ const SubmitWork = ({ lessonValue, id }) => {
           id="edit-profile-btn"
           type="submit"
           onClick={handleSubmit}
-          style={{ marginLeft: "12rem" }}
+          style={{ marginLeft: "4rem" }}
         >
           Submit
         </button>
