@@ -23,6 +23,7 @@ const SubmitWork = ({ lessonValue, id }) => {
       })
       .then(function (response, err) {
         if (response) {
+          window.location.reload(false);
         }
       })
       .catch((err) => {

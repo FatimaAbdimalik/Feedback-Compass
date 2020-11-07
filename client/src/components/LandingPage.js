@@ -19,11 +19,12 @@ const LandingPage = () => {
         </Link>
 
         <Link to={"/login/mentor"}>
-          {" "}
           <button id="mentor">MENTOR</button>
         </Link>
       </div>
-      <footer>CYF copyright@2020</footer>
+      <div id="footer">
+        <footer>CYF copyright@2020</footer>
+      </div>
     </div>
   );
 };

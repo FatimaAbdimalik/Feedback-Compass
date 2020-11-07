@@ -3,7 +3,7 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./SignUp.css";
-function SignUp({ serValidUser }) {
+function SignUp() {
   const [selectCohort, setSelectCohort] = useState();
 
   const [value, setValue] = useState({
@@ -75,15 +75,13 @@ function SignUp({ serValidUser }) {
   };
 
   return (
-    <div id="student-container">
-      <div id="heading">
-        <a href="/">
-          <img id="logo" src={Logo} width="400" />
-        </a>
-      </div>
+    <div id="signup-container">
+      <a href="/">
+        <img id="logo" src={Logo} width="400" />
+      </a>
 
       <form>
-        <h3>Sign Up</h3>
+        <h3 className="sign-up">Sign Up</h3>
         <label>First name</label>
         <input
           name="name"

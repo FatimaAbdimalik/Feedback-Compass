@@ -78,7 +78,7 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
               placeholder="Add a biography"
               onChange={handleChange}
             />
-            <button id="edit-profile-btn" type="submit" onClick={handleClose}>
+            <button id="edit" type="submit" onClick={handleClose}>
               Save
             </button>
           </form>

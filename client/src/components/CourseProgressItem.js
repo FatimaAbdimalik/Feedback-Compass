@@ -9,12 +9,14 @@ const CourseProgressItem = ({ date, course, completed, id }) => {
 
   const handleChange = (e) => {
     setIsChecked(e.target.checked);
-
     axios
-      .put(`http://localhost:3100/api/syllabus?student_id=${student_id.id}`, {
-        completed: e.target.checked,
-        syllabus_id: id,
-      })
+      .put(
+        `http://localhost:3100/api/syllabus?student_id=${student_id.student_id}`,
+        {
+          completed: e.target.checked,
+          syllabus_id: id,
+        }
+      )
       .then((res) => {})
       .catch((err) => console.log(err));
   };

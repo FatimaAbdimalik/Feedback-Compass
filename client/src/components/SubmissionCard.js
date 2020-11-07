@@ -48,18 +48,12 @@ const SubmissionCard = ({ id }) => {
     return setSearchItem(e.target.value);
   };
 
-  return !cardData.length ? (
+  return !cardData ? (
     <div>
       <input
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleChange}
       />
       Loading...
@@ -67,15 +61,11 @@ const SubmissionCard = ({ id }) => {
   ) : (
     <div>
       <input
+        style={{ margin: "0 auto" }}
+        id="search-bar"
         type="search"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleChange}
       />
       {filterCardData(searchItem).map((card, index) => {
@@ -83,11 +73,10 @@ const SubmissionCard = ({ id }) => {
           <Accordion>
             <Card className="submission-card" key={index}>
               <Card.Title
-                style={{ width: "40rem", display: "flex" }}
+                style={{ width: "80%", display: "flex" }}
                 id="card-title"
               >
                 <Accordion.Toggle as={Button} variant="light" eventKey="0">
-                  {" "}
                   {mentorName && card.body ? (
                     "Feedback from " +
                     mentorName.find((m) => m.id === card.mentor_id).name +
@@ -105,26 +94,23 @@ const SubmissionCard = ({ id }) => {
               <Accordion.Collapse eventKey="0">
                 <div className="card-color">
                   <div id="card-date">
-                    {" "}
                     Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
-                    <h5>Submitted Work:</h5>{" "}
+                    <h5>Submitted Work:</h5>
                     <span>
                       <a
                         className="submission-link"
                         href={card.submission}
                         target="_blank"
                       >
-                        {card.submission}{" "}
+                        {card.submission}
                       </a>
                     </span>
                     <br />
                   </div>
                   <span>
-                    {" "}
                     <div id="card-feedback">
-                      {" "}
                       <h5>
                         {card.body && mentorName
                           ? mentorName.find((m) => m.id === card.mentor_id)
@@ -134,7 +120,7 @@ const SubmissionCard = ({ id }) => {
                               .surname +
                             " : "
                           : ""}
-                      </h5>{" "}
+                      </h5>
                       {card.body
                         ? splitLines(card.body).map((f, i) => (
                             <p key={i}>{f}</p>

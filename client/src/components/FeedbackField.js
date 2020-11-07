@@ -41,7 +41,7 @@ const FeedbackField = ({ id, mentor_id, cardData, setCardData }) => {
   };
 
   return (
-    <div>
+    <div id="comment">
       <input
         className="comment-input"
         id={id}

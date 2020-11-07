@@ -1,9 +1,10 @@
 .container {
   padding: 20px;
   margin: 20px auto;
+  margin-top: 100px;
   border: 2px solid #cccccc;
   background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
-  width: 500px;
+  width: 75vw;
 }
 #login-container {
   background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
@@ -20,7 +21,7 @@ h2,
 h4 {
   font-family: sans-serif;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   margin: 0 0 35px 0;
   font-weight: 200;
   color: white;
@@ -32,14 +33,12 @@ h4 {
   margin-left: 50px;
 }
 
-form {
+#form {
   background-image: linear-gradient(0deg, #534444 0%, #ed4343 100%);
   height: auto;
   display: flex;
   flex-direction: column;
-  width: 350px;
   margin: auto;
-
   padding: 15px;
   box-sizing: border-box;
   font-size: 12px;
@@ -60,7 +59,6 @@ select {
 
 .btn {
   text-transform: uppercase;
-
   outline: none;
   margin: 10px auto;
   padding: 10px;
@@ -74,17 +72,23 @@ select {
   letter-spacing: 1.6px;
   line-height: 19px;
   border: 2px solid rgb(228, 228, 228, 0.5);
-}
-
-footer {
-  background-color: gray;
-  color: aliceblue;
-  text-align: center;
-  margin-top: 250px;
+  width: 20vw;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (min-device-width: 769px) and (max-device-width: 3000px) {
+  .container {
+    padding: 20px;
+    margin: 20px auto;
+    border: 2px solid #cccccc;
+    background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+    width: 40vw;
+  }
+  /* #form{
+   width:100%;
+ } */
 }

@@ -21,7 +21,7 @@ function ChooseCohort() {
   }, []);
 
   return !cohort ? (
-    <div style={{ marginLeft: "35rem" }}>
+    <div style={{ marginLeft: "32rem" }}>
       <Loader
         type="ThreeDots"
         color="red"

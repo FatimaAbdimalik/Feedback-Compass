@@ -36,7 +36,7 @@ function MentorFeedback({ setUser }) {
             <img id="logo" src={Logo} width="400" />
           </a>
 
-          <h1 className="welcom">Students Feedback</h1>
+          <h1 className="welcom">Student Feedback</h1>
         </div>
         <div>
           <Logout setUser={setUser} />
@@ -46,13 +46,15 @@ function MentorFeedback({ setUser }) {
           <div id="student-profile">
             <div id="student-details">
               <img src={profilePhoto} id="avatar" />
-              <div id="student-name">
-                <h4>
+              <div id="student-name-container">
+                <h4 id="student-name">
                   {studentDetails
                     ? `${studentDetails.name} ${studentDetails.surname}`
                     : null}
                 </h4>
-                <h4>{studentDetails ? studentDetails.biography : null}</h4>
+                <h5 className="bio">
+                  {studentDetails ? studentDetails.biography : null}
+                </h5>
               </div>
             </div>
 

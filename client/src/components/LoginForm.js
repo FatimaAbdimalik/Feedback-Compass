@@ -9,7 +9,6 @@ function LoginForm({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
   const history = useHistory();
   let location = useLocation();
 
@@ -66,7 +65,7 @@ function LoginForm({ setUser }) {
         <h4>CYF feedback tracker</h4>
 
         <h2>Sign In</h2>
-        <form>
+        <form id="form">
           <h3>{message}</h3>
           <input
             id="email-input"
@@ -87,14 +86,11 @@ function LoginForm({ setUser }) {
               login
             </button>
 
-            {
-              <Link to={`/signup/${location.pathname.slice(7)}`}>
-                {" "}
-                <button className="btn" type="submit">
-                  Sign Up{" "}
-                </button>
-              </Link>
-            }
+            <Link to={`/signup/${location.pathname.slice(7)}`}>
+              <button className="btn" type="submit">
+                Sign Up
+              </button>
+            </Link>
           </div>
         </form>
       </div>

@@ -3,7 +3,6 @@ import { Accordion, Button, Card } from "react-bootstrap";
 import "./StudentProfile.css";
 import "./MentorFeedback";
 import axios from "axios";
-import moment from "moment";
 import FeedbackField from "./FeedbackField";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
@@ -58,15 +57,11 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   ) : (
     <div>
       <input
+        style={{ margin: "0 auto" }}
+        id="search-bar"
         type="text"
         value={searchItem}
         placeholder="Search for submission title here"
-        style={{
-          width: "20rem",
-          backgroundColor: "white",
-          marginLeft: "12rem",
-          color: "black",
-        }}
         onChange={handleInputChange}
       />
       <div>
@@ -122,14 +117,12 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                         )}
                       </div>
 
-                      <div id="comment">
-                        <FeedbackField
-                          id={card.id}
-                          mentor_id={mentor_id}
-                          setCardData={setCardData}
-                          cardData={cardData}
-                        />
-                      </div>
+                      <FeedbackField
+                        id={card.id}
+                        mentor_id={mentor_id}
+                        setCardData={setCardData}
+                        cardData={cardData}
+                      />
                     </div>
                   </Accordion.Collapse>
                 </Card>
