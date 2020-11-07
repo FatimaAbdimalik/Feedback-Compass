@@ -13,7 +13,7 @@ const Logout = ({ setUser }) => {
   return (
     <div id="logout">
       <button id="logout-btn" onClick={handleLogout2}>
-        Logout
+        Log out
       </button>
     </div>
   );

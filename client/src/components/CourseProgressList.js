@@ -31,6 +31,7 @@ const CourseProgressList = ({ id }) => {
                 course={subject.modules}
                 completed={subject.completed}
                 id={subject.syllabus_id}
+                student_id={id}
               />
             </div>
           );
