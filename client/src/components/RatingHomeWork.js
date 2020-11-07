@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import "./RatingHomeWork";
 const RatingHomeWork = () => {
-  const [choosen, setChoosen] = useState();
+  const [choosen, setChoosen] = useState("easy");
   console.log(choosen);
+
+  // let greenRadioButton = document.getElementById("green");
+
+  // if (greenRadioButton) {
+  //   greenRadioButton.style.color = "green";
+  //   console.log(greenRadioButton);
+  // }
+
   const handleClick = (e) => {
     setChoosen(e.target.value);
   };
+
   return (
     <div className="radio-button">
       <div>
@@ -16,6 +25,7 @@ const RatingHomeWork = () => {
 
         <input
           type="radio"
+          id="green"
           checked={choosen === "easy"}
           value="easy"
           style={{
@@ -24,6 +34,7 @@ const RatingHomeWork = () => {
             height: "50px",
             background: "green",
             cursor: "pointer",
+            border: "1px solid #00FF00",
           }}
           onClick={handleClick}
         />
