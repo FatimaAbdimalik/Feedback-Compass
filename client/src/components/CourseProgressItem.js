@@ -2,22 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./StudentProfile.css";
-const CourseProgressItem = ({ date, course, completed, id }) => {
+const CourseProgressItem = ({ date, course, completed, id, student_id }) => {
   const [isChecked, setIsChecked] = useState(completed);
 
-  let student_id = useParams();
-
+  console.log(student_id);
   const handleChange = (e) => {
     setIsChecked(e.target.checked);
-
     axios
-      .put(`http://localhost:3100/api/syllabus?student_id=${student_id.id}`, {
+      .put(`http://localhost:3100/api/syllabus?student_id=${student_id}`, {
         completed: e.target.checked,
         syllabus_id: id,
       })
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   };
 

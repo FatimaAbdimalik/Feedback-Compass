@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import "./UpdateProfile.css";
@@ -38,13 +38,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
         })
         .then(function (response) {
           setStudentDetails(response.data);
-          // setValue({
-          //   name: "",
-          //   surname: "",
-          //   email: "",
-          //   biography: "",
-          // });
-          alert("Your Profile Is Updated");
         })
 
         .catch((error) => {
@@ -52,8 +45,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
             console.log(error);
           }
         });
-    } else {
-      alert("Please add your details");
     }
   };
 
@@ -65,8 +56,6 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           <form className="Modals" onSubmit={handleSubmit}>
-            {/* {submitted ? <h3>Thank you for updating your details.</h3> : null} */}
-
             <input
               id="editprofile-input"
               type="text"
@@ -89,7 +78,7 @@ function UpdateProfile({ studentDetails, setStudentDetails }) {
               placeholder="Add a biography"
               onChange={handleChange}
             />
-            <button id="edit-profile-btn" type="submit" onClick={handleClose}>
+            <button id="edit" type="submit" onClick={handleClose}>
               Save
             </button>
           </form>

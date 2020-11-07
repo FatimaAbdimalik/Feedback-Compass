@@ -7,15 +7,13 @@ import moment from "moment";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
+import Logout from "./Logout";
 
-function StudentProfile() {
+function MentorFeedback({ setUser }) {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
 
   let { student_id, mentor_id } = useParams();
-
-  //------------ Modules list  handling -------->
-  const [moduleTitle, setModuleTitle] = useState("");
 
   useEffect(() => {
     axios
@@ -38,22 +36,31 @@ function StudentProfile() {
             <img id="logo" src={Logo} width="400" />
           </a>
 
-          <h1 className="welcom">Students Feedback</h1>
+          <h1 className="welcom">Student Feedback</h1>
         </div>
+        <div>
+          <Logout setUser={setUser} />
+        </div>
+
         <div id="student-body">
           <div id="student-profile">
             <div id="student-details">
               <img src={profilePhoto} id="avatar" />
-              <div id="student-name">
-                <h4>
+              <div id="student-name-container">
+                <h4 id="student-name">
                   {studentDetails
                     ? `${studentDetails.name} ${studentDetails.surname}`
                     : null}
                 </h4>
-                <h4>{studentDetails ? studentDetails.biography : null}</h4>
+                <h5 className="bio">
+                  {studentDetails ? studentDetails.biography : null}
+                </h5>
               </div>
             </div>
+
+            <CourseProgressList id={student_id} />
           </div>
+
           <div id="feedback">
             <div>
               <MentorViewSubmission
@@ -68,4 +75,4 @@ function StudentProfile() {
   );
 }
 
-export default StudentProfile;
+export default MentorFeedback;

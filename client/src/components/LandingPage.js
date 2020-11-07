@@ -11,17 +11,20 @@ const LandingPage = () => {
         <h1 className="heading-title">Welcome to CYF feedback tracker</h1>
       </div>
 
-      <h2 id="login-question">Log in as?</h2>
+      <h2 id="login-question">Login or sign up as?</h2>
 
       <div id="options">
-        <a href="/login/student">
+        <Link to={"/login/student"}>
           <button id="student">STUDENT</button>
-        </a>
-        <a href="/login/mentor">
+        </Link>
+
+        <Link to={"/login/mentor"}>
           <button id="mentor">MENTOR</button>
-        </a>
+        </Link>
       </div>
-      <footer>CYF copyright@2020</footer>
+      <div id="footer">
+        <footer>CYF copyright@2020</footer>
+      </div>
     </div>
   );
 };

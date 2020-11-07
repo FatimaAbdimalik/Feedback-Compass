@@ -8,9 +8,10 @@ import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
 import Filter from "./Filter";
+import Logout from "./Logout";
 import "./StudentProfile.css";
 
-function StudentProfile() {
+function StudentProfile({ setUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
   const [feedback, setFeedback] = useState([]);
@@ -42,25 +43,32 @@ function StudentProfile() {
   };
 
   return (
-    <div>
-      <div id="student-container">
+    <div id="student-container">
+      <div>
         <div id="student-heading">
           <a href="/">
             <img id="logo" src={Logo} width="400" />
           </a>
+
           <h1 className="welcom">Track Your Feedback</h1>
+          <div>
+            <Logout setUser={setUser} />
+          </div>
         </div>
+
         <div id="student-body">
           <div id="student-profile">
             <div id="student-details">
               <img src={profilePhoto} id="avatar" />
-              <div id="student-name">
-                <h4>
+              <div id="student-name-container">
+                <h4 id="student-name">
                   {studentDetails
                     ? `${studentDetails.name} ${studentDetails.surname}`
                     : null}
                 </h4>
-                <h4>{studentDetails ? studentDetails.biography : null}</h4>
+                <h5 className="bio">
+                  {studentDetails ? studentDetails.biography : null}
+                </h5>
                 <h4>
                   {studentDetails ? (
                     <UpdateProfile
@@ -72,7 +80,7 @@ function StudentProfile() {
               </div>
             </div>
 
-            <CourseProgressList />
+            <CourseProgressList id={id} />
 
             <div id="feedback-panel">
               <div id="single-feedback"></div>

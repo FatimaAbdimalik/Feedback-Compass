@@ -7,7 +7,6 @@ const ModuleDropDown = ({ id }) => {
   const handleChange = (e) => {
     setSelect(e.target.value);
   };
-
   useEffect(() => {
     axios
       .get("http://localhost:3100/api/get-syllabus")
@@ -20,16 +19,16 @@ const ModuleDropDown = ({ id }) => {
   return !subject ? (
     <div>Loading</div>
   ) : (
-    <div>
-      <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
-        <option>Select A Module</option>
-        {subject.map((sub, i) => {
-          return <option key={i}>{sub.modules}</option>;
-        })}
-      </select>
-      {select ? <LessonsDropDown module={select} id={id} /> : null}
-    </div>
-  );
+      <div>
+        <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
+          <option>Select A Module</option>
+          {subject.map((sub, i) => {
+            return <option key={i}>{sub.modules}</option>;
+          })}
+        </select>
+        {select ? <LessonsDropDown module={select} id={id} /> : null}
+      </div>
+    );
 };
 
 export default ModuleDropDown;
