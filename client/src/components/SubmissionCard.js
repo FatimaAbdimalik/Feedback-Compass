@@ -49,7 +49,7 @@ const SubmissionCard = ({ id }) => {
     setSearchItem(e.target.value);
   };
 
-  return !cardData ? (
+  return !cardData.length ? (
     <div>
       <Filter searchItem={searchItem} handleChange={handleChange} />
       Loading...
