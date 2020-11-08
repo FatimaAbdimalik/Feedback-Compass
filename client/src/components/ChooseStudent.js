@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./ChooseStudent.css";
 
 function ChooseStudents({ selectCohort }) {
   const [studentList, setStudentList] = useState([]);
-  const [select, setSelect] = useState();
+
   let location = useLocation();
 
   useEffect(() => {
