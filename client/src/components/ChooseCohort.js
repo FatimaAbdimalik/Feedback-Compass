@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ChooseStudent from "./ChooseStudent";
 import Loader from "react-loader-spinner";
 import "./ChooseCohort.css";
+import "./ChooseStudentStyling.css";
 
 import axios from "axios";
 
