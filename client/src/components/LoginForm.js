@@ -3,7 +3,6 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
-import SignUp from "./SignUp";
 
 function LoginForm({ setUser }) {
   const [email, setEmail] = useState("");

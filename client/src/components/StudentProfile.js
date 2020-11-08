@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
-import Filter from "./Filter";
 import Logout from "./Logout";
 import "./StudentProfile.css";
 
 function StudentProfile({ setUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
-  const [feedback, setFeedback] = useState([]);
-  const [comment, setComment] = useState("");
-  const [isCommented, setIsCommented] = useState("");
 
   let { id } = useParams();
 
@@ -34,13 +30,6 @@ function StudentProfile({ setUser }) {
         }
       });
   }, [id]);
-
-  ////-----------Biography Section------------------>
-  const history = useHistory();
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    history.push(`/students/${id}/edit`);
-  };
 
   return (
     <div id="student-container">
@@ -87,7 +76,6 @@ function StudentProfile({ setUser }) {
             </div>
           </div>
           <div id="feedback">
-            {/* <Filter id={id} /> */}
             <StudentSubmission id={id} />
             <SubmissionCard id={id} />
           </div>

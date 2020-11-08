@@ -27,7 +27,7 @@ function ChooseCohort() {
         color="red"
         height={500}
         width={100}
-        timeout={3000} //3 secs
+        timeout={3000}
       />
     </div>
   ) : (

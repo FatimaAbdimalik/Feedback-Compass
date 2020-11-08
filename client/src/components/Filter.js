@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import StudentSubmission from "./StudentSubmission";
-import SubmissionCard from "./SubmissionCard";
 
-const Filter = ({ foundTitle }) => {
+const Filter = () => {
   const [searchItem, setSearchItem] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {}, []);
 

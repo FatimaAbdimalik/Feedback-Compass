@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import "./StudentProfile.css";
 const CourseProgressItem = ({ date, course, completed, id, student_id }) => {
   const [isChecked, setIsChecked] = useState(completed);
