@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, Link, useLocation } from "react-router-dom";
-import Logo from "./Logo.png";
+import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import "./SignUp.css";
 function SignUp() {
@@ -75,62 +75,67 @@ function SignUp() {
   };
 
   return (
-    <div id="signup-container">
-      <a href="/">
-        <img id="logo" src={Logo} width="400" />
-      </a>
-
-      <form>
-        <h3 className="sign-up">Sign Up</h3>
-        <label>First name</label>
-        <input
-          name="name"
-          type="text"
-          className="form-control"
-          placeholder="First name"
-          onChange={handleChange}
-          required
-        />
-        <label>Last name</label>
-        <input
-          required
-          name="surname"
-          type="text"
-          className="form-control"
-          placeholder="Last name"
-          onChange={handleChange}
-        />
-        <label>Email address</label>
-        <input
-          required
-          name="email"
-          type="email"
-          className="form-control"
-          placeholder="Enter email"
-          onChange={handleChange}
-        />
-        <label>Password</label>
-        <input
-          required
-          name="password"
-          type="password"
-          className="form-control"
-          placeholder="Enter password"
-          onChange={handleChange}
-        />
-        <label>Phone Number</label>
-        <input
-          name="phone_number"
-          type="phone_Number"
-          className="form-control"
-          placeholder="Enter phone Number"
-          onChange={handleChange}
-          required
-        />
-        <div className="signup-options">
-          {userType == "student" ? (
-            <section>
-              <select name="cohort_name" onChange={handleChange}>
+    <div>
+      <div id="heading">
+        <a href="/">
+          <img id="logo" src={Logo} width="400" />
+        </a>
+      </div>
+      <div id="signup-container">
+        <form>
+          <h3 className="sign-up">Sign Up</h3>
+          <label>First name</label>
+          <input
+            name="name"
+            type="text"
+            className="form-control"
+            placeholder="First name"
+            onChange={handleChange}
+            required
+          />
+          <label>Last name</label>
+          <input
+            required
+            name="surname"
+            type="text"
+            className="form-control"
+            placeholder="Last name"
+            onChange={handleChange}
+          />
+          <label>Email address</label>
+          <input
+            required
+            name="email"
+            type="email"
+            className="form-control"
+            placeholder="Enter email"
+            onChange={handleChange}
+          />
+          <label>Password</label>
+          <input
+            required
+            name="password"
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+            onChange={handleChange}
+          />
+          <label>Phone Number</label>
+          <input
+            name="phone_number"
+            type="phone_Number"
+            className="form-control"
+            placeholder="Enter phone Number"
+            onChange={handleChange}
+            required
+          />
+          <div className="signup-options">
+            {userType == "student" ? (
+              <select
+                className="select-cohort"
+                name="cohort_name"
+                onChange={handleChange}
+              >
                 <option id="cohort-option">Select a Cohort</option>
                 {selectCohort
                   ? selectCohort.map((cohort, index) => (
@@ -144,17 +149,17 @@ function SignUp() {
                     ))
                   : ""}
               </select>
-            </section>
-          ) : (
-            ""
-          )}
-          <Link to={`/login/${userType}`}>
-            <button className="btn" type="submit" onClick={handleSubmit}>
-              submit{" "}
-            </button>
-          </Link>
-        </div>
-      </form>
+            ) : (
+              ""
+            )}
+            <Link to={`/login/${userType}`}>
+              <button className="btn" type="submit" onClick={handleSubmit}>
+                submit{" "}
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

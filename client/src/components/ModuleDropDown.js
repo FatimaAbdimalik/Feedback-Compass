@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./StudentResponse.css";
 import LessonsDropDown from "./LessonsDropDown";
 const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
@@ -19,16 +20,16 @@ const ModuleDropDown = ({ id }) => {
   return !subject ? (
     <div>Loading</div>
   ) : (
-      <div>
-        <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
-          <option>Select A Module</option>
-          {subject.map((sub, i) => {
-            return <option key={i}>{sub.modules}</option>;
-          })}
-        </select>
-        {select ? <LessonsDropDown module={select} id={id} /> : null}
-      </div>
-    );
+    <div>
+      <select className="dropdown" onChange={handleChange}>
+        <option>Select A Module</option>
+        {subject.map((sub, i) => {
+          return <option key={i}>{sub.modules}</option>;
+        })}
+      </select>
+      {select ? <LessonsDropDown module={select} id={id} /> : null}
+    </div>
+  );
 };
 
 export default ModuleDropDown;

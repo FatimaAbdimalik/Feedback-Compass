@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link, useLocation } from "react-router-dom";
-import Logo from "./Logo.png";
+import Logo from "./images/cyf_brand.png";
+import FeedbackLogo from "./Logo.png";
 import axios from "axios";
 import "./LoginForm.css";
 import SignUp from "./SignUp";
@@ -31,7 +32,7 @@ function LoginForm({ setUser }) {
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "student"
         ) {
-          return;
+          setMessage("Invalid STUDENT account!");
         } else if (
           response.data.user_type === "mentor" &&
           location.pathname.slice(7) == "mentor"
@@ -42,6 +43,7 @@ function LoginForm({ setUser }) {
           response.data.user_type === "student" &&
           location.pathname.slice(7) == "mentor"
         ) {
+          setMessage("Invalid MENTOR account!");
         }
       })
       .catch(function (error) {
@@ -61,13 +63,14 @@ function LoginForm({ setUser }) {
         </a>
       </div>
       <div className="container">
-        <h2 className="welcom-form">Welcome to </h2>
-        <h4>CYF feedback tracker</h4>
+        <img className="form-logo" src={FeedbackLogo} />
 
-        <h2>Sign In</h2>
+        <h2 className="sign-in">Sign In</h2>
+
         <form id="form">
-          <h3>{message}</h3>
+          <h5 className="invalid">{message}</h5>
           <input
+            className="form-inputs"
             id="email-input"
             name="email"
             type="email"
@@ -75,6 +78,7 @@ function LoginForm({ setUser }) {
             required
           />
           <input
+            className="form-inputs"
             id="password-input"
             name="password"
             type="password"
@@ -85,7 +89,7 @@ function LoginForm({ setUser }) {
             <button className="btn" type="submit" onClick={handleSubmit}>
               login
             </button>
-
+            <h5>Or</h5>
             <Link to={`/signup/${location.pathname.slice(7)}`}>
               <button className="btn" type="submit">
                 Sign Up

@@ -7,11 +7,6 @@ import moment from "moment";
 const SubmitWork = ({ lessonValue, id }) => {
   const [submission, setSubmission] = useState();
 
-  const currentDate = JSON.stringify(moment());
-  const handleDate = (date) => {
-    return date.split("T")[0].substring(1);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -19,7 +14,7 @@ const SubmitWork = ({ lessonValue, id }) => {
         student_id: id,
         title: lessonValue,
         submission: submission,
-        submission_date: handleDate(currentDate),
+        submission_date: new Date(),
       })
       .then(function (response, err) {
         if (response) {

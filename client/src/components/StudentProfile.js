@@ -45,15 +45,16 @@ function StudentProfile({ setUser }) {
   return (
     <div id="student-container">
       <div>
-        <div id="student-heading">
+        <div id="profile-heading">
           <a href="/">
-            <img id="logo" src={Logo} width="400" />
+            <img id="logo" src={Logo} width="320" />
           </a>
 
-          <h1 className="welcom">Track Your Feedback</h1>
-          <div>
-            <Logout setUser={setUser} />
-          </div>
+          <h1 className="welcom-mentor">
+            Hello {studentDetails ? studentDetails.name : null}
+          </h1>
+
+          <Logout setUser={setUser} />
         </div>
 
         <div id="student-body">
@@ -81,10 +82,6 @@ function StudentProfile({ setUser }) {
             </div>
 
             <CourseProgressList id={id} />
-
-            <div id="feedback-panel">
-              <div id="single-feedback"></div>
-            </div>
           </div>
           <div id="feedback">
             {/* <Filter id={id} /> */}

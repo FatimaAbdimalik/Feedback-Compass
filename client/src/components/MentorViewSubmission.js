@@ -4,12 +4,41 @@ import "./StudentProfile.css";
 import "./MentorFeedback";
 import axios from "axios";
 import FeedbackField from "./FeedbackField";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState([]);
   const [searchItem, setSearchItem] = useState("");
 
   const splitLines = (str) => str.split(/\r?\n/);
+
+  function timeSince(date) {
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = seconds / 31536000;
+
+    if (interval > 1) {
+      return Math.floor(interval) + " years ago";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months ago";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days ago ao";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours ago";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes ago";
+    }
+    return Math.floor(seconds) + " seconds ago";
+  }
 
   const handleInputChange = (e) => {
     setSearchItem(e.target.value);
@@ -71,17 +100,21 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
               <Accordion>
                 <Card className="submission-card" key={index}>
                   <Card.Title
+                    style={{ width: "80%", display: "flex" }}
                     id="card-title"
-                    style={{ width: "40rem", display: "flex" }}
                   >
-                    <Accordion.Toggle as={Button} variant="light" eventKey="0">
+                    <Accordion.Toggle
+                      className="title-btn"
+                      variant="light"
+                      eventKey="0"
+                    >
                       {card.title}
                     </Accordion.Toggle>
                   </Card.Title>
                   <Accordion.Collapse eventKey="0">
                     <div className="card-color">
                       <div id="card-date">
-                        Sent: {handleDate(card.submission_date)}
+                        Sent: {timeSince(Date.parse(card.submission_date))}
                       </div>
                       <div>
                         <span>
@@ -109,7 +142,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                         {card.response ? (
                           <div>
                             {splitLines(card.response).map((r, i) => (
-                              <p key={i}>{r}</p>
+                              <p className="card-response" key={i}>
+                                {r}
+                              </p>
                             ))}{" "}
                           </div>
                         ) : (

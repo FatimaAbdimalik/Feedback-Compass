@@ -16,7 +16,7 @@ const LessonsDropDown = ({ module, id }) => {
   ) : (
     <div>
       <select
-        style={{ backgroundColor: "gray" }}
+        className="dropdown"
         onChange={(e) => setLessonValue(e.target.value)}
       >
         <option>Select A Lesson</option>

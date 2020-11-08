@@ -18,18 +18,12 @@ const StudentResponse = ({ id, student_id, responses }) => {
   }, []);
 
   const handleSubmitResponse = (e) => {
-    const currentDate = JSON.stringify(moment());
-
-    const handleDate = (date) => {
-      return date.split("T")[0];
-    };
-
     axios
       .put("/api/response", {
         id: e.target.value,
         student_id: student_id,
         response: value + "\n",
-        response_date: handleDate(currentDate),
+        response_date: new Date(),
       })
       .then(function (res) {
         const updatedResponse = [...response, value];

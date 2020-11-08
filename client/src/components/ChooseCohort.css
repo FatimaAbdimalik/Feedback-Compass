@@ -1,28 +1,37 @@
 #cohort-container {
-  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
-    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
-  background-size: cover;
-  min-height: 670px;
-  display: flex;
-  justify-content: center;
-}
-#search-cohort {
-  margin-top: 100px;
-  margin-bottom: 200px;
-  background-image: linear-gradient(0deg, #534444 0%, #ed4343 100%);
-  height: auto;
   display: flex;
   flex-direction: column;
-  width:45vw;
-  min-height: 100px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 12px;
-  border-radius: 20px;
+  align-items: center;
 }
 
+#search-cohort {
+  padding: 15px;
+  margin-top: 80px;
+  border: 2px solid #969696;
+  background-color: rgb(231, 231, 231);
+  width: 60vw;
+  box-shadow: 0px 10px rgb(223, 5, 5);
+  border-radius: 10px 10px;
+  text-align: center;
+}
+.cohorts-title {
+  color: #505050;
+  margin: 15px;
+}
 #cohort-option {
-  background-color: gray;
+  background-color: rgb(90, 90, 90);
   color: white;
   font-size: 15px;
+}
+.select-cohorts {
+  background-color: #ffffff;
+  height: 40px;
+  margin: 5px;
+  width: 80%;
+  border-radius: 6px;
+  border: none;
+  color: #505050;
+  font-size: 18px;
+  font-weight: 500;
+  align-items: center;
 }

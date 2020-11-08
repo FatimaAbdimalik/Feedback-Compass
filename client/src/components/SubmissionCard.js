@@ -11,6 +11,33 @@ const SubmissionCard = ({ id }) => {
 
   const splitLines = (str) => str.split(/\r?\n/);
 
+  function timeSince(date) {
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = seconds / 31536000;
+
+    if (interval > 1) {
+      return Math.floor(interval) + " years ago";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months ago";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days ago ao";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours ago";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes ago";
+    }
+    return Math.floor(seconds) + " seconds ago";
+  }
+
   useEffect(() => {
     axios
       .get(`/api/get-submissions/${id}`)
@@ -40,10 +67,6 @@ const SubmissionCard = ({ id }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleDate = (date) => {
-    return date.split("T")[0];
-  };
-
   const handleChange = (e) => {
     return setSearchItem(e.target.value);
   };
@@ -60,14 +83,15 @@ const SubmissionCard = ({ id }) => {
     </div>
   ) : (
     <div>
-      <input
-        style={{ margin: "0 auto" }}
-        id="search-bar"
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        onChange={handleChange}
-      />
+      <div className="search-bar">
+        <input
+          id="search-bar"
+          type="search"
+          value={searchItem}
+          placeholder="Search for submission title here"
+          onChange={handleChange}
+        />
+      </div>
       {filterCardData(searchItem).map((card, index) => {
         return (
           <Accordion>
@@ -76,7 +100,11 @@ const SubmissionCard = ({ id }) => {
                 style={{ width: "80%", display: "flex" }}
                 id="card-title"
               >
-                <Accordion.Toggle as={Button} variant="light" eventKey="0">
+                <Accordion.Toggle
+                  className="title-btn"
+                  variant="light"
+                  eventKey="0"
+                >
                   {mentorName && card.body ? (
                     "Feedback from " +
                     mentorName.find((m) => m.id === card.mentor_id).name +
@@ -94,10 +122,10 @@ const SubmissionCard = ({ id }) => {
               <Accordion.Collapse eventKey="0">
                 <div className="card-color">
                   <div id="card-date">
-                    Sent: {handleDate(card.submission_date)}
+                    Sent: {timeSince(Date.parse(card.submission_date))}
                   </div>
                   <div id="card-submitted">
-                    <h5>Submitted Work:</h5>
+                    <h5>Submitted Link:</h5>
                     <span>
                       <a
                         className="submission-link"
