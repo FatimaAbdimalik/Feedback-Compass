@@ -10,7 +10,6 @@ const ModuleDropDown = ({ id }) => {
   useEffect(() => {
     axios
       .get("/api/get-syllabus")
-
       .then((response) => {
         setSubject(response.data);
       });
