@@ -342,7 +342,7 @@ router.put("/syllabus", (req, res) => {
 router.get("/syllabus", (req, res) => {
   const studentId = req.query.student_id;
   const getQuery =
-    "SELECT s.modules, s.start_date, p.completed,p.syllabus_id FROM syllabus s JOIN progress p ON(s.id = p.syllabus_id) WHERE p.student_id = $1";
+    "SELECT s.modules, s.start_date, p.completed,p.syllabus_id FROM syllabus s JOIN progress p ON(s.id = p.syllabus_id) WHERE p.student_id = $1 ORDER BY syllabus_id";
   Connection.query(getQuery, [studentId], (err, result) => {
     if (err) {
       res.json(err);
