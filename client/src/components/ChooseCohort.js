@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
+import ChooseStudent from "./ChooseStudent";
 import "./ChooseCohort.css";
 import "./ChooseStudentStyling.css";
 
