@@ -352,7 +352,7 @@ router.get("/syllabus", (req, res) => {
 });
 
 router.get("/get-syllabus", (req, res) => {
-  const getAllModules = "select modules from syllabus";
+  const getAllModules = "select modules from syllabus ORDER BY id";
 
   Connection.query(getAllModules, (err, result) => {
     if (err) {
