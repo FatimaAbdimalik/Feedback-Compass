@@ -11,7 +11,7 @@ function ChooseCohort() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/cohorts")
+      .get("/api/cohorts")
       .then((data) => {
         setCohort(data.data);
       })
