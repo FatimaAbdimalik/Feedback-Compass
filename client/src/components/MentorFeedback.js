@@ -3,7 +3,6 @@ import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
 import "./StudentProfile.css";
-import moment from "moment";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ChooseStudent from "./ChooseStudent";
 import Loader from "react-loader-spinner";
+import ChooseStudent from "./ChooseStudent";
 import "./ChooseCohort.css";
+import "./ChooseStudentStyling.css";
 
 import axios from "axios";
 
@@ -27,7 +28,7 @@ function ChooseCohort() {
         color="red"
         height={500}
         width={100}
-        timeout={3000} //3 secs
+        timeout={3000}
       />
     </div>
   ) : (

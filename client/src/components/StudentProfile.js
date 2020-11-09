@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import Logo from "./Logo.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
-import Filter from "./Filter";
 import Logout from "./Logout";
 import "./StudentProfile.css";
 
@@ -31,9 +30,6 @@ function StudentProfile({ setUser }) {
         }
       });
   }, [id]);
-
-  ////-----------Biography Section------------------>
-  const history = useHistory();
 
   return (
     <div id="student-container">

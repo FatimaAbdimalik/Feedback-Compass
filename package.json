@@ -16,7 +16,10 @@
     "preserve": "npm run build",
     "serve": "npm start",
     "start": "node dist/server.js"
+<<<<<<< HEAD
     
+=======
+>>>>>>> master
   },
   "repository": {
     "type": "git",
