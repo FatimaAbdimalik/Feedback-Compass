@@ -20,7 +20,7 @@
   height: auto;
   border-radius: 100%;
   margin-top: -50px;
-  border: 10px solid rgb(197, 197, 197, 0.5);
+  border: 10px solid rgba(255, 255, 255, 0.5);
   justify-self: center;
 }
 
@@ -46,7 +46,7 @@
 
 #student-details {
   margin-top: 60px;
-  background-color: #d43535;
+  background-color: rgb(237, 67, 67);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -63,7 +63,8 @@
 }
 .search-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 /*  Modules  */
@@ -95,19 +96,6 @@
   font-weight: 600;
   color: #494949;
 }
-/* 
-#modules-title {
-  font-size: 18px;
-  padding: 15px;
-  margin: 5px;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(61, 61, 61);
-  border-radius: 10px;
-  border: solid 2px white;
-  color: rgb(221, 221, 221);
-} */
 
 /* feedback */
 
@@ -177,7 +165,7 @@
 }
 
 .submission-card {
-  background-color: rgba(43, 43, 43, 0.87);
+  background-color: rgba(255, 255, 255, 0.87);
   margin: 10px;
   border-radius: 10px;
   display: flex;
@@ -219,7 +207,7 @@
 
 #add-submission-btn {
   text-align: center;
-  margin-left: 40vw;
+
   position: sticky;
 
   background-color: rgba(216, 46, 46, 0.87);

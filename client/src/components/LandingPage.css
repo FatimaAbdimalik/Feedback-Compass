@@ -65,7 +65,7 @@
   border: none;
   margin: 0 auto;
   margin-top: 100px;
-  box-shadow: 0 9px hsl(0, 0%, 60%, 0.8);
+
   cursor: pointer;
 }
 #mentor {
@@ -78,7 +78,7 @@
   font-size: 30px;
   font-weight: 600;
   border: none;
-  box-shadow: 0 9px rgba(153, 153, 153, 0.801);
+
   cursor: pointer;
 }
 #student:hover {
@@ -86,7 +86,6 @@
 }
 
 #student:active {
-  box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
 }
 
@@ -95,7 +94,6 @@
 }
 
 #mentor:active {
-  box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
 }
 footer {

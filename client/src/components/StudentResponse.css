@@ -7,7 +7,8 @@
 }
 
 .waiting-feedback {
-  color: rgb(209, 175, 175);
+  color: rgb(233, 233, 233);
+  font-weight: 600;
   margin: 5px;
 }
 .dropdown {

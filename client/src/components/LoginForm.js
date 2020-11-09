@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./images/cyf_brand.png";
-import FeedbackLogo from "./Logo.png";
+
 import axios from "axios";
 import "./LoginForm.css";
 import SignUp from "./SignUp";
@@ -63,8 +63,6 @@ function LoginForm({ setUser }) {
         </a>
       </div>
       <div className="container">
-        <img className="form-logo" src={FeedbackLogo} />
-
         <h2 className="sign-in">Sign In</h2>
 
         <form id="form">

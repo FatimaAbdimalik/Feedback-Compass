@@ -57,20 +57,12 @@
   margin: 5px;
   height: 25px;
   width: 25px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
 
   border: 1px solid #ffffff;
   border-radius: 4px;
   outline: none;
   transition-duration: 0.3s;
   cursor: pointer;
-}
-
-.checkbox > input:checked {
-  border: 1px solid #ffffff;
-  background-color: #00992e;
 }
 
 #modules-title {
@@ -81,10 +73,10 @@
   padding: 10px;
   margin: 5px;
   cursor: pointer;
-  background-color: rgb(61, 61, 61);
+  background-color: rgb(237, 67, 67);
   border-radius: 7px;
   border: solid 2px white;
-  color: rgb(221, 221, 221);
+  color: rgb(255, 255, 255);
 }
 
 option {
@@ -130,11 +122,12 @@ option {
 }
 .search-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 .title-btn {
   width: 100vw;
-  background-color: rgb(107, 107, 107);
+  background-color: rgb(145, 145, 145);
   color: #ffffff;
   border-radius: 5px;
   padding: 15px;

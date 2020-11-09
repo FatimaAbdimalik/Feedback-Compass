@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "./Logo.png";
+import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
 import "./MentorFeedback.css";
@@ -33,7 +33,7 @@ function MentorFeedback({ setUser }) {
       <div id="student-container">
         <div id="profile-heading">
           <a href="/">
-            <img id="logo" src={Logo} width="320" />
+            <img id="logo" src={Logo} width="400" />
           </a>
           <h1 className="welcome">Hello Mentor</h1>
           <Logout setUser={setUser} />

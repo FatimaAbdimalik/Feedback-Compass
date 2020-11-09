@@ -27,7 +27,7 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + " days ago ao";
+      return Math.floor(interval) + " days ago";
     }
     interval = seconds / 3600;
     if (interval > 1) {
@@ -85,14 +85,16 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     </div>
   ) : (
     <div>
-      <input
-        style={{ margin: "0 auto" }}
-        id="search-bar"
-        type="text"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        onChange={handleInputChange}
-      />
+      <div className="search-bar">
+        <input
+          style={{ margin: "0 auto" }}
+          id="search-bar"
+          type="text"
+          value={searchItem}
+          placeholder="Search for submission title here"
+          onChange={handleInputChange}
+        />
+      </div>
       <div>
         {filterCardData(searchItem).map((card, index) => {
           return (

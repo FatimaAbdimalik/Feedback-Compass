@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "draft-js/dist/Draft.css";
 import "./StudentProfile.css";
-import moment from "moment";
 
 const SubmitWork = ({ lessonValue, id }) => {
   const [submission, setSubmission] = useState();

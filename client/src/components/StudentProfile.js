@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "./Logo.png";
+import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
 import { useParams, useHistory } from "react-router-dom";
@@ -14,9 +14,6 @@ import "./StudentProfile.css";
 function StudentProfile({ setUser }) {
   const [profilePhoto, setProfilePhoto] = useState(avatar);
   const [studentDetails, setStudentDetails] = useState(null);
-  const [feedback, setFeedback] = useState([]);
-  const [comment, setComment] = useState("");
-  const [isCommented, setIsCommented] = useState("");
 
   let { id } = useParams();
 
@@ -47,7 +44,7 @@ function StudentProfile({ setUser }) {
       <div>
         <div id="profile-heading">
           <a href="/">
-            <img id="logo" src={Logo} width="320" />
+            <img id="logo" src={Logo} width="400" />
           </a>
 
           <h1 className="welcom-mentor">

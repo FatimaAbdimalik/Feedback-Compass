@@ -25,7 +25,7 @@ const SubmissionCard = ({ id }) => {
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + " days ago ao";
+      return Math.floor(interval) + " days ago";
     }
     interval = seconds / 3600;
     if (interval > 1) {
