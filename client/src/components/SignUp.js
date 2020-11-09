@@ -28,7 +28,7 @@ function SignUp() {
   const history = useHistory();
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/cohorts")
+      .get("/api/cohorts")
       .then((data) => {
         setSelectCohort(data.data);
       })
