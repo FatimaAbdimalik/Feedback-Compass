@@ -8,7 +8,7 @@ const CourseProgressList = ({ id }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3100/api/syllabus?student_id=${id}`)
+      .get(`/api/syllabus?student_id=${id}`)
       .then((res) => res)
       .then((data) => setModule(data.data))
       .catch((err) => {
