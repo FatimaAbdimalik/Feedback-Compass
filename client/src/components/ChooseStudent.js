@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
-import "./ChooseStudent.css";
+import "./ChooseStudentStyling.css";
 
 function ChooseStudents({ selectCohort }) {
   const [studentList, setStudentList] = useState([]);
