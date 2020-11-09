@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
+// import { DataContext } from "./DataContext";
 import "./StudentProfile.css";
 import axios from "axios";
 import StudentResponse from "./StudentResponse";
@@ -11,6 +12,10 @@ const SubmissionCard = ({ id }) => {
   const [mentorName, setMentorName] = useState();
 
   const splitLines = (str) => str.split(/\r?\n/);
+
+  // let withoutFeedback = cardData.filter((p) => !p.body).length;
+
+  // console.log(withoutFeedback);
 
   useEffect(() => {
     axios

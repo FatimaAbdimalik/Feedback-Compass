@@ -17,7 +17,6 @@ function StudentProfile({ setUser }) {
 
   let { id } = useParams();
 
-  console.log(id);
   useEffect(() => {
     axios
       .get(`/api/students/${id}`)
