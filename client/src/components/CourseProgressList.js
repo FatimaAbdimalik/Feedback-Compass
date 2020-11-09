@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "./StudentProfile.css";
 import axios from "axios";
 import CourseProgressItem from "./CourseProgressItem";
@@ -9,7 +8,7 @@ const CourseProgressList = ({ id }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3100/api/syllabus?student_id=${id}`)
+      .get(`/api/syllabus?student_id=${id}`)
       .then((res) => res)
       .then((data) => setModule(data.data))
       .catch((err) => {

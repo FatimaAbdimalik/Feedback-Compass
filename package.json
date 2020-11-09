@@ -16,7 +16,6 @@
     "preserve": "npm run build",
     "serve": "npm start",
     "start": "node dist/server.js"
-    
   },
   "repository": {
     "type": "git",
