@@ -50,9 +50,7 @@
 .form-inputs {
   background-color: #ffffff;
   height: 40px;
-  margin: 5px;
-  margin-top: 20px;
-
+  margin-bottom: 20px;
   border-radius: 6px;
   border: none;
   color: #505050;
@@ -62,6 +60,10 @@
   border: 1px solid black;
 }
 
+.login-lable{
+  font-size: 18px;
+  font-weight: 500;
+}
 .btn {
   text-transform: uppercase;
   outline: none;
