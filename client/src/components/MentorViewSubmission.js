@@ -8,7 +8,7 @@ import FeedbackField from "./FeedbackField";
 
 export const userContext = React.createContext();
 
-const MentorViewSubmission = ({ student_id, mentor_id }) => {
+const MentorViewSubmission = ({ student_id, mentor_id, unMarkedWork }) => {
   const [cardData, setCardData] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [unMarked, setUnMarked] = useState();
@@ -16,6 +16,8 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
   let withoutFeedback = cardData.filter((p) => !p.body).length;
 
   console.log(withoutFeedback);
+
+  unMarkedWork(cardData);
   const splitLines = (str) => str.split(/\r?\n/);
 
   const handleChange = (e) => {

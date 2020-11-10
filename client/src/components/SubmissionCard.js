@@ -13,7 +13,7 @@ const SubmissionCard = ({ id }) => {
 
   const splitLines = (str) => str.split(/\r?\n/);
 
-  // let withoutFeedback = cardData.filter((p) => !p.body).length;
+  let withoutFeedback = cardData.filter((p) => !p.body).length;
 
   // console.log(withoutFeedback);
 

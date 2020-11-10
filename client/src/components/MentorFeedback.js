@@ -11,7 +11,12 @@ import Logout from "./Logout";
 function MentorFeedback({ setUser }) {
   const [profilePhoto, setProfilePhto] = useState(avatar);
   const [studentDetails, setStudetDetails] = useState("");
+  const [unMarked, setUnMarked] = useState();
 
+  const unMarkedWork = (card) => {
+    let totalUnMarkedWork = card.filter((p) => !p.body).length;
+    setUnMarked(totalUnMarkedWork);
+  };
   let { student_id, mentor_id } = useParams();
 
   useEffect(() => {
@@ -36,6 +41,13 @@ function MentorFeedback({ setUser }) {
           </a>
 
           <h1 className="welcom">Student Feedback</h1>
+          <div style={{ marginLeft: "30rem" }}>
+            {unMarked === 1
+              ? `There is a ${unMarked} unmarked submition`
+              : unMarked > 1
+              ? `There are  ${unMarked} unmarked submitions`
+              : null}
+          </div>
         </div>
         <div>
           <Logout setUser={setUser} />
@@ -64,6 +76,7 @@ function MentorFeedback({ setUser }) {
               <MentorViewSubmission
                 student_id={student_id}
                 mentor_id={mentor_id}
+                unMarkedWork={unMarkedWork}
               />
             </div>
           </div>
