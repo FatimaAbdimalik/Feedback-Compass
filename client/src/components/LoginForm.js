@@ -66,6 +66,7 @@ function LoginForm({ setUser }) {
 
         <form id="form">
           <h5 className="invalid">{message}</h5>
+          <label className="login-lable">Login With Your Email</label>
           <input
             className="form-inputs"
             id="email-input"
@@ -74,6 +75,7 @@ function LoginForm({ setUser }) {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label className="login-lable">Password</label>
           <input
             className="form-inputs"
             id="password-input"
