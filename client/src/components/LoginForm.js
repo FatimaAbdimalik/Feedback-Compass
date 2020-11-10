@@ -4,7 +4,6 @@ import Logo from "./images/cyf_brand.png";
 
 import axios from "axios";
 import "./LoginForm.css";
-import SignUp from "./SignUp";
 
 function LoginForm({ setUser }) {
   const [email, setEmail] = useState("");

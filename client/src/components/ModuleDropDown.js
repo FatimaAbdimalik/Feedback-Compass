@@ -9,12 +9,9 @@ const ModuleDropDown = ({ id }) => {
     setSelect(e.target.value);
   };
   useEffect(() => {
-    axios
-      .get("http://localhost:3100/api/get-syllabus")
-
-      .then((response) => {
-        setSubject(response.data);
-      });
+    axios.get("/api/get-syllabus").then((response) => {
+      setSubject(response.data);
+    });
   }, []);
 
   return !subject ? (

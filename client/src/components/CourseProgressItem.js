@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import "./MentorFeedback.css";
+import "./StudentProfile.css";
 const CourseProgressItem = ({ date, course, completed, id, student_id }) => {
   const [isChecked, setIsChecked] = useState(completed);
 
   const handleChange = (e) => {
     setIsChecked(e.target.checked);
     axios
-      .put(`http://localhost:3100/api/syllabus?student_id=${student_id}`, {
+      .put(`/api/syllabus?student_id=${student_id}`, {
         completed: e.target.checked,
         syllabus_id: id,
       })

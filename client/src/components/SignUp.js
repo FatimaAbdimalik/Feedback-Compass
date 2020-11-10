@@ -3,6 +3,7 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import "./SignUp.css";
+
 function SignUp() {
   const [selectCohort, setSelectCohort] = useState();
 
@@ -20,14 +21,14 @@ function SignUp() {
       return { ...previousValue, [name]: value };
     });
   };
-  /// find the path and slice only the user type
+
   let location = useLocation();
   let userType = location.pathname.slice(8);
 
   const history = useHistory();
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/cohorts")
+      .get("/api/cohorts")
       .then((data) => {
         setSelectCohort(data.data);
       })

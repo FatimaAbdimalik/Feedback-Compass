@@ -4,8 +4,6 @@ import "./StudentProfile.css";
 import "./MentorFeedback";
 import axios from "axios";
 import FeedbackField from "./FeedbackField";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
 const MentorViewSubmission = ({ student_id, mentor_id }) => {
   const [cardData, setCardData] = useState([]);

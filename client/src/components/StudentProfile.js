@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UpdateProfile from "./UpdateProfile";
 import CourseProgressList from "./CourseProgressList";
 import StudentSubmission from "./StudentSubmission";
 import SubmissionCard from "./SubmissionCard";
-import Filter from "./Filter";
 import Logout from "./Logout";
 import "./StudentProfile.css";
 
@@ -31,13 +30,6 @@ function StudentProfile({ setUser }) {
         }
       });
   }, [id]);
-
-  ////-----------Biography Section------------------>
-  const history = useHistory();
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    history.push(`/students/${id}/edit`);
-  };
 
   return (
     <div id="student-container">
@@ -81,7 +73,6 @@ function StudentProfile({ setUser }) {
             <CourseProgressList id={id} />
           </div>
           <div id="feedback">
-            {/* <Filter id={id} /> */}
             <StudentSubmission id={id} />
             <SubmissionCard id={id} />
           </div>

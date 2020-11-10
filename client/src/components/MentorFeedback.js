@@ -3,7 +3,7 @@ import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
 import "./MentorFeedback.css";
-import moment from "moment";
+import "./StudentProfile.css";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
