@@ -10,33 +10,9 @@ const SubmissionCard = ({ id }) => {
   const [mentorName, setMentorName] = useState();
 
   const splitLines = (str) => str.split(/\r?\n/);
-
-  function timeSince(date) {
-    var seconds = Math.floor((new Date() - date) / 1000);
-
-    var interval = seconds / 31536000;
-
-    if (interval > 1) {
-      return Math.floor(interval) + " years ago";
-    }
-    interval = seconds / 2592000;
-    if (interval > 1) {
-      return Math.floor(interval) + " months ago";
-    }
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return Math.floor(interval) + " days ago";
-    }
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return Math.floor(interval) + " hours ago";
-    }
-    interval = seconds / 60;
-    if (interval > 1) {
-      return Math.floor(interval) + " minutes ago";
-    }
-    return Math.floor(seconds) + " seconds ago";
-  }
+  const handleDate = (date) => {
+    return date.split("T")[0];
+  };
 
   useEffect(() => {
     axios
@@ -122,7 +98,7 @@ const SubmissionCard = ({ id }) => {
               <Accordion.Collapse eventKey="0">
                 <div className="card-color">
                   <div id="card-date">
-                    Sent: {timeSince(Date.parse(card.submission_date))}
+                    Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
                     <h5>Submitted Link:</h5>
