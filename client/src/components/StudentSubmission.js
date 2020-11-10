@@ -13,12 +13,9 @@ const StudentSubmission = ({ id }) => {
     return setShow(false);
   };
   return (
-    <div style={{margin:"0 auto"}}>
-      <Button
-        style={{ backgroundColor: "black", width: "100%" }}
-        onClick={handleModalOpen}
-      >
-        Submit Your HomeWork Here
+    <div style={{ margin: "0 auto" }}>
+      <Button id="add-submission-btn" onClick={handleModalOpen}>
+        Submit Your Work Here +
       </Button>
       <Modal
         show={show}

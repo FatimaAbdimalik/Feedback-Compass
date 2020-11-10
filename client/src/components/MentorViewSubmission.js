@@ -56,14 +56,16 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
     </div>
   ) : (
     <div>
-      <input
-        style={{ margin: "0 auto" }}
-        id="search-bar"
-        type="text"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        onChange={handleInputChange}
-      />
+      <div className="search-bar">
+        <input
+          style={{ margin: "0 auto" }}
+          id="search-bar"
+          type="text"
+          value={searchItem}
+          placeholder="Search for submission title here"
+          onChange={handleInputChange}
+        />
+      </div>
       <div>
         {filterCardData(searchItem).map((card, index) => {
           return (
@@ -71,10 +73,14 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
               <Accordion>
                 <Card className="submission-card" key={index}>
                   <Card.Title
+                    style={{ width: "80%", display: "flex" }}
                     id="card-title"
-                    style={{ width: "40rem", display: "flex" }}
                   >
-                    <Accordion.Toggle as={Button} variant="light" eventKey="0">
+                    <Accordion.Toggle
+                      className="title-btn"
+                      variant="light"
+                      eventKey="0"
+                    >
                       {card.title}
                     </Accordion.Toggle>
                   </Card.Title>
@@ -109,7 +115,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
                         {card.response ? (
                           <div>
                             {splitLines(card.response).map((r, i) => (
-                              <p key={i}>{r}</p>
+                              <p className="card-response" key={i}>
+                                {r}
+                              </p>
                             ))}{" "}
                           </div>
                         ) : (

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./MentorFeedback.css";
 import "./StudentProfile.css";
 const CourseProgressItem = ({ date, course, completed, id, student_id }) => {
   const [isChecked, setIsChecked] = useState(completed);
 
-  console.log(student_id);
   const handleChange = (e) => {
     setIsChecked(e.target.checked);
     axios
@@ -20,13 +20,15 @@ const CourseProgressItem = ({ date, course, completed, id, student_id }) => {
     <div id="modules">
       <div id="modules-title">
         {date} {course}
+        <label className="checkbox">
+          <input
+            type="checkbox"
+            id="checkbox"
+            checked={isChecked}
+            onChange={handleChange}
+          />
+        </label>
       </div>
-      <input
-        type="checkbox"
-        id="checkbox"
-        checked={isChecked}
-        onChange={handleChange}
-      />
     </div>
   );
 };

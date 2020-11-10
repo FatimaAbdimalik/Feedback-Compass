@@ -1,36 +1,36 @@
-.welcom {
-  font-size: 50px;
+.welcome {
+  font-size: 30px;
   font-weight: 600;
+  color: rgb(65, 65, 65);
 }
 
-#student-heading {
+#profile-heading {
+  height: 80px;
   display: flex;
-  flex-wrap: wrap;
-  color: white;
-  justify-content: flex-start;
+  background-color: rgb(231, 231, 231);
+  justify-content: space-between;
+  color: rgb(48, 48, 48);
   align-items: center;
 }
 
-#student-body {
-  display: flex;
-}
-
 #student-profile {
-  max-width: 300px;
-  padding: 20px;
-  margin: 15px;
+  margin: 10px;
   background-color: rgba(230, 230, 230, 0.7);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 20px;
 }
 
 #avatar {
-  width: 14em;
+  align-self: center;
+  width: 8em;
   height: auto;
-  border-radius: 50%;
+  border-radius: 100%;
+  margin-top: -50px;
+  border: 10px solid rgb(197, 197, 197, 0.5);
+  justify-self: center;
 }
 
 #student-bio {
@@ -39,31 +39,44 @@
   border: none;
 }
 
-h2 {
-  margin: 10px;
-}
 /*  Modules  */
 
-#modules {
-  align-items: center;
-  width: 13em;
+#checkbox-container {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  background-color: rgb(61, 61, 61);
-  color: white;
-  font-size: 18px;
-  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(207, 207, 207);
   border-radius: 20px;
+  margin-top: 2rem;
+}
+
+/**********************/
+
+.checkbox > input {
+  margin: 5px;
+  height: 25px;
+  width: 25px;
+
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  outline: none;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#modules-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: rgb(237, 67, 67);
+  border-radius: 7px;
   border: solid 2px white;
-}
-#modules:hover {
-  background-color: rgb(221, 221, 221);
-  color: rgb(95, 95, 95);
-}
-#modules-container {
-  border-radius: 20px;
-  background-color: rgb(61, 61, 61, 0.5);
+  color: rgb(255, 255, 255);
 }
 
 option {
@@ -93,29 +106,33 @@ option {
   border: none;
 }
 
-#comment {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#comment-btn {
-  margin: 10px;
-  background-color: rgb(31, 87, 82);
-  color: white;
-  padding: 10px;
-  border-radius: 20px;
-  border: solid 2px white;
-}
-
 #buttons {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#search-bar{
-   width: 60%;
-   background-color: white;
-   display:flex;
- flex-direction:center;  
+#search-bar {
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: white;
+  width: 60%;
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title-btn {
+  width: 100vw;
+  background-color: rgb(145, 145, 145);
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 15px;
+  border: none;
+}
+.title-btn:hover {
+  background-color: rgb(214, 51, 51);
 }

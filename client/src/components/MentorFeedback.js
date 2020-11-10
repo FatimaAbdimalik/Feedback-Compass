@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Logo from "./Logo.png";
+import Logo from "./images/cyf_brand.png";
 import axios from "axios";
 import avatar from "./Avatar.png";
+import "./MentorFeedback.css";
 import "./StudentProfile.css";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
@@ -30,14 +31,11 @@ function MentorFeedback({ setUser }) {
   return (
     <div>
       <div id="student-container">
-        <div id="student-heading">
+        <div id="profile-heading">
           <a href="/">
             <img id="logo" src={Logo} width="400" />
           </a>
-
-          <h1 className="welcom">Student Feedback</h1>
-        </div>
-        <div>
+          <h1 className="welcome">Hello Mentor</h1>
           <Logout setUser={setUser} />
         </div>
 

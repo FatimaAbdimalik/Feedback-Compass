@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./StudentResponse.css";
 import LessonsDropDown from "./LessonsDropDown";
 const ModuleDropDown = ({ id }) => {
   const [subject, setSubject] = useState();
@@ -8,18 +9,16 @@ const ModuleDropDown = ({ id }) => {
     setSelect(e.target.value);
   };
   useEffect(() => {
-    axios
-      .get("/api/get-syllabus")
-      .then((response) => {
-        setSubject(response.data);
-      });
+    axios.get("/api/get-syllabus").then((response) => {
+      setSubject(response.data);
+    });
   }, []);
 
   return !subject ? (
     <div>Loading</div>
   ) : (
     <div>
-      <select onChange={handleChange} style={{ backgroundColor: "gray" }}>
+      <select className="dropdown" onChange={handleChange}>
         <option>Select A Module</option>
         {subject.map((sub, i) => {
           return <option key={i}>{sub.modules}</option>;

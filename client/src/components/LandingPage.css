@@ -1,22 +1,29 @@
 #container {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
-    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
-  background-size: cover;
-  height: 100%;
+}
+
+.banar {
+  /* background-image: linear-gradient(rgb(0, 0, 0, 0.8), rgb(0, 0, 0, 0.8)),
+    url("./images/banar.jpg"); */
+  background-color: rgb(44, 44, 44);
+
+  margin-top: 0px;
+  text-align: center;
 }
 .heading-title {
-  font-weight: 500;
-  font-size: 35px;
-}
-#heading {
-  background-color: rgb(216, 216, 216);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: rgb(63, 63, 63);
-  height: 100px;
+  font-family: inherit;
+  font-size: 3em;
+
+  line-height: 1.4;
+  letter-spacing: 0em;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.23);
+  text-transform: none;
+  color: rgb(255, 255, 255);
+
+  text-decoration-line: underline;
+  text-decoration-color: #ea4549;
+  text-align: center;
 }
 #logo {
   padding-right: 150px;
@@ -25,71 +32,79 @@
 }
 
 #options {
-  margin-top: 70px;
+  margin-top: 30px;
   padding: 20px;
-  background-color: rgb(231, 231, 231, 0.5);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+#heading {
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: rgb(63, 63, 63);
+  height: 70px;
+}
 
 #login-question {
-  margin: 30px;
-  font-size: 40px;
+  margin-top: 30px;
+  font-size: 30px;
   color: rgb(255, 255, 255);
 }
 
 #student {
-  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+  background-color: rgb(218, 67, 67);
   color: white;
-  padding: 20px;
-  width: 30vw;
-  font-size: 60px;
+  padding: 15px;
+
+  font-size: 30px;
   font-weight: 600;
   border: none;
   margin: 0 auto;
   margin-top: 100px;
-  box-shadow: 0 9px #999;
+
   cursor: pointer;
 }
 #mentor {
-  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+  background-color: rgb(218, 67, 67);
   color: white;
-  width: 30vw;
-  padding: 20px;
+
+  padding: 15px;
   margin: 0 auto;
   margin-top: 100px;
-  font-size: 60px;
+  font-size: 30px;
   font-weight: 600;
   border: none;
-  box-shadow: 0 9px #999;
+
   cursor: pointer;
 }
 #student:hover {
-  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
+  background-color: rgb(226, 0, 0);
 }
 
 #student:active {
-  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
-  box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
 }
 
 #mentor:hover {
-  background-image: linear-gradient(0deg, #8f7373 0%, #e03a3a 100%);
+  background-color: rgb(226, 0, 0);
 }
 
 #mentor:active {
-  background-color: #00b899;
-  box-shadow: 0 5px rgb(136, 136, 136);
   transform: translateY(4px);
 }
 footer {
-  background-color: rgb(109, 33, 33);
+  background-color: rgb(44, 44, 44);
   color: aliceblue;
   text-align: center;
-  margin-top: 250px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
 }
 
 @media (min-width: 300px) and (max-width: 769px) {

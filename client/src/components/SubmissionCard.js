@@ -10,6 +10,9 @@ const SubmissionCard = ({ id }) => {
   const [mentorName, setMentorName] = useState();
 
   const splitLines = (str) => str.split(/\r?\n/);
+  const handleDate = (date) => {
+    return date.split("T")[0];
+  };
 
   useEffect(() => {
     axios
@@ -40,10 +43,6 @@ const SubmissionCard = ({ id }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleDate = (date) => {
-    return date.split("T")[0];
-  };
-
   const handleChange = (e) => {
     return setSearchItem(e.target.value);
   };
@@ -60,14 +59,15 @@ const SubmissionCard = ({ id }) => {
     </div>
   ) : (
     <div>
-      <input
-        style={{ margin: "0 auto" }}
-        id="search-bar"
-        type="search"
-        value={searchItem}
-        placeholder="Search for submission title here"
-        onChange={handleChange}
-      />
+      <div className="search-bar">
+        <input
+          id="search-bar"
+          type="search"
+          value={searchItem}
+          placeholder="Search for submission title here"
+          onChange={handleChange}
+        />
+      </div>
       {filterCardData(searchItem).map((card, index) => {
         return (
           <Accordion>
@@ -76,7 +76,11 @@ const SubmissionCard = ({ id }) => {
                 style={{ width: "80%", display: "flex" }}
                 id="card-title"
               >
-                <Accordion.Toggle as={Button} variant="light" eventKey="0">
+                <Accordion.Toggle
+                  className="title-btn"
+                  variant="light"
+                  eventKey="0"
+                >
                   {mentorName && card.body ? (
                     "Feedback from " +
                     mentorName.find((m) => m.id === card.mentor_id).name +
@@ -97,7 +101,7 @@ const SubmissionCard = ({ id }) => {
                     Sent: {handleDate(card.submission_date)}
                   </div>
                   <div id="card-submitted">
-                    <h5>Submitted Work:</h5>
+                    <h5>Submitted Link:</h5>
                     <span>
                       <a
                         className="submission-link"

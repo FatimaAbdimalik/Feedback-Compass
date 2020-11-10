@@ -1,32 +1,17 @@
-.welcom {
-  font-size: 50px;
+.welcom-mentor {
+  font-size: 40px;
   font-weight: 600;
   margin-left: 3em;
   margin-right: 3em;
+  color: #494949;
 }
-body {
-  background-image: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)),
-    url("./images/1_dqV2meYkevAJ0TAgJ98a8A.jpeg");
-  background-size: cover;
-}
-#student-heading {
+
+#profile-heading {
   display: flex;
   flex-wrap: wrap;
-  color: white;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-}
-
-#student-profile {
-  padding: 20px;
-  margin: 15px;
-  background-color: rgba(230, 230, 230, 0.7);
-  color: #494949;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
 }
 
 #avatar {
@@ -35,17 +20,15 @@ body {
   height: auto;
   border-radius: 100%;
   margin-top: -50px;
-  border: 10px solid rgb(197, 197, 197, 0.5);
+  border: 10px solid rgba(255, 255, 255, 0.5);
   justify-self: center;
 }
 
 #student-name-container {
   background-color: white;
-  color: #534444;
-  padding: 40px;
-  border-radius: 23px 23px 23px 23px;
-  width: 70vw;
-  margin: 20px;
+  color: hsl(0, 10%, 30%);
+
+  width: 100%;
 }
 #student-name {
   color: rgb(65, 65, 65);
@@ -59,87 +42,59 @@ body {
   padding: 5px;
   font-size: 18px;
   text-align: center;
-  background-color: #ebebeb;
-  border-radius: 20px;
-}
-h4 {
-  color: rgb(65, 65, 65);
-  background-color: rgba(204, 204, 204, 0.5);
-  border-radius: 40px;
-  padding: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  text-align: center;
 }
 
 #student-details {
-  background-color: #973636;
+  margin-top: 60px;
+  background-color: rgb(237, 67, 67);
   border-radius: 20px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 2.5rem;
 }
 #search-bar {
-  width: 60%;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 5px;
   background-color: white;
-  color: #534444;
+  width: 60%;
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+.search-bar {
   display: flex;
-  flex-direction: center;
+  align-items: center;
+  justify-content: center;
 }
 
-h2 {
-  margin: 10px;
-}
 /*  Modules  */
 
-#checkbox-container {
+/* #checkbox-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(0deg, #838383 0%, #cacaca 100%);
+  background-color: rgb(165, 165, 165);
   border-radius: 20px;
   margin-top: 2rem;
   width: 70vw;
-}
-#checkbox {
-  margin-right: 3px;
-  color: rgb(221, 221, 221);
+} */
+/* #checkbox {
+  color: rgb(187, 187, 187);
   cursor: pointer;
   justify-content: center;
   align-items: center;
   width: 3em;
-  font-size: 15px;
+  font-size: 50px;
   padding: 3px;
   border-radius: 20px;
   border: solid 2px white;
-}
+} */
 
-#modules {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 #Course-Progress {
+  padding: 5px;
   font-weight: 600;
   color: #494949;
-}
-
-#modules-title {
-  width: 25em;
-  font-size: 18px;
-  padding: 15px;
-  margin: 5px;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(61, 61, 61);
-  border-radius: 20px;
-  border: solid 2px white;
-  color: rgb(221, 221, 221);
 }
 
 /* feedback */
@@ -172,26 +127,24 @@ h2 {
 }
 .comment-input {
   width: 80%;
-  padding: 15px;
+
   color: #534444;
 }
 
 #comment {
+  padding: 10px;
   margin: 5px;
-  border-radius: 20px;
-  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: rgb(231, 231, 231);
   display: flex;
-
-  justify-content: center;
-  align-items: center;
 }
 #comment-btn {
-  margin: 10px;
-  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+  border: none;
+  margin: 7px;
+  background-color: rgb(209, 62, 62);
   color: white;
-  padding: 10px;
-  border-radius: 10px;
-  border: solid 2px white;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 #buttons {
@@ -199,56 +152,65 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-#courses_table {
+/* #courses_table {
   display: flex;
   justify-content: space-evenly;
 }
 * [type="checkbox"] {
   vertical-align: middle !important;
-}
+} */
 #submission {
   color: #534444;
+  width: 80%;
 }
 
 .submission-card {
-  background-image: linear-gradient(0deg, #534444 0%, #ac4242 100%);
+  background-color: rgba(255, 255, 255, 0.87);
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
-  padding: 20px;
 }
 
 #card-date {
+  margin-left: 20px;
   color: #838383;
   font-style: italic;
 }
 #card-submitted {
   background-color: #ffffff;
-  margin: 10px;
+  margin: 20px;
 
   border-radius: 20px;
   padding: 15px;
 }
+#card-title {
+  text-align: center;
+}
 
 .card-color {
-  margin: 0 auto;
-  background-color: hsl(0, 0%, 92%);
-  border-radius: 20px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 10px;
   padding: 10px;
 }
 
 .submission-link {
   font-size: 15px;
-  background-color: white;
+  font-size: 180x;
+  margin-left: 20px;
+}
+.card-response {
+  background-color: rgba(240, 240, 240, 0.7);
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-#card-title {
-  color: green;
-  padding: 5px;
-  margin: 5px;
-  margin: 0 auto;
-  width: 50%;
+#add-submission-btn {
+  text-align: center;
+
+  position: sticky;
+
+  background-color: rgba(216, 46, 46, 0.87);
 }
 
 @media (min-width: 300px) and (max-width: 768px) {

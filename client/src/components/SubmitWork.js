@@ -3,7 +3,6 @@ import axios from "axios";
 import "draft-js/dist/Draft.css";
 import "./StudentProfile.css";
 import moment from "moment";
-
 const SubmitWork = ({ lessonValue, id }) => {
   const [submission, setSubmission] = useState();
 
@@ -11,7 +10,6 @@ const SubmitWork = ({ lessonValue, id }) => {
   const handleDate = (date) => {
     return date.split("T")[0].substring(1);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
