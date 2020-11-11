@@ -28,7 +28,7 @@ const LessonsDropDown = ({ module, id }) => {
           );
         })}
       </select>
-      <SubmitWork id={id} lessonValue={lessonValue} />
+      {lessonValue ? <SubmitWork id={id} lessonValue={lessonValue} /> : null}
     </div>
   );
 };
