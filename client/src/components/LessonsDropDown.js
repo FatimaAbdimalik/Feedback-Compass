@@ -5,7 +5,6 @@ import SubmitWork from "./SubmitWork";
 const LessonsDropDown = ({ module, id }) => {
   const [lesson, setLesson] = useState();
   const [lessonValue, setLessonValue] = useState();
-  console.log(lesson);
   useEffect(() => {
     axios.get("/api/syllabus/lessons").then((response) => {
       setLesson(response.data);
