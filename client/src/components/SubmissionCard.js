@@ -13,10 +13,7 @@ const SubmissionCard = ({ id }) => {
 
   const splitLines = (str) => str.split(/\r?\n/);
 
-  let withoutFeedback = cardData.filter((p) => !p.body).length;
-
-  // console.log(withoutFeedback);
-
+  console.log(cardData);
   useEffect(() => {
     axios
       .get(`/api/get-submissions/${id}`)
@@ -94,6 +91,8 @@ const SubmissionCard = ({ id }) => {
                   <div id="card-submitted">
                     <h5>Submitted Work:</h5>
                     <span>
+                      <p className={card.level}>{card.level}</p>
+                      {/* {card.level === "easy"? } */}
                       <a
                         className="submission-link"
                         href={card.submission}

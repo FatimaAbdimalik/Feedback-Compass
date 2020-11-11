@@ -29,7 +29,6 @@ const LessonsDropDown = ({ module, id }) => {
           );
         })}
       </select>
-      <RatingHomeWork />
       <SubmitWork id={id} lessonValue={lessonValue} />
     </div>
   );

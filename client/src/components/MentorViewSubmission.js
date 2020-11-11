@@ -6,12 +6,9 @@ import axios from "axios";
 import Filter from "./Filter";
 import FeedbackField from "./FeedbackField";
 
-export const userContext = React.createContext();
-
 const MentorViewSubmission = ({ student_id, mentor_id, unMarkedWork }) => {
   const [cardData, setCardData] = useState([]);
   const [searchItem, setSearchItem] = useState("");
-  const [unMarked, setUnMarked] = useState();
 
   let withoutFeedback = cardData.filter((p) => !p.body).length;
 

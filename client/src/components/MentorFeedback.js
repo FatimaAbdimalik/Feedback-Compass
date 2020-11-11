@@ -6,6 +6,9 @@ import "./StudentProfile.css";
 import { useParams } from "react-router-dom";
 import MentorViewSubmission from "./MentorViewSubmission";
 import CourseProgressList from "./CourseProgressList";
+import Badge from "@material-ui/core/Badge";
+import { FaBell } from "react-icons/fa";
+
 import Logout from "./Logout";
 
 function MentorFeedback({ setUser }) {
@@ -47,6 +50,9 @@ function MentorFeedback({ setUser }) {
               : unMarked > 1
               ? `There are  ${unMarked} unmarked submitions`
               : null}
+            <Badge badgeContent={unMarked} color="secondary">
+              <FaBell />
+            </Badge>
           </div>
         </div>
         <div>

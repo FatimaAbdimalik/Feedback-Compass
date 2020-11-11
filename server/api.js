@@ -365,7 +365,7 @@ router.get("/get-syllabus", (req, res) => {
 router.get("/get-submissions/:student_id", (req, res) => {
   const studentId = req.params.student_id;
   const getAllSubmissions =
-    "select id, submission_date,mentor_id, title, body,response, submission from feedbacktable  where student_id = $1 ORDER BY id DESC";
+    "select id, submission_date,mentor_id, title, body,response, submission, level from feedbacktable  where student_id = $1 ORDER BY id DESC";
 
   Connection.query(getAllSubmissions, [studentId], (err, result) => {
     if (err) {
@@ -390,18 +390,19 @@ router.post("/submission", (req, res) => {
   const studentId = Number(req.body.student_id);
   const newTitle = req.body.title;
   const newSubmission = req.body.submission;
+  const newEvaluation = req.body.evaluation;
   const sentDate = req.body.submission_date;
   const postQuery =
-    "INSERT INTO feedbacktable (student_id, title, submission, submission_date)" +
-    "VALUES ($1,$2,$3,$4) returning *";
+    "INSERT INTO feedbacktable (student_id, title, submission, level ,submission_date)" +
+    "VALUES ($1,$2,$3,$4,$5) returning *";
   Connection.query(
     postQuery,
-    [studentId, newTitle, newSubmission, sentDate],
+    [studentId, newTitle, newSubmission, newEvaluation, sentDate],
     (err, result) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        res.json({ message: "successful" });
+        res.json(result.rows[0]);
       }
     }
   );

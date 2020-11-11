@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Form, radio } from "react-bootstrap";
 import "./RatingHomeWork";
 
-const RatingHomeWork = () => {
+const RatingHomeWork = ({ studentEvaluation }) => {
   const [choosen, setChoosen] = useState("easy");
-  console.log(choosen);
+
+  studentEvaluation(choosen);
 
   const handleChange = (e) => {
     setChoosen(e.target.value);
@@ -74,37 +75,6 @@ const RatingHomeWork = () => {
         </label>
       </div>
     </div>
-
-    // <div>
-    //   <Form>
-    //     {["radio"].map((type) => (
-    //       <div key={`custom-inline-${type}`} className="mb-3">
-    //         <Form.Check
-    //           custom
-    //           inline
-    //           // label="1"
-    //           type={type}
-    //           id={`custom-inline-${type}-1`}
-    //           variant="danger"
-    //         />
-    //         <Form.Check
-    //           custom
-    //           inline
-    //           // label="2"
-    //           type={type}
-    //           id={`custom-inline-${type}-2`}
-    //         />
-    //         <Form.Check
-    //           custom
-    //           inline
-    //           // label="3"
-    //           type={type}
-    //           id={`custom-inline-${type}-3`}
-    //         />
-    //       </div>
-    //     ))}
-    //   </Form>
-    // </div>
   );
 };
 

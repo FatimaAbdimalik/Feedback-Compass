@@ -3,10 +3,15 @@ import axios from "axios";
 import "draft-js/dist/Draft.css";
 import "./StudentProfile.css";
 import moment from "moment";
+import RatingHomeWork from "./RatingHomeWork";
 
 const SubmitWork = ({ lessonValue, id }) => {
   const [submission, setSubmission] = useState();
+  const [evaluation, setEvaluation] = useState();
 
+  const studentEvaluation = (choice) => {
+    setEvaluation(choice);
+  };
   const currentDate = JSON.stringify(moment());
   const handleDate = (date) => {
     return date.split("T")[0].substring(1);
@@ -19,11 +24,13 @@ const SubmitWork = ({ lessonValue, id }) => {
         student_id: id,
         title: lessonValue,
         submission: submission,
+        evaluation: evaluation,
         submission_date: handleDate(currentDate),
       })
+
       .then(function (response, err) {
         if (response) {
-          window.location.reload(false);
+          // window.location.reload(false);
         }
       })
       .catch((err) => {
@@ -33,6 +40,8 @@ const SubmitWork = ({ lessonValue, id }) => {
 
   return (
     <div>
+      <RatingHomeWork studentEvaluation={studentEvaluation} />
+
       <div>
         <input
           id="submission"

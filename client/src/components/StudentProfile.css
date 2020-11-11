@@ -250,7 +250,15 @@ h2 {
   margin: 0 auto;
   width: 50%;
 }
-
+.easy {
+  background-color: green;
+}
+.medium {
+  background-color: orange;
+}
+.hard {
+  background-color: red;
+}
 @media (min-width: 300px) and (max-width: 768px) {
   #student-body {
     display: flex;
