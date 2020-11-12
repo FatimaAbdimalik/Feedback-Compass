@@ -63,6 +63,7 @@ function MentorFeedback({ setUser }) {
               <MentorViewSubmission
                 student_id={student_id}
                 mentor_id={mentor_id}
+                showStudetnName={studentDetails.name}
               />
             </div>
           </div>

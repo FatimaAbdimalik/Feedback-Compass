@@ -24,7 +24,9 @@ const ModuleDropDown = ({ id }) => {
           return <option key={i}>{sub.modules}</option>;
         })}
       </select>
-      {select ? <LessonsDropDown module={select} id={id} /> : null}
+      {select && select !== "Select A Module" ? (
+        <LessonsDropDown module={select} id={id} />
+      ) : null}
     </div>
   );
 };

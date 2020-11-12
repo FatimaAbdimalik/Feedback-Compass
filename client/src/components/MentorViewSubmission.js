@@ -5,7 +5,7 @@ import "./MentorFeedback";
 import axios from "axios";
 import FeedbackField from "./FeedbackField";
 
-const MentorViewSubmission = ({ student_id, mentor_id }) => {
+const MentorViewSubmission = ({ student_id, mentor_id, showStudetnName }) => {
   const [cardData, setCardData] = useState([]);
   const [searchItem, setSearchItem] = useState("");
 
@@ -52,7 +52,9 @@ const MentorViewSubmission = ({ student_id, mentor_id }) => {
         }}
         onChange={handleInputChange}
       />
-      Loading...
+      <div style={{ marginLeft: "13rem", marginTop: "5rem" }}>
+        There is no submission yet from {showStudetnName}
+      </div>
     </div>
   ) : (
     <div>
