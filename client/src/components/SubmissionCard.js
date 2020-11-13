@@ -47,6 +47,12 @@ const SubmissionCard = ({ id }) => {
     return setSearchItem(e.target.value);
   };
 
+  function isValidURL(str) {
+    var a = document.createElement("a");
+    a.href = str;
+    return a.host && a.host != window.location.host;
+  }
+
   return !cardData ? (
     <div>
       <input
@@ -103,13 +109,17 @@ const SubmissionCard = ({ id }) => {
                   <div id="card-submitted">
                     <h5>Submitted Link:</h5>
                     <span>
-                      <a
-                        className="submission-link"
-                        href={card.submission}
-                        target="_blank"
-                      >
-                        {card.submission}
-                      </a>
+                      {isValidURL(card.submission) ? (
+                        <a
+                          className="submission-link"
+                          href={card.submission}
+                          target="_blank"
+                        >
+                          {card.submission}
+                        </a>
+                      ) : (
+                        <p>{card.submission}</p>
+                      )}
                     </span>
                     <br />
                   </div>
