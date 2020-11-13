@@ -26,7 +26,7 @@ const LandingPage = () => {
         </div>
       </div>
       <div id="footer">
-        <footer>CYF copyright@2020</footer>
+        <footer>CYF &copy;2020</footer>
       </div>
     </div>
   );
